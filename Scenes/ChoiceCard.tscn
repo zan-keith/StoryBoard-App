@@ -1,0 +1,152 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_left = 10.0
+content_margin_right = 10.0
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color( 0.890196, 0.890196, 0.87451, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[node name="ChoiceCard" type="PanelContainer"]
+margin_left = 382.0
+margin_right = 629.0
+margin_bottom = 353.0
+size_flags_vertical = 2
+custom_styles/panel = SubResource( 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 237.0
+margin_bottom = 343.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Id" type="LineEdit" parent="VBoxContainer"]
+margin_right = 227.0
+margin_bottom = 14.0
+custom_colors/font_color = Color( 0.0941176, 0.0941176, 0.0941176, 1 )
+custom_styles/normal = SubResource( 2 )
+text = "decision_one"
+
+[node name="Panel" type="PanelContainer" parent="VBoxContainer"]
+margin_top = 18.0
+margin_right = 227.0
+margin_bottom = 333.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Panel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 220.0
+margin_bottom = 308.0
+
+[node name="Content" type="RichTextLabel" parent="VBoxContainer/Panel/VBoxContainer"]
+margin_right = 213.0
+margin_bottom = 105.0
+text = "asdsad
+asdassssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+asd
+
+adsasd"
+fit_content_height = true
+
+[node name="ChoicePanel" type="PanelContainer" parent="VBoxContainer/Panel/VBoxContainer"]
+margin_top = 109.0
+margin_right = 213.0
+margin_bottom = 203.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Panel/VBoxContainer/ChoicePanel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 206.0
+margin_bottom = 87.0
+
+[node name="ChoiceTitle" type="LineEdit" parent="VBoxContainer/Panel/VBoxContainer/ChoicePanel/VBoxContainer"]
+margin_right = 199.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "sdfsdfsssssssssssssssssssss"
+expand_to_text_length = true
+placeholder_text = "Name"
+
+[node name="Goto" type="LineEdit" parent="VBoxContainer/Panel/VBoxContainer/ChoicePanel/VBoxContainer"]
+margin_top = 28.0
+margin_right = 199.0
+margin_bottom = 52.0
+size_flags_horizontal = 3
+expand_to_text_length = true
+placeholder_text = "Goto"
+
+[node name="ChangeVars" type="HBoxContainer" parent="VBoxContainer/Panel/VBoxContainer/ChoicePanel/VBoxContainer"]
+margin_top = 56.0
+margin_right = 199.0
+margin_bottom = 80.0
+
+[node name="VarName" type="LineEdit" parent="VBoxContainer/Panel/VBoxContainer/ChoicePanel/VBoxContainer/ChangeVars"]
+margin_right = 97.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+expand_to_text_length = true
+placeholder_text = "Var Value"
+
+[node name="VarVal" type="LineEdit" parent="VBoxContainer/Panel/VBoxContainer/ChoicePanel/VBoxContainer/ChangeVars"]
+margin_left = 101.0
+margin_right = 199.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+expand_to_text_length = true
+placeholder_text = "Var Value"
+
+[node name="ChoicePanel2" type="PanelContainer" parent="VBoxContainer/Panel/VBoxContainer"]
+margin_top = 207.0
+margin_right = 213.0
+margin_bottom = 301.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Panel/VBoxContainer/ChoicePanel2"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 206.0
+margin_bottom = 87.0
+
+[node name="ChoiceTitle" type="LineEdit" parent="VBoxContainer/Panel/VBoxContainer/ChoicePanel2/VBoxContainer"]
+margin_right = 199.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "sdfsdfsssssssssssssssssssss"
+expand_to_text_length = true
+placeholder_text = "Name"
+
+[node name="Goto" type="LineEdit" parent="VBoxContainer/Panel/VBoxContainer/ChoicePanel2/VBoxContainer"]
+margin_top = 28.0
+margin_right = 199.0
+margin_bottom = 52.0
+size_flags_horizontal = 3
+expand_to_text_length = true
+placeholder_text = "Goto"
+
+[node name="ChangeVars" type="HBoxContainer" parent="VBoxContainer/Panel/VBoxContainer/ChoicePanel2/VBoxContainer"]
+margin_top = 56.0
+margin_right = 199.0
+margin_bottom = 80.0
+
+[node name="VarName" type="LineEdit" parent="VBoxContainer/Panel/VBoxContainer/ChoicePanel2/VBoxContainer/ChangeVars"]
+margin_right = 97.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+expand_to_text_length = true
+placeholder_text = "Var Value"
+
+[node name="VarVal" type="LineEdit" parent="VBoxContainer/Panel/VBoxContainer/ChoicePanel2/VBoxContainer/ChangeVars"]
+margin_left = 101.0
+margin_right = 199.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+expand_to_text_length = true
+placeholder_text = "Var Value"

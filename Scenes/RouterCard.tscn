@@ -1,0 +1,91 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_left = 10.0
+content_margin_right = 10.0
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color( 0.890196, 0.890196, 0.87451, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[node name="RouterCard" type="PanelContainer"]
+margin_left = 184.0
+margin_right = 352.0
+margin_bottom = 146.0
+size_flags_vertical = 2
+custom_styles/panel = SubResource( 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 158.0
+margin_bottom = 136.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Id" type="LineEdit" parent="VBoxContainer"]
+margin_right = 148.0
+margin_bottom = 14.0
+custom_colors/font_color = Color( 0.0941176, 0.0941176, 0.0941176, 1 )
+custom_styles/normal = SubResource( 2 )
+text = "decision_one"
+
+[node name="OnEnd" type="PanelContainer" parent="VBoxContainer"]
+margin_top = 18.0
+margin_right = 148.0
+margin_bottom = 126.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/OnEnd"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 141.0
+margin_bottom = 101.0
+
+[node name="Goto" type="LineEdit" parent="VBoxContainer/OnEnd/VBoxContainer"]
+margin_right = 134.0
+margin_bottom = 24.0
+placeholder_text = "else goto step"
+
+[node name="ChoicePanel3" type="PanelContainer" parent="VBoxContainer/OnEnd/VBoxContainer"]
+margin_top = 28.0
+margin_right = 134.0
+margin_bottom = 94.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/OnEnd/VBoxContainer/ChoicePanel3"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 127.0
+margin_bottom = 59.0
+
+[node name="Goto" type="LineEdit" parent="VBoxContainer/OnEnd/VBoxContainer/ChoicePanel3/VBoxContainer"]
+margin_right = 120.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+expand_to_text_length = true
+placeholder_text = "Goto"
+
+[node name="ChangeVars" type="HBoxContainer" parent="VBoxContainer/OnEnd/VBoxContainer/ChoicePanel3/VBoxContainer"]
+margin_top = 28.0
+margin_right = 120.0
+margin_bottom = 52.0
+
+[node name="VarName" type="LineEdit" parent="VBoxContainer/OnEnd/VBoxContainer/ChoicePanel3/VBoxContainer/ChangeVars"]
+margin_right = 58.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+expand_to_text_length = true
+placeholder_text = "Var Value"
+
+[node name="VarVal" type="LineEdit" parent="VBoxContainer/OnEnd/VBoxContainer/ChoicePanel3/VBoxContainer/ChangeVars"]
+margin_left = 62.0
+margin_right = 120.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+expand_to_text_length = true
+placeholder_text = "Var Value"

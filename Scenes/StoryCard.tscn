@@ -1,0 +1,295 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Scripts/StoryCard.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/StoryCard/VarDetails.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/StoryCard/pencil.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/StoryCard/save.png" type="Texture" id=4]
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_left = 10.0
+content_margin_right = 10.0
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color( 0.890196, 0.890196, 0.87451, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+content_margin_left = 10.0
+content_margin_right = 10.0
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color( 0.270588, 0.376471, 0.392157, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=3]
+content_margin_left = 10.0
+content_margin_right = 10.0
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color( 0.160784, 0.152941, 0.184314, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Animation" id=6]
+resource_name = "mouse_enter"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("MainDetails/Save:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MainDetails/Save:mouse_filter")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "mouse_exit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("MainDetails/Save:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MainDetails/Save:mouse_filter")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+
+[node name="StoryCard" type="PanelContainer"]
+margin_left = 160.0
+margin_right = 352.0
+margin_bottom = 353.0
+size_flags_vertical = 2
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 182.0
+margin_bottom = 343.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MainDetails" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 172.0
+margin_bottom = 34.0
+
+[node name="Id" type="LineEdit" parent="VBoxContainer/MainDetails"]
+margin_right = 119.0
+margin_bottom = 34.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.0941176, 0.0941176, 0.0941176, 1 )
+custom_styles/normal = SubResource( 2 )
+text = "asdasdasd"
+
+[node name="Save" type="Button" parent="VBoxContainer/MainDetails"]
+margin_left = 123.0
+margin_right = 172.0
+margin_bottom = 34.0
+custom_styles/normal = SubResource( 4 )
+text = "Save"
+
+[node name="OnStart" type="PanelContainer" parent="VBoxContainer"]
+margin_top = 38.0
+margin_right = 172.0
+margin_bottom = 114.0
+
+[node name="VBox" type="VBoxContainer" parent="VBoxContainer/OnStart"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 165.0
+margin_bottom = 69.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/OnStart/VBox"]
+margin_right = 158.0
+margin_bottom = 34.0
+
+[node name="Label" type="Label" parent="VBoxContainer/OnStart/VBox/HBoxContainer"]
+margin_top = 10.0
+margin_right = 126.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.52549, 0.52549, 0.52549, 1 )
+text = "required vars"
+valign = 1
+
+[node name="AddVar" type="Button" parent="VBoxContainer/OnStart/VBox/HBoxContainer"]
+margin_left = 130.0
+margin_right = 158.0
+margin_bottom = 34.0
+custom_styles/normal = SubResource( 3 )
+text = "+"
+
+[node name="Reqs" type="VBoxContainer" parent="VBoxContainer/OnStart/VBox"]
+margin_top = 38.0
+margin_right = 158.0
+margin_bottom = 62.0
+
+[node name="VarDetails" parent="VBoxContainer/OnStart/VBox/Reqs" instance=ExtResource( 2 )]
+margin_right = 158.0
+
+[node name="Content" type="PanelContainer" parent="VBoxContainer"]
+margin_top = 118.0
+margin_right = 172.0
+margin_bottom = 207.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ContentLabel" type="RichTextLabel" parent="VBoxContainer/Content"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 165.0
+margin_bottom = 82.0
+bbcode_enabled = true
+text = "asddddddd
+asdasd
+asd
+asd
+asdasdasdddd"
+fit_content_height = true
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/Content/ContentLabel"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -15.0
+margin_bottom = 24.0
+texture_normal = ExtResource( 3 )
+expand = true
+stretch_mode = 4
+
+[node name="TypeContent" type="TextEdit" parent="VBoxContainer/Content"]
+visible = false
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 127.0
+margin_bottom = 82.0
+
+[node name="SaveContentButton2" type="TextureButton" parent="VBoxContainer/Content/TypeContent"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -21.0
+margin_bottom = 21.0
+texture_normal = ExtResource( 4 )
+expand = true
+stretch_mode = 4
+
+[node name="OnEnd" type="PanelContainer" parent="VBoxContainer"]
+margin_top = 211.0
+margin_right = 172.0
+margin_bottom = 333.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/OnEnd"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 165.0
+margin_bottom = 115.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/OnEnd/VBoxContainer"]
+margin_right = 158.0
+margin_bottom = 34.0
+
+[node name="Label" type="Label" parent="VBoxContainer/OnEnd/VBoxContainer/HBoxContainer"]
+margin_top = 10.0
+margin_right = 126.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.52549, 0.52549, 0.52549, 1 )
+text = "on end"
+valign = 1
+
+[node name="AddVar" type="Button" parent="VBoxContainer/OnEnd/VBoxContainer/HBoxContainer"]
+margin_left = 130.0
+margin_right = 158.0
+margin_bottom = 34.0
+custom_styles/normal = SubResource( 3 )
+text = "+"
+
+[node name="Goto" type="LineEdit" parent="VBoxContainer/OnEnd/VBoxContainer"]
+margin_top = 38.0
+margin_right = 158.0
+margin_bottom = 62.0
+size_flags_horizontal = 3
+placeholder_text = "goto step"
+
+[node name="SetVars" type="VBoxContainer" parent="VBoxContainer/OnEnd/VBoxContainer"]
+margin_top = 66.0
+margin_right = 158.0
+margin_bottom = 108.0
+
+[node name="Label" type="Label" parent="VBoxContainer/OnEnd/VBoxContainer/SetVars"]
+margin_right = 158.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.52549, 0.52549, 0.52549, 1 )
+text = "set_vars"
+valign = 1
+
+[node name="VarDetails" parent="VBoxContainer/OnEnd/VBoxContainer/SetVars" instance=ExtResource( 2 )]
+margin_top = 18.0
+margin_right = 158.0
+margin_bottom = 42.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="VBoxContainer"]
+anims/mouse_enter = SubResource( 6 )
+anims/mouse_exit = SubResource( 5 )
+
+[node name="HoverCheck" type="PanelContainer" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 182.0
+margin_bottom = 343.0
+mouse_filter = 2
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PoolVector2Array( 0, 32, -40, 32 )
+
+[connection signal="pressed" from="VBoxContainer/MainDetails/Save" to="." method="_on_Save_pressed"]
+[connection signal="pressed" from="VBoxContainer/OnStart/VBox/HBoxContainer/AddVar" to="." method="_on_AddVar_pressed"]
+[connection signal="pressed" from="VBoxContainer/Content/ContentLabel/TextureButton" to="." method="_on_EditButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/Content/TypeContent/SaveContentButton2" to="." method="_on_SaveContentButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/OnEnd/VBoxContainer/HBoxContainer/AddVar" to="." method="_on_OnEndAddVar_pressed"]
