@@ -1,0 +1,70 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/StoryCard.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/MainBoard.gd" type="Script" id=4]
+
+[sub_resource type="StyleBoxFlat" id=3]
+content_margin_left = 20.0
+content_margin_right = 20.0
+content_margin_top = 100.0
+content_margin_bottom = 20.0
+bg_color = Color( 0.133333, 0.145098, 0.152941, 1 )
+
+[node name="MainBoard" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 536.0
+custom_styles/panel = SubResource( 3 )
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer"]
+margin_left = 20.0
+margin_top = 100.0
+margin_right = 1004.0
+margin_bottom = 516.0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/ScrollContainer"]
+margin_right = 1194.0
+margin_bottom = 389.0
+custom_constants/margin_top = 40
+
+[node name="MainGrid" type="HBoxContainer" parent="PanelContainer/ScrollContainer/MarginContainer"]
+margin_top = 40.0
+margin_right = 1194.0
+margin_bottom = 389.0
+custom_constants/separation = 30
+
+[node name="Line2D" type="Line2D" parent="PanelContainer/ScrollContainer/MarginContainer/MainGrid"]
+visible = false
+joint_mode = 2
+begin_cap_mode = 2
+
+[node name="StoryCard" parent="PanelContainer/ScrollContainer/MarginContainer/MainGrid" instance=ExtResource( 3 )]
+margin_right = 174.0
+margin_bottom = 349.0
+
+[node name="StoryCard2" parent="PanelContainer/ScrollContainer/MarginContainer/MainGrid" instance=ExtResource( 3 )]
+margin_left = 204.0
+margin_right = 378.0
+margin_bottom = 349.0
+
+[node name="StoryCard5" parent="PanelContainer/ScrollContainer/MarginContainer/MainGrid" instance=ExtResource( 3 )]
+margin_left = 408.0
+margin_right = 582.0
+margin_bottom = 349.0
+
+[node name="StoryCard6" parent="PanelContainer/ScrollContainer/MarginContainer/MainGrid" instance=ExtResource( 3 )]
+margin_left = 612.0
+margin_right = 786.0
+margin_bottom = 349.0
+
+[node name="StoryCard3" parent="PanelContainer/ScrollContainer/MarginContainer/MainGrid" instance=ExtResource( 3 )]
+margin_left = 816.0
+margin_right = 990.0
+margin_bottom = 349.0
+
+[node name="StoryCard4" parent="PanelContainer/ScrollContainer/MarginContainer/MainGrid" instance=ExtResource( 3 )]
+margin_left = 1020.0
+margin_right = 1194.0
+margin_bottom = 349.0
