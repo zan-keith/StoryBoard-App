@@ -269,7 +269,6 @@ margin_right = 274.0
 margin_bottom = 62.0
 mouse_filter = 1
 size_flags_horizontal = 3
-text = "asd"
 placeholder_text = "goto step"
 caret_blink = true
 caret_blink_speed = 0.5
@@ -303,3 +302,4 @@ anims/toggleon = SubResource( 21 )
 [connection signal="pressed" from="VBoxContainer/Content/ContentLabel/TextureButton" to="." method="_on_EditButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/Content/TypeContent/SaveContentButton2" to="." method="_on_SaveContentButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/OnEnd/VBoxContainer/HBoxContainer/AddVar" to="." method="_on_OnEndAddVar_pressed"]
+[connection signal="text_entered" from="VBoxContainer/OnEnd/VBoxContainer/Goto" to="." method="_on_Goto_text_entered"]

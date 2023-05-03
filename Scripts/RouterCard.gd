@@ -5,20 +5,7 @@ signal ChangeConnectorLines
 
 onready var toggle=false
 onready var focused=false
-func _ready():
-	#$"../../../..".connect("CardOverride",self, "_on_card_override")
-	pass
 
-func _on_AddVar_pressed():
-	var var_details = load("res://Scenes/StoryCard/VarDetails.tscn").instance()
-	get_node("./VBoxContainer/OnStart/VBox/Reqs").add_child(var_details)
-	var_details.visible=true
-
-func _on_OnEndAddVar_pressed():
-	var var_details = load("res://Scenes/StoryCard/VarDetails.tscn").instance()
-	get_node("./VBoxContainer/OnEnd/VBoxContainer/SetVars").add_child(var_details)
-	var_details.visible=true
-	
 
 func _on_EditButton_pressed():
 	$VBoxContainer/Content/TypeContent.visible=true
@@ -34,7 +21,7 @@ func _on_SaveContentButton_pressed():
 func _on_card_override():
 	toggle=false
 	focused=false
-	StoryCard_toggled(false)
+	RouterCard_toggled(false)
 
 func _on_Save_pressed():
 	pass
@@ -42,7 +29,7 @@ func _on_Save_pressed():
 
 
 
-func StoryCard_toggled(button_pressed):
+func RouterCard_toggled(button_pressed):
 	if button_pressed:
 		toggle=true
 		$AnimationPlayer.play("toggleon")
@@ -54,12 +41,11 @@ func StoryCard_toggled(button_pressed):
 		
 		emit_signal("SendClick",self,false)
 
-
-func _on_StoryCard_gui_input(event):
+func _on_RouterCard_gui_input(event):
 	if event is InputEventMouseButton:
 		if event.is_pressed():
 			focused=not focused
-			StoryCard_toggled(focused)
+			RouterCard_toggled(focused)
 
 
 func _on_Goto_text_entered(new_text):
@@ -72,3 +58,9 @@ func _on_Goto_text_entered(new_text):
 		if int(new_text)<l:
 			emit_signal('ChangeConnectorLines')
 			print("Goto Step Exists")
+
+
+func _on_AddGotos_pressed():
+	var goto_panel = load("res://Scenes/RouterCard/GotoPanel.tscn").instance()
+	$VBoxContainer/Panel/VBoxContainer/.add_child(goto_panel)
+
