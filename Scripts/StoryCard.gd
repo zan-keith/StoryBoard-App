@@ -1,13 +1,10 @@
 extends PanelContainer
 
 signal SendClick
-signal ChangeConnectorLines
+signal RefreshLines
 
 onready var toggle=false
 onready var focused=false
-func _ready():
-	#$"../../../..".connect("CardOverride",self, "_on_card_override")
-	pass
 
 func _on_AddVar_pressed():
 	var var_details = load("res://Scenes/StoryCard/VarDetails.tscn").instance()
@@ -58,17 +55,25 @@ func StoryCard_toggled(button_pressed):
 func _on_StoryCard_gui_input(event):
 	if event is InputEventMouseButton:
 		if event.is_pressed():
-			focused=not focused
+			if not focused:
+				focused=not focused
 			StoryCard_toggled(focused)
 
 
-func _on_Goto_text_entered(new_text):
-	if (new_text.is_valid_integer()):
-		var l=1
+
+
+func _on_goto_text_entered(new_text):
+	var invalid_nodes=Array()
+
+
+	var text=$VBoxContainer/OnEnd/VBoxContainer/Goto.text
+	if (text.is_valid_integer()):
 		var ch=$"../".get_children()
-		for c in ch:
-			if c.is_in_group('StoryCard'):
-				l+=1
-		if int(new_text)<l:
-			emit_signal('ChangeConnectorLines')
-			print("Goto Step Exists")
+		
+		if int(text)<len(ch)+1 and int(text)!=0:
+			emit_signal("RefreshLines",self)
+		else:
+			$AnimationPlayer.play('invalid')
+	else:
+		$AnimationPlayer.play('invalid')
+

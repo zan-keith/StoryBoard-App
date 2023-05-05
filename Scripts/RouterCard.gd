@@ -1,11 +1,14 @@
 extends PanelContainer
 
 signal SendClick
-signal ChangeConnectorLines
+signal RefreshLines
+
 
 onready var toggle=false
 onready var focused=false
 
+func _ready():
+	_on_AddGotos_pressed()
 
 func _on_EditButton_pressed():
 	$VBoxContainer/Content/TypeContent.visible=true
@@ -44,23 +47,39 @@ func RouterCard_toggled(button_pressed):
 func _on_RouterCard_gui_input(event):
 	if event is InputEventMouseButton:
 		if event.is_pressed():
-			focused=not focused
+			if not focused:
+				focused=not focused
 			RouterCard_toggled(focused)
 
 
-func _on_Goto_text_entered(new_text):
-	if (new_text.is_valid_integer()):
-		var l=1
-		var ch=$"../".get_children()
-		for c in ch:
-			if c.is_in_group('StoryCard'):
-				l+=1
-		if int(new_text)<l:
-			emit_signal('ChangeConnectorLines')
-			print("Goto Step Exists")
+func _on_goto_text_entered(new_text,obj):
+	var invalid_nodes=Array()
 
+	for c in $VBoxContainer/Panel/VBoxContainer.get_children():
+		if c.is_in_group('RouterGotoPanel'):
+
+			var text=c.get_node('VBoxContainer/HBoxContainer/Goto').text
+			if (text.is_valid_integer()):
+				var ch=$"../".get_children()
+				
+				if int(text)<len(ch)+1 and int(text)!=0:
+					pass
+				else:
+					invalid_nodes.append(c)
+			else:
+				invalid_nodes.append(c)
+	if len(invalid_nodes)==0:
+		emit_signal("RefreshLines",self)
+	for node in invalid_nodes:
+		node.get_node("AnimationPlayer").play('invalid')
+	
 
 func _on_AddGotos_pressed():
 	var goto_panel = load("res://Scenes/RouterCard/GotoPanel.tscn").instance()
-	$VBoxContainer/Panel/VBoxContainer/.add_child(goto_panel)
+	$VBoxContainer/Panel/VBoxContainer.add_child(goto_panel)
+	get_node("VBoxContainer/Panel/VBoxContainer/"+goto_panel.name).connect("TextEntered", self, "_on_goto_text_entered")
+	
+	
+
+
 

@@ -1,15 +1,17 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/StoryCard/VarDetails.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Fonts/normal_font_theme.tres" type="Theme" id=2]
 
 [node name="VarDetails" type="HBoxContainer"]
 margin_right = 120.0
 margin_bottom = 24.0
+theme = ExtResource( 2 )
 script = ExtResource( 1 )
 
 [node name="VarName" type="LineEdit" parent="."]
 margin_right = 58.0
-margin_bottom = 24.0
+margin_bottom = 29.0
 mouse_filter = 1
 size_flags_horizontal = 3
 placeholder_text = "name"
@@ -17,7 +19,7 @@ placeholder_text = "name"
 [node name="VarVal" type="LineEdit" parent="."]
 margin_left = 62.0
 margin_right = 120.0
-margin_bottom = 24.0
+margin_bottom = 29.0
 mouse_filter = 1
 size_flags_horizontal = 3
 expand_to_text_length = true
@@ -25,8 +27,8 @@ placeholder_text = "val"
 
 [node name="CloseBtn" type="Button" parent="."]
 margin_left = 124.0
-margin_right = 144.0
-margin_bottom = 24.0
+margin_right = 146.0
+margin_bottom = 29.0
 mouse_filter = 1
 text = "X"
 flat = true
