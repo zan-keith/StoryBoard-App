@@ -1,51 +1,61 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Scripts/StoryCard.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/StoryCard/VarDetails.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/StoryCard/pencil.png" type="Texture" id=3]
-[ext_resource path="res://Scenes/StoryCard/save.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Textures/tick-svgrepo-com.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Textures/edit-4-svgrepo-com.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Fonts/Rubik/Rubik-VariableFont_wght.ttf" type="DynamicFontData" id=5]
-[ext_resource path="res://Assets/Fonts/normal_font_theme.tres" type="Theme" id=6]
-
-[sub_resource type="Theme" id=17]
-
-[sub_resource type="StyleBoxFlat" id=18]
-content_margin_left = 8.0
-content_margin_right = 8.0
-content_margin_top = 8.0
-content_margin_bottom = 8.0
-bg_color = Color( 0.760784, 0.729412, 0.729412, 1 )
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
+[ext_resource path="res://Assets/Themes/text_box_in_cards.tres" type="Theme" id=6]
+[ext_resource path="res://Assets/Themes/card_btns.tres" type="Theme" id=7]
+[ext_resource path="res://Assets/Themes/card_theme.tres" type="Theme" id=8]
+[ext_resource path="res://Assets/Themes/card_save_btn.tres" type="Theme" id=9]
+[ext_resource path="res://Assets/Themes/card_base.tres" type="StyleBox" id=10]
 
 [sub_resource type="DynamicFont" id=22]
 size = 20
 use_filter = true
 font_data = ExtResource( 5 )
 
-[sub_resource type="StyleBoxFlat" id=4]
-content_margin_left = 10.0
-content_margin_right = 10.0
-content_margin_top = 10.0
-content_margin_bottom = 10.0
-bg_color = Color( 0.372549, 0.592157, 0.364706, 1 )
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+[sub_resource type="StyleBoxFlat" id=35]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
 
-[sub_resource type="StyleBoxFlat" id=3]
-content_margin_left = 10.0
-content_margin_right = 10.0
-content_margin_top = 10.0
-content_margin_bottom = 10.0
-bg_color = Color( 0.160784, 0.152941, 0.184314, 1 )
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+[sub_resource type="StyleBoxFlat" id=36]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color( 0.00392157, 0.0156863, 0.0470588, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id=37]
+bg_color = Color( 0.0745098, 0.196078, 0.329412, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=38]
+
+[sub_resource type="StyleBoxFlat" id=39]
+content_margin_left = 2.0
+content_margin_right = 2.0
+content_margin_top = 13.0
+bg_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="DynamicFont" id=40]
+font_data = ExtResource( 5 )
+
+[sub_resource type="Theme" id=34]
+default_font = SubResource( 40 )
+TextEdit/styles/normal = SubResource( 36 )
+VScrollBar/styles/grabber = SubResource( 37 )
+VScrollBar/styles/grabber_highlight = SubResource( 38 )
+VScrollBar/styles/grabber_pressed = SubResource( 38 )
+VScrollBar/styles/scroll = SubResource( 39 )
+VScrollBar/styles/scroll_focus = SubResource( 38 )
 
 [sub_resource type="Animation" id=19]
 length = 0.001
@@ -126,8 +136,8 @@ tracks/0/keys = {
 margin_right = 304.0
 margin_bottom = 376.0
 size_flags_vertical = 0
-theme = SubResource( 17 )
-custom_styles/panel = SubResource( 18 )
+theme = ExtResource( 8 )
+custom_styles/panel = ExtResource( 10 )
 script = ExtResource( 1 )
 __meta__ = {
 "_editor_description_": ""
@@ -137,96 +147,95 @@ __meta__ = {
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 296.0
-margin_bottom = 368.0
+margin_bottom = 379.0
 mouse_filter = 2
 size_flags_vertical = 3
 
 [node name="MainDetails" type="HBoxContainer" parent="VBoxContainer"]
 margin_right = 288.0
-margin_bottom = 39.0
+margin_bottom = 31.0
 mouse_filter = 2
 
 [node name="Index" type="Label" parent="VBoxContainer/MainDetails"]
-margin_top = 7.0
-margin_right = 227.0
-margin_bottom = 31.0
+margin_top = 3.0
+margin_right = 231.0
+margin_bottom = 27.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 0.0980392, 0.713726, 0.180392, 1 )
-custom_colors/font_color_shadow = Color( 0.380392, 0.309804, 0.309804, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 22 )
 text = "# 0"
 
 [node name="Save" type="Button" parent="VBoxContainer/MainDetails"]
-margin_left = 231.0
+margin_left = 235.0
 margin_right = 288.0
-margin_bottom = 39.0
-theme = ExtResource( 6 )
-custom_colors/font_color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
-custom_styles/normal = SubResource( 4 )
+margin_bottom = 31.0
+theme = ExtResource( 9 )
 text = "Save"
 
 [node name="OnStart" type="PanelContainer" parent="VBoxContainer"]
-margin_top = 43.0
+margin_top = 35.0
 margin_right = 288.0
-margin_bottom = 124.0
+margin_bottom = 108.0
 mouse_filter = 2
 size_flags_horizontal = 3
 
 [node name="VBox" type="VBoxContainer" parent="VBoxContainer/OnStart"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 281.0
-margin_bottom = 74.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 280.0
+margin_bottom = 65.0
 size_flags_horizontal = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/OnStart/VBox"]
-margin_right = 274.0
-margin_bottom = 34.0
+margin_right = 272.0
+margin_bottom = 28.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="VBoxContainer/OnStart/VBox/HBoxContainer"]
-margin_top = 10.0
-margin_right = 242.0
-margin_bottom = 24.0
+margin_top = 4.0
+margin_right = 241.0
+margin_bottom = 23.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 0.52549, 0.52549, 0.52549, 1 )
 text = "required vars"
 valign = 1
 
 [node name="AddVar" type="Button" parent="VBoxContainer/OnStart/VBox/HBoxContainer"]
-margin_left = 246.0
-margin_right = 274.0
-margin_bottom = 34.0
+margin_left = 245.0
+margin_right = 272.0
+margin_bottom = 28.0
 mouse_filter = 1
-custom_styles/normal = SubResource( 3 )
+theme = ExtResource( 7 )
 text = "+"
 
 [node name="Reqs" type="VBoxContainer" parent="VBoxContainer/OnStart/VBox"]
-margin_top = 38.0
-margin_right = 274.0
-margin_bottom = 67.0
+margin_top = 32.0
+margin_right = 272.0
+margin_bottom = 57.0
 size_flags_horizontal = 3
 
 [node name="VarDetails" parent="VBoxContainer/OnStart/VBox/Reqs" instance=ExtResource( 2 )]
-margin_right = 274.0
-margin_bottom = 29.0
+margin_right = 272.0
+margin_bottom = 25.0
 
 [node name="Content" type="PanelContainer" parent="VBoxContainer"]
-margin_top = 128.0
+margin_top = 112.0
 margin_right = 288.0
-margin_bottom = 229.0
+margin_bottom = 244.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="ContentLabel" type="RichTextLabel" parent="VBoxContainer/Content"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 281.0
-margin_bottom = 94.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 280.0
+margin_bottom = 124.0
 mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_styles/normal = SubResource( 35 )
 bbcode_enabled = true
 text = "asddddddd
 asdasd
@@ -238,93 +247,112 @@ fit_content_height = true
 [node name="TextureButton" type="TextureButton" parent="VBoxContainer/Content/ContentLabel"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -15.0
-margin_bottom = 24.0
-mouse_filter = 1
-texture_normal = ExtResource( 3 )
-expand = true
-stretch_mode = 4
-
-[node name="TypeContent" type="TextEdit" parent="VBoxContainer/Content"]
-visible = false
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 127.0
-margin_bottom = 82.0
-mouse_filter = 1
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="SaveContentButton2" type="TextureButton" parent="VBoxContainer/Content/TypeContent"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -21.0
-margin_bottom = 21.0
+margin_left = -28.0
+margin_bottom = 27.0
 mouse_filter = 1
 texture_normal = ExtResource( 4 )
 expand = true
 stretch_mode = 4
 
+[node name="TypeContent" type="TextEdit" parent="VBoxContainer/Content"]
+visible = false
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 280.0
+margin_bottom = 124.0
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource( 34 )
+text = "adasda
+asd
+asd
+
+
+asd
+asd
+asd
+"
+middle_mouse_paste_enabled = false
+smooth_scrolling = true
+v_scroll_speed = 30.0
+caret_blink = true
+
+[node name="SaveContentButton2" type="TextureButton" parent="VBoxContainer/Content/TypeContent"]
+modulate = Color( 0.364706, 0.694118, 0.227451, 1 )
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -23.0
+margin_top = 1.0
+margin_right = -2.0
+margin_bottom = 22.0
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 3 )
+expand = true
+stretch_mode = 4
+
 [node name="OnEnd" type="PanelContainer" parent="VBoxContainer"]
-margin_top = 233.0
+margin_top = 248.0
 margin_right = 288.0
-margin_bottom = 360.0
+margin_bottom = 371.0
 mouse_filter = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/OnEnd"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 281.0
-margin_bottom = 120.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 280.0
+margin_bottom = 115.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/OnEnd/VBoxContainer"]
-margin_right = 274.0
-margin_bottom = 34.0
+margin_right = 272.0
+margin_bottom = 28.0
 
 [node name="Label" type="Label" parent="VBoxContainer/OnEnd/VBoxContainer/HBoxContainer"]
-margin_top = 10.0
-margin_right = 242.0
-margin_bottom = 24.0
+margin_top = 4.0
+margin_right = 241.0
+margin_bottom = 23.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 0.52549, 0.52549, 0.52549, 1 )
 text = "on end"
 valign = 1
 
 [node name="AddVar" type="Button" parent="VBoxContainer/OnEnd/VBoxContainer/HBoxContainer"]
-margin_left = 246.0
-margin_right = 274.0
-margin_bottom = 34.0
+margin_left = 245.0
+margin_right = 272.0
+margin_bottom = 28.0
 mouse_filter = 1
-custom_styles/normal = SubResource( 3 )
+theme = ExtResource( 7 )
 text = "+"
 
 [node name="Goto" type="LineEdit" parent="VBoxContainer/OnEnd/VBoxContainer"]
-margin_top = 38.0
-margin_right = 274.0
-margin_bottom = 62.0
+margin_top = 32.0
+margin_right = 272.0
+margin_bottom = 55.0
 mouse_filter = 1
 size_flags_horizontal = 3
+theme = ExtResource( 6 )
 placeholder_text = "goto step"
 caret_blink = true
 caret_blink_speed = 0.5
 
 [node name="SetVars" type="VBoxContainer" parent="VBoxContainer/OnEnd/VBoxContainer"]
-margin_top = 66.0
-margin_right = 274.0
-margin_bottom = 113.0
+margin_top = 59.0
+margin_right = 272.0
+margin_bottom = 107.0
 
 [node name="Label" type="Label" parent="VBoxContainer/OnEnd/VBoxContainer/SetVars"]
-margin_right = 274.0
-margin_bottom = 14.0
+margin_right = 272.0
+margin_bottom = 19.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 0.52549, 0.52549, 0.52549, 1 )
 text = "set_vars"
 valign = 1
 
 [node name="VarDetails" parent="VBoxContainer/OnEnd/VBoxContainer/SetVars" instance=ExtResource( 2 )]
-margin_top = 18.0
-margin_right = 274.0
-margin_bottom = 47.0
+margin_top = 23.0
+margin_right = 272.0
+margin_bottom = 48.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 19 )

@@ -1,0 +1,49 @@
+[gd_resource type="Theme" load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Fonts/Rubik/Rubik-VariableFont_wght.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=26]
+
+[sub_resource type="StyleBoxFlat" id=27]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0.196078, 0.380392, 0.227451, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=28]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0.235294, 0.454902, 0.27451, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=29]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0.0470588, 0.121569, 0.0588235, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="DynamicFont" id=30]
+size = 17
+font_data = ExtResource( 1 )
+
+[resource]
+default_font = SubResource( 30 )
+Button/styles/focus = SubResource( 26 )
+Button/styles/hover = SubResource( 27 )
+Button/styles/normal = SubResource( 28 )
+Button/styles/pressed = SubResource( 29 )

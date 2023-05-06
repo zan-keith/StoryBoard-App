@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/ChoicePanel.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/StoryCard/VarDetails.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/Fonts/normal_font_theme.tres" type="Theme" id=3]
+[ext_resource path="res://Assets/Themes/card_theme.tres" type="Theme" id=3]
+[ext_resource path="res://Assets/Themes/text_box_in_cards.tres" type="Theme" id=4]
+[ext_resource path="res://Assets/Themes/card_btns.tres" type="Theme" id=5]
 
 [sub_resource type="StyleBoxFlat" id=14]
 content_margin_left = 7.0
@@ -10,17 +12,6 @@ content_margin_right = 7.0
 content_margin_top = 7.0
 content_margin_bottom = 7.0
 bg_color = Color( 0.345098, 0.360784, 0.388235, 1 )
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id=1]
-content_margin_left = 10.0
-content_margin_right = 10.0
-content_margin_top = 10.0
-content_margin_bottom = 10.0
-bg_color = Color( 0.160784, 0.152941, 0.184314, 1 )
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -72,6 +63,7 @@ tracks/0/keys = {
 margin_right = 213.0
 margin_bottom = 104.0
 mouse_filter = 1
+theme = ExtResource( 3 )
 custom_styles/panel = SubResource( 14 )
 script = ExtResource( 1 )
 
@@ -79,44 +71,43 @@ script = ExtResource( 1 )
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 206.0
-margin_bottom = 107.0
+margin_bottom = 97.0
 
 [node name="ChoiceTitle" type="LineEdit" parent="VBoxContainer"]
 margin_right = 199.0
-margin_bottom = 29.0
+margin_bottom = 23.0
 mouse_filter = 1
 size_flags_horizontal = 3
-theme = ExtResource( 3 )
+theme = ExtResource( 4 )
 text = "choice1"
 expand_to_text_length = true
 placeholder_text = "Name"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 33.0
+margin_top = 27.0
 margin_right = 199.0
-margin_bottom = 67.0
+margin_bottom = 55.0
 
 [node name="Goto" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
-margin_right = 167.0
-margin_bottom = 34.0
+margin_right = 168.0
+margin_bottom = 28.0
 mouse_filter = 1
 size_flags_horizontal = 3
-theme = ExtResource( 3 )
+theme = ExtResource( 4 )
 expand_to_text_length = true
 placeholder_text = "Goto"
 
 [node name="AddVar" type="Button" parent="VBoxContainer/HBoxContainer"]
-margin_left = 171.0
+margin_left = 172.0
 margin_right = 199.0
-margin_bottom = 34.0
-mouse_filter = 1
-custom_styles/normal = SubResource( 1 )
+margin_bottom = 28.0
+theme = ExtResource( 5 )
 text = "+"
 
 [node name="VarDetails" parent="VBoxContainer" instance=ExtResource( 2 )]
-margin_top = 71.0
+margin_top = 59.0
 margin_right = 199.0
-margin_bottom = 100.0
+margin_bottom = 84.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 15 )

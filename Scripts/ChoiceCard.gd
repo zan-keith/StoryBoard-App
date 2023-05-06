@@ -5,21 +5,21 @@ signal RefreshLines
 
 onready var toggle=false
 onready var focused=false
+
+onready var typecontentbox=$VBoxContainer/VBoxContainer/Content2/TypeContent
+onready var readcontentbox=$VBoxContainer/VBoxContainer/Content2/ContentLabel
+
 func _ready():
 	_on_AddChoice_pressed()
-	_on_AddChoice_pressed()
-	
-	#$"../../../..".connect("CardOverride",self, "_on_card_override")
-	pass
 
 func _on_EditContentButton_pressed():
-	$VBoxContainer/VBoxContainer/Content/TypeContent.visible=true
-	$VBoxContainer/VBoxContainer/Content/TypeContent.text=$VBoxContainer/VBoxContainer/Content/ContentLabel.get_text()
+	typecontentbox.visible=true
+	typecontentbox.text=readcontentbox.get_text()
 
 
 func _on_SaveContentButton_pressed():
-	$VBoxContainer/VBoxContainer/Content/TypeContent.visible=false
-	$VBoxContainer/VBoxContainer/Content/ContentLabel.set_text($VBoxContainer/VBoxContainer/Content/TypeContent.get_text())
+	typecontentbox.visible=false
+	readcontentbox.set_text(typecontentbox.get_text())
 
 
 
@@ -48,7 +48,7 @@ func ChoiceCard_toggled(button_pressed):
 
 
 func _on_ChoiceCard_gui_input(event):
-	if event is InputEventMouseButton:
+	if event is InputEventMouseButton and event.get_button_index()!=4 and event.get_button_index()!=5:
 		if event.is_pressed():
 			if not focused:
 				focused=not focused
@@ -81,9 +81,6 @@ func _on_AddChoice_pressed():
 	$VBoxContainer/VBoxContainer/Choices/VBoxContainer.add_child(choice_panel)
 	choice_panel.connect("TextEntered", self, "_on_goto_text_entered")
 	
-
-
-
 
 
 

@@ -45,7 +45,7 @@ func RouterCard_toggled(button_pressed):
 		emit_signal("SendClick",self,false)
 
 func _on_RouterCard_gui_input(event):
-	if event is InputEventMouseButton:
+	if event is InputEventMouseButton and event.get_button_index()!=4 and event.get_button_index()!=5:
 		if event.is_pressed():
 			if not focused:
 				focused=not focused

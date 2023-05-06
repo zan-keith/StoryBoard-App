@@ -1,48 +1,59 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=20 format=2]
 
-[ext_resource path="res://Scenes/StoryCard/save.png" type="Texture" id=1]
-[ext_resource path="res://Scenes/StoryCard/pencil.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Textures/tick-svgrepo-com.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Textures/edit-4-svgrepo-com.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/ChoiceCard.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Themes/card_theme.tres" type="Theme" id=4]
 [ext_resource path="res://Assets/Fonts/Rubik/Rubik-VariableFont_wght.ttf" type="DynamicFontData" id=5]
-[ext_resource path="res://Assets/Fonts/normal_font_theme.tres" type="Theme" id=6]
-
-[sub_resource type="StyleBoxFlat" id=1]
-content_margin_left = 10.0
-content_margin_right = 10.0
-content_margin_top = 10.0
-content_margin_bottom = 10.0
-bg_color = Color( 0.890196, 0.890196, 0.87451, 1 )
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
+[ext_resource path="res://Assets/Themes/card_save_btn.tres" type="Theme" id=7]
+[ext_resource path="res://Assets/Themes/add_goto.tres" type="Theme" id=8]
+[ext_resource path="res://Assets/Themes/card_base.tres" type="StyleBox" id=9]
 
 [sub_resource type="DynamicFont" id=7]
 size = 20
 use_filter = true
 font_data = ExtResource( 5 )
 
-[sub_resource type="StyleBoxFlat" id=8]
-content_margin_left = 10.0
-content_margin_right = 10.0
-content_margin_top = 10.0
-content_margin_bottom = 10.0
-bg_color = Color( 0.372549, 0.592157, 0.364706, 1 )
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+[sub_resource type="StyleBoxFlat" id=40]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
 
-[sub_resource type="StyleBoxFlat" id=6]
-content_margin_left = 10.0
-content_margin_right = 10.0
-content_margin_top = 10.0
-content_margin_bottom = 10.0
-bg_color = Color( 0.160784, 0.152941, 0.184314, 1 )
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+[sub_resource type="StyleBoxFlat" id=36]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color( 0.00392157, 0.0156863, 0.0470588, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id=37]
+bg_color = Color( 0.0745098, 0.196078, 0.329412, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=33]
+
+[sub_resource type="StyleBoxFlat" id=39]
+content_margin_left = 2.0
+content_margin_right = 2.0
+content_margin_top = 13.0
+bg_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="DynamicFont" id=38]
+font_data = ExtResource( 5 )
+
+[sub_resource type="Theme" id=41]
+default_font = SubResource( 38 )
+TextEdit/styles/normal = SubResource( 36 )
+VScrollBar/styles/grabber = SubResource( 37 )
+VScrollBar/styles/grabber_highlight = SubResource( 33 )
+VScrollBar/styles/grabber_pressed = SubResource( 33 )
+VScrollBar/styles/scroll = SubResource( 39 )
+VScrollBar/styles/scroll_focus = SubResource( 33 )
 
 [sub_resource type="Animation" id=3]
 length = 0.001
@@ -95,26 +106,27 @@ tracks/0/keys = {
 margin_right = 247.0
 margin_bottom = 111.0
 size_flags_vertical = 0
-custom_styles/panel = SubResource( 1 )
+theme = ExtResource( 4 )
+custom_styles/panel = ExtResource( 9 )
 script = ExtResource( 3 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 237.0
-margin_bottom = 188.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 239.0
+margin_bottom = 228.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MainDetails" type="HBoxContainer" parent="VBoxContainer"]
-margin_right = 227.0
-margin_bottom = 39.0
+margin_right = 231.0
+margin_bottom = 31.0
 mouse_filter = 2
 
 [node name="Index" type="Label" parent="VBoxContainer/MainDetails"]
-margin_top = 7.0
-margin_right = 166.0
-margin_bottom = 31.0
+margin_top = 3.0
+margin_right = 174.0
+margin_bottom = 27.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 0.0980392, 0.713726, 0.180392, 1 )
 custom_colors/font_color_shadow = Color( 0.380392, 0.309804, 0.309804, 1 )
@@ -122,90 +134,107 @@ custom_fonts/font = SubResource( 7 )
 text = "# 0"
 
 [node name="Save" type="Button" parent="VBoxContainer/MainDetails"]
-margin_left = 170.0
-margin_right = 227.0
-margin_bottom = 39.0
-theme = ExtResource( 6 )
-custom_colors/font_color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
-custom_styles/normal = SubResource( 8 )
+margin_left = 178.0
+margin_right = 231.0
+margin_bottom = 31.0
+theme = ExtResource( 7 )
 text = "Save"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
-margin_top = 43.0
-margin_right = 227.0
-margin_bottom = 178.0
+margin_top = 35.0
+margin_right = 231.0
+margin_bottom = 220.0
 
-[node name="Content" type="PanelContainer" parent="VBoxContainer/VBoxContainer"]
-margin_right = 227.0
-margin_bottom = 74.0
+[node name="Content2" type="PanelContainer" parent="VBoxContainer/VBoxContainer"]
+margin_right = 231.0
+margin_bottom = 132.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ContentLabel" type="RichTextLabel" parent="VBoxContainer/VBoxContainer/Content"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 220.0
-margin_bottom = 67.0
+[node name="ContentLabel" type="RichTextLabel" parent="VBoxContainer/VBoxContainer/Content2"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 223.0
+margin_bottom = 124.0
+mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource( 6 )
+custom_styles/normal = SubResource( 40 )
 bbcode_enabled = true
-text = "add
-multiline
-content"
+text = "asddddddd
+asdasd
+asd
+asd
+asdasdasdddd"
 fit_content_height = true
 
-[node name="EditContentButton" type="TextureButton" parent="VBoxContainer/VBoxContainer/Content/ContentLabel"]
-anchor_left = 1.009
-anchor_right = 1.009
-margin_left = -19.917
-margin_top = 1.0
-margin_right = 0.0829926
-margin_bottom = 25.0
+[node name="EditContentButton" type="TextureButton" parent="VBoxContainer/VBoxContainer/Content2/ContentLabel"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -28.0
+margin_bottom = 27.0
+mouse_filter = 1
 texture_normal = ExtResource( 2 )
 expand = true
 stretch_mode = 4
 
-[node name="TypeContent" type="TextEdit" parent="VBoxContainer/VBoxContainer/Content"]
+[node name="TypeContent" type="TextEdit" parent="VBoxContainer/VBoxContainer/Content2"]
 visible = false
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 220.0
-margin_bottom = 52.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 223.0
+margin_bottom = 124.0
+mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource( 6 )
+theme = SubResource( 41 )
+text = "adasda
+asd
+asd
 
-[node name="SaveContentButton" type="TextureButton" parent="VBoxContainer/VBoxContainer/Content/TypeContent"]
+
+asd
+asd
+asd
+"
+middle_mouse_paste_enabled = false
+smooth_scrolling = true
+v_scroll_speed = 30.0
+caret_blink = true
+
+[node name="SaveContentButton2" type="TextureButton" parent="VBoxContainer/VBoxContainer/Content2/TypeContent"]
+modulate = Color( 0.364706, 0.694118, 0.227451, 1 )
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -21.0
-margin_bottom = 21.0
+margin_left = -23.0
+margin_top = 1.0
+margin_right = -2.0
+margin_bottom = 22.0
+mouse_filter = 1
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource( 1 )
 expand = true
 stretch_mode = 4
 
 [node name="AddChoice" type="Button" parent="VBoxContainer/VBoxContainer" groups=["add_choice_btn"]]
-margin_top = 78.0
-margin_right = 227.0
-margin_bottom = 117.0
-mouse_filter = 1
-theme = ExtResource( 6 )
-custom_styles/normal = SubResource( 6 )
+margin_top = 136.0
+margin_right = 231.0
+margin_bottom = 165.0
+theme = ExtResource( 8 )
 text = "Add Choice +"
 
 [node name="Choices" type="PanelContainer" parent="VBoxContainer/VBoxContainer"]
-margin_top = 121.0
-margin_right = 227.0
-margin_bottom = 135.0
+margin_top = 169.0
+margin_right = 231.0
+margin_bottom = 185.0
 mouse_filter = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/Choices"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 220.0
-margin_bottom = 7.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 223.0
+margin_bottom = 8.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 3 )
@@ -213,6 +242,6 @@ anims/hover_anim = SubResource( 4 )
 anims/toggleon = SubResource( 5 )
 
 [connection signal="gui_input" from="." to="." method="_on_ChoiceCard_gui_input"]
-[connection signal="pressed" from="VBoxContainer/VBoxContainer/Content/ContentLabel/EditContentButton" to="." method="_on_EditContentButton_pressed"]
-[connection signal="pressed" from="VBoxContainer/VBoxContainer/Content/TypeContent/SaveContentButton" to="." method="_on_SaveContentButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/Content2/ContentLabel/EditContentButton" to="." method="_on_EditContentButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/Content2/TypeContent/SaveContentButton2" to="." method="_on_SaveContentButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/AddChoice" to="." method="_on_AddChoice_pressed"]
