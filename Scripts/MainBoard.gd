@@ -5,15 +5,15 @@ signal CardOverride
 onready var click=false
 onready var prevcard=null
 onready var latest_index=1
-
+onready var maingrid=$PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid
 func _ready():
 	var index=1
-	var children=$PanelContainer/ScrollContainer/ZoomContainer/MarginContainer/MainGrid.get_children()
+	var children=$PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid.get_children()
 	for child in children:
-		
-		
+
+
 		child.connect("SendClick", self, "_on_card_click")
-		
+
 		if child.is_in_group('RouterCard'):
 			child.connect("RefreshLines", self, "_on_refresh_lines")
 			child.get_node('VBoxContainer/HBox/Index').text="# "+str(index)
@@ -23,15 +23,16 @@ func _ready():
 		elif child.is_in_group('ChoiceCard'):
 			child.connect("RefreshLines", self, "_on_refresh_lines")
 			child.get_node("VBoxContainer/MainDetails/Index").text="# "+str(index)
-			
+
 		index+=1
 		latest_index+=1
+	$PanelContainer/ScrollContainer/Panel.rect_min_size=$PanelContainer/ScrollContainer/Panel/MarginContainer.rect_size
 
 func validate_goto(new_text):
 	
 	var cards=0
 	if (str(new_text).is_valid_integer()):
-		var ch=$PanelContainer/ScrollContainer/ZoomContainer/MarginContainer/MainGrid.get_children()
+		var ch=$PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid.get_children()
 		for c in ch:
 			if not c.is_in_group('ConnectorLines'):
 				cards+=1
@@ -43,8 +44,8 @@ func validate_goto(new_text):
 		
 			
 func ClearLines():
-	$PanelContainer/ScrollContainer/ZoomContainer/MarginContainer/PanelContainer.rect_min_size.y=0
-	var lines=$PanelContainer/ScrollContainer/ZoomContainer/MarginContainer/MainGrid.get_children()
+	$PanelContainer/ScrollContainer/Panel/MarginContainer/PanelContainer.rect_min_size.y=0
+	var lines=$PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid.get_children()
 	for l in lines:
 		if l.is_in_group('ConnectorLines'):
 			print('cleared',l.name)
@@ -58,7 +59,7 @@ func LineConnect(obj):
 
 	if obj.is_in_group('StoryCard'):
 		var offset=10
-		var goto=get_node("PanelContainer/ScrollContainer/ZoomContainer/MarginContainer/MainGrid/"+obj.name+"/VBoxContainer/OnEnd/VBoxContainer/Goto").text
+		var goto=get_node("PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid/"+obj.name+"/VBoxContainer/OnEnd/VBoxContainer/Goto").text
 
 		if not validate_goto(goto):
 			print(goto)
@@ -66,7 +67,7 @@ func LineConnect(obj):
 
 		var fromobj=obj
 		var toobj
-		var children=$PanelContainer/ScrollContainer/ZoomContainer/MarginContainer/MainGrid.get_children()
+		var children=$PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid.get_children()
 		toobj=children[int(goto)-1]
 		#get positions - from and to
 		var from = fromobj.get_position()
@@ -81,9 +82,9 @@ func LineConnect(obj):
 #		var line = Line2D.new()
 #		line.width=3
 #		line.add_to_group("ConnectorLines")
-		$PanelContainer/ScrollContainer/ZoomContainer/MarginContainer/MainGrid.add_child(line)
+		$PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid.add_child(line)
 		
-		$PanelContainer/ScrollContainer/ZoomContainer/MarginContainer/PanelContainer.rect_min_size.y=10
+		$PanelContainer/ScrollContainer/Panel/MarginContainer/PanelContainer.rect_min_size.y=10
 
 		var a=Vector2(from.x+fromobj.rect_size.x/2,from.y)
 		var d=Vector2(to.x+toobj.rect_size.x/2,to.y)
@@ -98,10 +99,10 @@ func LineConnect(obj):
 
 		var goto_panel_points=Array([])
 		
-		var children=$PanelContainer/ScrollContainer/ZoomContainer/MarginContainer/MainGrid.get_children()
+		var children=$PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid.get_children()
 		
 		var offset=0
-		for child in get_node("PanelContainer/ScrollContainer/ZoomContainer/MarginContainer/MainGrid/"+obj.name+"/VBoxContainer/Panel/VBoxContainer").get_children():
+		for child in get_node("PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid/"+obj.name+"/VBoxContainer/Panel/VBoxContainer").get_children():
 			if child.is_in_group('RouterGotoPanel'):
 				offset+=10
 				var gototxt=child.get_node("VBoxContainer/HBoxContainer/Goto").text
@@ -110,8 +111,8 @@ func LineConnect(obj):
 					#Now the animation of invalid will play in child node's script
 					return false
 
-				var ch=$PanelContainer/ScrollContainer/ZoomContainer/MarginContainer/MainGrid.get_children()
-				var parent=get_node("PanelContainer/ScrollContainer/ZoomContainer/MarginContainer/MainGrid/"+obj.name)
+				var ch=$PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid.get_children()
+				var parent=get_node("PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid/"+obj.name)
 				var panel=child
 				
 				
@@ -129,10 +130,10 @@ func LineConnect(obj):
 #			var line = Line2D.new()
 #			line.width=3
 #			line.add_to_group("ConnectorLines")
-			$PanelContainer/ScrollContainer/ZoomContainer/MarginContainer/PanelContainer.rect_min_size.y+=10
+			$PanelContainer/ScrollContainer/Panel/MarginContainer/PanelContainer.rect_min_size.y+=10
 			
 			var line = load("res://Scenes/ConnectorLine.tscn").instance()
-			$PanelContainer/ScrollContainer/ZoomContainer/MarginContainer/MainGrid.add_child(line)
+			$PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid.add_child(line)
 			line.set_points(pts)
 		return true
 		
@@ -143,8 +144,8 @@ func LineConnect(obj):
 		var goto_panels=Array()
 		var goto_panel_points=Array()
 		
-		var children=$PanelContainer/ScrollContainer/ZoomContainer/MarginContainer/MainGrid.get_children()
-		for child in get_node("PanelContainer/ScrollContainer/ZoomContainer/MarginContainer/MainGrid/"+obj.name+"/VBoxContainer/VBoxContainer/Choices/VBoxContainer").get_children():
+		var children=$PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid.get_children()
+		for child in get_node("PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid/"+obj.name+"/VBoxContainer/VBoxContainer/Choices/VBoxContainer").get_children():
 			if child.is_in_group('ChoiceGotoPanel'):
 				offset+=10
 				var gototxt=child.get_node("VBoxContainer/HBoxContainer/Goto").text
@@ -152,8 +153,8 @@ func LineConnect(obj):
 				if not validate_goto(gototxt):
 					return false
 					
-				var parent=get_node("PanelContainer/ScrollContainer/ZoomContainer/MarginContainer/MainGrid/"+obj.name)
-				var subparent=get_node("PanelContainer/ScrollContainer/ZoomContainer/MarginContainer/MainGrid/"+obj.name+"/VBoxContainer/VBoxContainer/Choices")
+				var parent=get_node("PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid/"+obj.name)
+				var subparent=get_node("PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid/"+obj.name+"/VBoxContainer/VBoxContainer/Choices")
 #				var add_btn=get_node("PanelContainer/ScrollContainer/MarginContainer/MainGrid/"+obj.name+"/VBoxContainer/VBoxContainer/Choices/VBoxContainer/Add")
 				var panel=child
 				var dest=children[int(gototxt)-1]
@@ -171,10 +172,10 @@ func LineConnect(obj):
 #			var line = Line2D.new()
 #			line.width=3
 #			line.add_to_group("ConnectorLines")
-			$PanelContainer/ScrollContainer/ZoomContainer/MarginContainer/PanelContainer.rect_min_size.y+=10
+			$PanelContainer/ScrollContainer/Panel/MarginContainer/PanelContainer.rect_min_size.y+=10
 			var line = load("res://Scenes/ConnectorLine.tscn").instance()
 			
-			get_node("PanelContainer/ScrollContainer/ZoomContainer/MarginContainer/MainGrid/").add_child(line)
+			get_node("PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid/").add_child(line)
 			line.set_points(pts)
 		return true
 
@@ -182,47 +183,47 @@ func LineConnect(obj):
 func StoryCardClick(click,obj):
 	if click and prevcard!=obj:
 		if prevcard!=null:
-			var prevnode=get_node("PanelContainer/ScrollContainer/ZoomContainer/MarginContainer/MainGrid/"+prevcard)
+			var prevnode=get_node("PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid/"+prevcard)
 			self.connect("CardOverride", prevnode, "_on_card_override")
 			emit_signal("CardOverride")
 			disconnect("CardOverride", prevnode, "_on_card_override")
 		prevcard=obj
-		LineConnect(get_node("PanelContainer/ScrollContainer/ZoomContainer/MarginContainer/MainGrid/"+obj))
+		LineConnect(get_node("PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid/"+obj))
 	elif click and prevcard==obj:
 		prevcard=obj
 
 	else:	#Delete previous Lines
 		prevcard=null
-		$PanelContainer/ScrollContainer/ZoomContainer/MarginContainer/PanelContainer.rect_min_size.y=0
+		$PanelContainer/ScrollContainer/Panel/MarginContainer/PanelContainer.rect_min_size.y=0
 
 
 func RouterCardClick(click,obj):
 	if click and prevcard!=obj:
 		if prevcard!=null:
-			var prevnode=get_node("PanelContainer/ScrollContainer/ZoomContainer/MarginContainer/MainGrid/"+prevcard)
+			var prevnode=get_node("PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid/"+prevcard)
 			self.connect("CardOverride", prevnode, "_on_card_override")
 			emit_signal("CardOverride")
 			disconnect("CardOverride", prevnode, "_on_card_override")
 		prevcard=obj
-		LineConnect(get_node("PanelContainer/ScrollContainer/ZoomContainer/MarginContainer/MainGrid/"+obj))
+		LineConnect(get_node("PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid/"+obj))
 	elif click and prevcard==obj:
 		prevcard=obj
 
 	else:	#Delete previous Lines
 		prevcard=null
 		
-		$PanelContainer/ScrollContainer/ZoomContainer/MarginContainer/PanelContainer.rect_min_size.y=0
+		$PanelContainer/ScrollContainer/Panel/MarginContainer/PanelContainer.rect_min_size.y=0
 
 
 func ChoiceCardClick(click,obj):
 	if click and prevcard!=obj:
 		if prevcard!=null:
-			var prevnode=get_node("PanelContainer/ScrollContainer/ZoomContainer/MarginContainer/MainGrid/"+prevcard)
+			var prevnode=get_node("PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid/"+prevcard)
 			self.connect("CardOverride", prevnode, "_on_card_override")
 			emit_signal("CardOverride")
 			disconnect("CardOverride", prevnode, "_on_card_override")
 		prevcard=obj
-		LineConnect(get_node("PanelContainer/ScrollContainer/ZoomContainer/MarginContainer/MainGrid/"+obj))
+		LineConnect(get_node("PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid/"+obj))
 	elif click and prevcard==obj:
 		prevcard=obj
 
@@ -252,17 +253,17 @@ func _on_AddCard(n):
 		c.connect("SendClick", self, "_on_card_click")
 		c.connect("RefreshLines", self, "_on_refresh_lines")
 		c.get_node("VBoxContainer/MainDetails/Index").text="# "+str(latest_index)
-		$PanelContainer/ScrollContainer/ZoomContainer/MarginContainer/MainGrid.add_child(c)
+		$PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid.add_child(c)
 	elif n==2:
 		var c = load("res://Scenes/RouterCard.tscn").instance()
 		c.connect("SendClick", self, "_on_card_click")
 		c.connect("RefreshLines", self, "_on_refresh_lines")
 		c.get_node('VBoxContainer/HBox/Index').text="# "+str(latest_index)
-		$PanelContainer/ScrollContainer/ZoomContainer/MarginContainer/MainGrid.add_child(c)
+		$PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid.add_child(c)
 	elif n==3:
 		var c = load("res://Scenes/ChoiceCard.tscn").instance()
 		c.connect("SendClick", self, "_on_card_click")
 		c.connect("RefreshLines", self, "_on_refresh_lines")
 		c.get_node("VBoxContainer/MainDetails/Index").text="# "+str(latest_index)
-		$PanelContainer/ScrollContainer/ZoomContainer/MarginContainer/MainGrid.add_child(c)
+		$PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid.add_child(c)
 	latest_index+=1

@@ -3,19 +3,30 @@ extends PanelContainer
 onready var PopupPane=$PopupPanel
 signal AddCard
 onready var RecentlyClickedCard=1
+onready var toggle=false
 
-func _on_AddBtn_toggled(button_pressed):
-	if button_pressed:
-		PopupPane.visible=true
+
+func popup():
+	if toggle:
+		 $"../../AnimationPlayer".play("popup_panel_open")
 	else:
-		PopupPane.visible=false
+		$"../../AnimationPlayer".play("popup_panel_close")
+func _on_AddBtn_toggled(button_pressed):
+	toggle=not toggle
+	popup()
 
 
 func _on_AddIconBtn_toggled(button_pressed):
-	if button_pressed:
-		PopupPane.visible=true
-	else:
-		PopupPane.visible=false
+	toggle=not toggle
+	popup()
+func QuickAddBtn(n):
+	if n==1:
+		$HBox/QuickAddBtn.texture_normal=load("res://Assets/Textures/gui-tooltip-svgrepo-com (1).png")
+	elif n==2:
+		$HBox/QuickAddBtn.texture_normal=load("res://Assets/Textures/shuffle-svgrepo-com.png")
+	elif n==3:
+		$HBox/QuickAddBtn.texture_normal=load("res://Assets/Textures/options-svgrepo-com.png")
+	emit_signal('AddCard',n)
 
 func AddBtn(n):
 	RecentlyClickedCard=n
@@ -27,7 +38,7 @@ func AddBtn(n):
 		$HBox/QuickAddBtn.texture_normal=load("res://Assets/Textures/options-svgrepo-com.png")
 
 	emit_signal('AddCard',n)
-	PopupPane.visible=false
+	$"../../AnimationPlayer".play("popup_panel_close")
 
 
 func _on_StoryButton_pressed():
@@ -48,4 +59,31 @@ func _on_ChoiceTextureButton_pressed():
 
 
 func _on_QuickAddBtn_pressed():
-	AddBtn(RecentlyClickedCard)
+	QuickAddBtn(RecentlyClickedCard)
+	$"../../AnimationPlayer".play("quick_add_btn")
+
+
+func _on_ColorRect_gui_input(event):
+	pass
+
+
+
+func _on_Story_mouse_entered():
+	$"../../AnimationPlayer".play("add_story_card_hover")
+
+func _on_Story_mouse_exited():
+	$"../../AnimationPlayer".play("reset_add_buttons_hover")
+
+
+func _on_Router_mouse_entered():
+	$"../../AnimationPlayer".play("add_router_card_hover")
+
+func _on_Router_mouse_exited():
+	$"../../AnimationPlayer".play("reset_add_buttons_hover")
+
+
+func _on_Choice_mouse_entered():
+	$"../../AnimationPlayer".play("add_choice_card_hover")
+
+func _on_Choice_mouse_exited():
+	$"../../AnimationPlayer".play("reset_add_buttons_hover")
