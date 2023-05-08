@@ -1,25 +1,46 @@
 extends PanelContainer
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
 onready var Settings_btn=$HBoxContainer/RightNav/Settings
 onready var Minus_btn=$HBoxContainer/Zoom/PanelContainer/HBoxContainer/minus
 onready var Plus_btn=$HBoxContainer/Zoom/PanelContainer/HBoxContainer/plus
 
 onready var Animation_player=$AnimationPlayer
+
+
+func Export():
+	var FINAL_JSON={'story_line':[]}
+	for card in $"../PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid".get_children():
+		var Single_Card={}
+		
+		if card.is_in_group('StoryCard'):
+			Single_Card['card_type']='StoryCard'
+			Single_Card['required_vars']=[]
+			Single_Card['on_end']={'set_vars':[]}
+
+			
+			var req_vars=card.get_node('VBoxContainer/OnStart/VBox/Reqs').get_children()
+			var set_vars=card.get_node('VBoxContainer/OnEnd/VBoxContainer/SetVars').get_children()
+			
+			for vars in req_vars:
+				Single_Card['required_vars'].append([vars.get_node('VarName').text,vars.get_node('VarVal').text])
+			Single_Card['on_end']['goto']=int(card.get_node('VBoxContainer/OnEnd/VBoxContainer/Goto').text)
+			for vars in set_vars:
+				Single_Card['on_end']['set_vars'].append([vars.get_node('VarName').text,vars.get_node('VarVal').text])
+			Single_Card['content']=card.get_node('VBoxContainer/Content/ContentLabel').text
+		
+		elif card.is_in_group('RouterCard'):
+			Single_Card['card_type']='RouterCard'
+		
+		
+		elif card.is_in_group('ChoiceCard'):
+			Single_Card['card_type']='ChoiceCard'
+		
+		
+
+		
+		FINAL_JSON['story_line'].append(Single_Card)
+	
+	print(FINAL_JSON)
 
 func _on_Settings_mouse_entered():
 	Settings_btn.rect_pivot_offset=Settings_btn.rect_size/2
@@ -63,3 +84,9 @@ func _on_LineEdit_focus_entered():
 
 func _on_LineEdit_focus_exited():
 	Animation_player.play("search_bar_unfocus")
+
+
+
+func _on_ExportButton_pressed():
+	$"../ExportPopupPanel".popup()
+	Export()

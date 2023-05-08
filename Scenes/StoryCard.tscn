@@ -336,23 +336,23 @@ placeholder_text = "goto step"
 caret_blink = true
 caret_blink_speed = 0.5
 
-[node name="SetVars" type="VBoxContainer" parent="VBoxContainer/OnEnd/VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/OnEnd/VBoxContainer"]
 margin_top = 59.0
 margin_right = 272.0
-margin_bottom = 107.0
-
-[node name="Label" type="Label" parent="VBoxContainer/OnEnd/VBoxContainer/SetVars"]
-margin_right = 272.0
-margin_bottom = 19.0
+margin_bottom = 78.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 0.52549, 0.52549, 0.52549, 1 )
 text = "set_vars"
 valign = 1
 
-[node name="VarDetails" parent="VBoxContainer/OnEnd/VBoxContainer/SetVars" instance=ExtResource( 2 )]
-margin_top = 23.0
+[node name="SetVars" type="VBoxContainer" parent="VBoxContainer/OnEnd/VBoxContainer"]
+margin_top = 82.0
 margin_right = 272.0
-margin_bottom = 48.0
+margin_bottom = 107.0
+
+[node name="VarDetails" parent="VBoxContainer/OnEnd/VBoxContainer/SetVars" instance=ExtResource( 2 )]
+margin_right = 272.0
+margin_bottom = 25.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 19 )

@@ -11,6 +11,7 @@ func popup():
 		 $"../../AnimationPlayer".play("popup_panel_open")
 	else:
 		$"../../AnimationPlayer".play("popup_panel_close")
+
 func _on_AddBtn_toggled(button_pressed):
 	toggle=not toggle
 	popup()
@@ -19,6 +20,7 @@ func _on_AddBtn_toggled(button_pressed):
 func _on_AddIconBtn_toggled(button_pressed):
 	toggle=not toggle
 	popup()
+	
 func QuickAddBtn(n):
 	if n==1:
 		$HBox/QuickAddBtn.texture_normal=load("res://Assets/Textures/gui-tooltip-svgrepo-com (1).png")
@@ -64,7 +66,10 @@ func _on_QuickAddBtn_pressed():
 
 
 func _on_ColorRect_gui_input(event):
-	pass
+	if event is InputEventMouseButton and event.get_button_index()!=5 and event.get_button_index()!=4:
+		if event.is_pressed():
+			toggle=not toggle
+			popup()
 
 
 
