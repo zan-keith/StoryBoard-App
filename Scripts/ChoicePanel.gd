@@ -8,3 +8,5 @@ func _on_AddVar_pressed():
 
 func _on_Goto_text_entered(new_text):
 	emit_signal("TextEntered",new_text,self)
+	
+

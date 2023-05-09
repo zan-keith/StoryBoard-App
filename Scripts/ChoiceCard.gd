@@ -6,8 +6,8 @@ signal RefreshLines
 onready var toggle=false
 onready var focused=false
 
-onready var typecontentbox=$VBoxContainer/VBoxContainer/Content2/TypeContent
-onready var readcontentbox=$VBoxContainer/VBoxContainer/Content2/ContentLabel
+onready var typecontentbox=$VBoxContainer/VBoxContainer/Content/TypeContent
+onready var readcontentbox=$VBoxContainer/VBoxContainer/Content/ContentLabel
 
 func _ready():
 	_on_AddChoice_pressed()

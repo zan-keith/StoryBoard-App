@@ -53,7 +53,8 @@ func StoryCard_toggled(button_pressed):
 
 
 func _on_StoryCard_gui_input(event):
-
+	if event is InputEventMouseButton and event.get_button_index()!=4 and event.get_button_index()!=5:
+		if event.is_pressed():
 			if not focused:
 				focused=not focused
 			StoryCard_toggled(focused)

@@ -4,7 +4,40 @@ onready var PopupPane=$PopupPanel
 signal AddCard
 onready var RecentlyClickedCard=1
 onready var toggle=false
+onready var card_added_oneshot=false
 
+func AddCard(n):
+	print('before ',$"../../../PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid".rect_size)
+	var c
+	var latest_index=$"../../..".latest_index
+	if n==1:
+		c = load("res://Scenes/StoryCard.tscn").instance()
+		c.connect("SendClick", self, "_on_card_click")
+		c.connect("RefreshLines", self, "_on_refresh_lines")
+		c.get_node("VBoxContainer/MainDetails/Index").text=str(latest_index)
+		#get_node(maingrid_path).add_child(c)
+		
+	elif n==2:
+		c = load("res://Scenes/RouterCard.tscn").instance()
+		c.connect("SendClick", self, "_on_card_click")
+		c.connect("RefreshLines", self, "_on_refresh_lines")
+		c.get_node('VBoxContainer/HBox/Index').text=str(latest_index)
+		#get_node(maingrid_path).add_child(c)
+	elif n==3:
+		c = load("res://Scenes/ChoiceCard.tscn").instance()
+		c.connect("SendClick", self, "_on_card_click")
+		c.connect("RefreshLines", self, "_on_refresh_lines")
+		c.get_node("VBoxContainer/MainDetails/Index").text=str(latest_index)
+		#get_node(maingrid_path).add_child(c)
+
+	$"../../../PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid".add_child(c)
+	print(c.rect_size.x,$"../../../PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid".rect_size)
+	
+	if not card_added_oneshot:
+		$"../../../PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid".rect_size+=Vector2(c.rect_size.x,0)
+	
+	$"../../../PanelContainer/ScrollContainer/Panel".rect_min_size=$"../../../PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid".rect_size
+	$"../../..".latest_index+=1
 
 func popup():
 	if toggle:
@@ -28,7 +61,8 @@ func QuickAddBtn(n):
 		$HBox/QuickAddBtn.texture_normal=load("res://Assets/Textures/shuffle-svgrepo-com.png")
 	elif n==3:
 		$HBox/QuickAddBtn.texture_normal=load("res://Assets/Textures/options-svgrepo-com.png")
-	emit_signal('AddCard',n)
+#	emit_signal('AddCard',n)
+	AddCard(n)
 
 func AddBtn(n):
 	RecentlyClickedCard=n
@@ -38,8 +72,8 @@ func AddBtn(n):
 		$HBox/QuickAddBtn.texture_normal=load("res://Assets/Textures/shuffle-svgrepo-com.png")
 	elif n==3:
 		$HBox/QuickAddBtn.texture_normal=load("res://Assets/Textures/options-svgrepo-com.png")
-
-	emit_signal('AddCard',n)
+	AddCard(n)
+#	emit_signal('AddCard',n)
 	$"../../AnimationPlayer".play("popup_panel_close")
 
 

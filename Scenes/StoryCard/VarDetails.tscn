@@ -4,8 +4,8 @@
 [ext_resource path="res://Assets/Themes/text_box_in_cards.tres" type="Theme" id=2]
 
 [node name="VarDetails" type="HBoxContainer"]
-margin_right = 120.0
-margin_bottom = 24.0
+margin_right = 154.0
+margin_bottom = 25.0
 theme = ExtResource( 2 )
 script = ExtResource( 1 )
 

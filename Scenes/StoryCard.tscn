@@ -133,8 +133,8 @@ tracks/0/keys = {
 }
 
 [node name="StoryCard" type="PanelContainer" groups=["StoryCard"]]
-margin_right = 304.0
-margin_bottom = 376.0
+margin_right = 186.0
+margin_bottom = 387.0
 size_flags_vertical = 0
 theme = ExtResource( 8 )
 custom_styles/panel = ExtResource( 10 )
@@ -146,36 +146,46 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_left = 8.0
 margin_top = 8.0
-margin_right = 296.0
+margin_right = 178.0
 margin_bottom = 379.0
 mouse_filter = 2
 size_flags_vertical = 3
 
 [node name="MainDetails" type="HBoxContainer" parent="VBoxContainer"]
-margin_right = 288.0
+margin_right = 170.0
 margin_bottom = 31.0
 mouse_filter = 2
 
-[node name="Index" type="Label" parent="VBoxContainer/MainDetails"]
+[node name="#" type="Label" parent="VBoxContainer/MainDetails"]
 margin_top = 3.0
-margin_right = 231.0
+margin_right = 14.0
+margin_bottom = 27.0
+custom_colors/font_color = Color( 0.0980392, 0.713726, 0.180392, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 22 )
+text = "#"
+
+[node name="Index" type="Label" parent="VBoxContainer/MainDetails"]
+margin_left = 18.0
+margin_top = 3.0
+margin_right = 113.0
 margin_bottom = 27.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 0.0980392, 0.713726, 0.180392, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 22 )
-text = "# 0"
+text = "0"
 
 [node name="Save" type="Button" parent="VBoxContainer/MainDetails"]
-margin_left = 235.0
-margin_right = 288.0
+margin_left = 117.0
+margin_right = 170.0
 margin_bottom = 31.0
 theme = ExtResource( 9 )
 text = "Save"
 
 [node name="OnStart" type="PanelContainer" parent="VBoxContainer"]
 margin_top = 35.0
-margin_right = 288.0
+margin_right = 170.0
 margin_bottom = 108.0
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -183,18 +193,18 @@ size_flags_horizontal = 3
 [node name="VBox" type="VBoxContainer" parent="VBoxContainer/OnStart"]
 margin_left = 8.0
 margin_top = 8.0
-margin_right = 280.0
+margin_right = 162.0
 margin_bottom = 65.0
 size_flags_horizontal = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/OnStart/VBox"]
-margin_right = 272.0
+margin_right = 154.0
 margin_bottom = 28.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="VBoxContainer/OnStart/VBox/HBoxContainer"]
 margin_top = 4.0
-margin_right = 241.0
+margin_right = 123.0
 margin_bottom = 23.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 0.52549, 0.52549, 0.52549, 1 )
@@ -202,8 +212,8 @@ text = "required vars"
 valign = 1
 
 [node name="AddVar" type="Button" parent="VBoxContainer/OnStart/VBox/HBoxContainer"]
-margin_left = 245.0
-margin_right = 272.0
+margin_left = 127.0
+margin_right = 154.0
 margin_bottom = 28.0
 mouse_filter = 1
 theme = ExtResource( 7 )
@@ -211,17 +221,15 @@ text = "+"
 
 [node name="Reqs" type="VBoxContainer" parent="VBoxContainer/OnStart/VBox"]
 margin_top = 32.0
-margin_right = 272.0
+margin_right = 154.0
 margin_bottom = 57.0
 size_flags_horizontal = 3
 
 [node name="VarDetails" parent="VBoxContainer/OnStart/VBox/Reqs" instance=ExtResource( 2 )]
-margin_right = 272.0
-margin_bottom = 25.0
 
 [node name="Content" type="PanelContainer" parent="VBoxContainer"]
 margin_top = 112.0
-margin_right = 288.0
+margin_right = 170.0
 margin_bottom = 244.0
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -230,7 +238,7 @@ size_flags_vertical = 3
 [node name="ContentLabel" type="RichTextLabel" parent="VBoxContainer/Content"]
 margin_left = 8.0
 margin_top = 8.0
-margin_right = 280.0
+margin_right = 162.0
 margin_bottom = 124.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -294,23 +302,23 @@ stretch_mode = 4
 
 [node name="OnEnd" type="PanelContainer" parent="VBoxContainer"]
 margin_top = 248.0
-margin_right = 288.0
+margin_right = 170.0
 margin_bottom = 371.0
 mouse_filter = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/OnEnd"]
 margin_left = 8.0
 margin_top = 8.0
-margin_right = 280.0
+margin_right = 162.0
 margin_bottom = 115.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/OnEnd/VBoxContainer"]
-margin_right = 272.0
+margin_right = 154.0
 margin_bottom = 28.0
 
 [node name="Label" type="Label" parent="VBoxContainer/OnEnd/VBoxContainer/HBoxContainer"]
 margin_top = 4.0
-margin_right = 241.0
+margin_right = 123.0
 margin_bottom = 23.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 0.52549, 0.52549, 0.52549, 1 )
@@ -318,8 +326,8 @@ text = "on end"
 valign = 1
 
 [node name="AddVar" type="Button" parent="VBoxContainer/OnEnd/VBoxContainer/HBoxContainer"]
-margin_left = 245.0
-margin_right = 272.0
+margin_left = 127.0
+margin_right = 154.0
 margin_bottom = 28.0
 mouse_filter = 1
 theme = ExtResource( 7 )
@@ -327,7 +335,7 @@ text = "+"
 
 [node name="Goto" type="LineEdit" parent="VBoxContainer/OnEnd/VBoxContainer"]
 margin_top = 32.0
-margin_right = 272.0
+margin_right = 154.0
 margin_bottom = 55.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -338,7 +346,7 @@ caret_blink_speed = 0.5
 
 [node name="Label" type="Label" parent="VBoxContainer/OnEnd/VBoxContainer"]
 margin_top = 59.0
-margin_right = 272.0
+margin_right = 154.0
 margin_bottom = 78.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 0.52549, 0.52549, 0.52549, 1 )
@@ -347,12 +355,10 @@ valign = 1
 
 [node name="SetVars" type="VBoxContainer" parent="VBoxContainer/OnEnd/VBoxContainer"]
 margin_top = 82.0
-margin_right = 272.0
+margin_right = 154.0
 margin_bottom = 107.0
 
 [node name="VarDetails" parent="VBoxContainer/OnEnd/VBoxContainer/SetVars" instance=ExtResource( 2 )]
-margin_right = 272.0
-margin_bottom = 25.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 19 )

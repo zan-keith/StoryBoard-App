@@ -1,13 +1,16 @@
 extends Control
 
 signal CardOverride
+signal ZoomSet
 
 onready var click=false
 onready var prevcard=null
-onready var latest_index=1
-onready var maingrid_path="PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid/"
+export onready var latest_index=1
+onready var maingrid_path="PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid"
 
 func _ready():
+	print('onstart ',$PanelContainer/ScrollContainer/Panel/MarginContainer.rect_size)
+	$PanelContainer/ScrollContainer/Panel.rect_min_size=$PanelContainer/ScrollContainer/Panel/MarginContainer.rect_size
 	var index=1
 	var children=get_node(maingrid_path).get_children()
 	for child in children:
@@ -17,17 +20,18 @@ func _ready():
 
 		if child.is_in_group('RouterCard'):
 			child.connect("RefreshLines", self, "_on_refresh_lines")
-			child.get_node('VBoxContainer/HBox/Index').text="# "+str(index)
+			child.get_node('VBoxContainer/HBox/Index').text=str(index)
 		elif child.is_in_group('StoryCard'):
 			child.connect("RefreshLines", self, "_on_refresh_lines")
-			child.get_node("VBoxContainer/MainDetails/Index").text="# "+str(index)
+			child.get_node("VBoxContainer/MainDetails/Index").text=str(index)
 		elif child.is_in_group('ChoiceCard'):
 			child.connect("RefreshLines", self, "_on_refresh_lines")
-			child.get_node("VBoxContainer/MainDetails/Index").text="# "+str(index)
+			child.get_node("VBoxContainer/MainDetails/Index").text=str(index)
 
 		index+=1
 		latest_index+=1
-	$PanelContainer/ScrollContainer/Panel.rect_min_size=$PanelContainer/ScrollContainer/Panel/MarginContainer.rect_size
+#	$PanelContainer/ScrollContainer/Panel.rect_min_size=$PanelContainer/ScrollContainer/Panel/MarginContainer.rect_size
+	
 
 func validate_goto(new_text):
 	
@@ -249,24 +253,36 @@ func _on_card_click(obj,click):
 
 func _on_AddCard(n):
 	
+	var c
+	var currzoom=int($Navbar/HBoxContainer/Zoom/PanelContainer/HBoxContainer/Label.text)
+	var zoom_container=$PanelContainer/ScrollContainer/Panel/MarginContainer
+	print(zoom_container.rect_size)
+#	$PanelContainer/ScrollContainer/Panel.rect_min_size=(zoom_container.rect_size*zoom_container.rect_scale)
 	if n==1:
-		var c = load("res://Scenes/StoryCard.tscn").instance()
+		c = load("res://Scenes/StoryCard.tscn").instance()
 		c.connect("SendClick", self, "_on_card_click")
 		c.connect("RefreshLines", self, "_on_refresh_lines")
-		c.get_node("VBoxContainer/MainDetails/Index").text="# "+str(latest_index)
-		get_node(maingrid_path).add_child(c)
+		c.get_node("VBoxContainer/MainDetails/Index").text=str(latest_index)
+		#get_node(maingrid_path).add_child(c)
 		
 	elif n==2:
-		var c = load("res://Scenes/RouterCard.tscn").instance()
+		c = load("res://Scenes/RouterCard.tscn").instance()
 		c.connect("SendClick", self, "_on_card_click")
 		c.connect("RefreshLines", self, "_on_refresh_lines")
-		c.get_node('VBoxContainer/HBox/Index').text="# "+str(latest_index)
-		get_node(maingrid_path).add_child(c)
+		c.get_node('VBoxContainer/HBox/Index').text=str(latest_index)
+		#get_node(maingrid_path).add_child(c)
 	elif n==3:
-		var c = load("res://Scenes/ChoiceCard.tscn").instance()
+		c = load("res://Scenes/ChoiceCard.tscn").instance()
 		c.connect("SendClick", self, "_on_card_click")
 		c.connect("RefreshLines", self, "_on_refresh_lines")
-		c.get_node("VBoxContainer/MainDetails/Index").text="# "+str(latest_index)
-		get_node(maingrid_path).add_child(c)
-	$PanelContainer/ScrollContainer/Panel.rect_min_size=$PanelContainer/ScrollContainer/Panel/MarginContainer.rect_size
+		c.get_node("VBoxContainer/MainDetails/Index").text=str(latest_index)
+		#get_node(maingrid_path).add_child(c)
+	
+	var og_panel_length=zoom_container.rect_size
+	#print(zoom_container.rect_size*zoom_container.rect_scale)
+	get_node(maingrid_path).add_child(c)
+	emit_signal("ZoomSet")
 	latest_index+=1
+
+
+

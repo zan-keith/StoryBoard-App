@@ -1,9 +1,8 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/RouterCard.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Themes/card_theme.tres" type="Theme" id=2]
 [ext_resource path="res://Assets/Fonts/Rubik/Rubik-VariableFont_wght.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://Assets/Fonts/normal_font_theme.tres" type="Theme" id=4]
 [ext_resource path="res://Assets/Themes/card_save_btn.tres" type="Theme" id=6]
 [ext_resource path="res://Assets/Themes/add_goto.tres" type="Theme" id=7]
 [ext_resource path="res://Assets/Themes/card_base.tres" type="StyleBox" id=8]
@@ -12,9 +11,6 @@
 size = 20
 use_filter = true
 font_data = ExtResource( 3 )
-
-[sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0.6, 0.6, 0.6, 0 )
 
 [sub_resource type="StyleBoxEmpty" id=19]
 
@@ -89,7 +85,7 @@ tracks/0/keys = {
 }
 
 [node name="RouterCard" type="PanelContainer" groups=["RouterCard"]]
-margin_right = 168.0
+margin_right = 103.0
 margin_bottom = 146.0
 size_flags_vertical = 2
 theme = ExtResource( 2 )
@@ -99,48 +95,38 @@ script = ExtResource( 1 )
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_left = 8.0
 margin_top = 8.0
-margin_right = 160.0
+margin_right = 95.0
 margin_bottom = 138.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HBox" type="HBoxContainer" parent="VBoxContainer"]
-margin_right = 152.0
+margin_right = 87.0
 margin_bottom = 31.0
 
-[node name="Index" type="Label" parent="VBoxContainer/HBox"]
+[node name="#" type="Label" parent="VBoxContainer/HBox"]
 margin_top = 3.0
-margin_right = 95.0
+margin_right = 14.0
+margin_bottom = 27.0
+custom_colors/font_color = Color( 0.0980392, 0.713726, 0.180392, 1 )
+custom_colors/font_color_shadow = Color( 0.380392, 0.309804, 0.309804, 1 )
+custom_fonts/font = SubResource( 10 )
+text = "#"
+
+[node name="Index" type="Label" parent="VBoxContainer/HBox"]
+margin_left = 18.0
+margin_top = 3.0
+margin_right = 30.0
 margin_bottom = 27.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 0.0980392, 0.713726, 0.180392, 1 )
 custom_colors/font_color_shadow = Color( 0.380392, 0.309804, 0.309804, 1 )
 custom_fonts/font = SubResource( 10 )
-text = "# 0"
-
-[node name="Label2" type="Label" parent="VBoxContainer/HBox"]
-visible = false
-margin_left = 24.0
-margin_top = 9.0
-margin_right = 40.0
-margin_bottom = 23.0
-text = "12"
-
-[node name="Id" type="LineEdit" parent="VBoxContainer/HBox"]
-visible = false
-margin_left = 62.0
-margin_right = 115.0
-margin_bottom = 37.0
-mouse_filter = 1
-size_flags_horizontal = 3
-theme = ExtResource( 4 )
-custom_colors/font_color = Color( 0.0941176, 0.0941176, 0.0941176, 1 )
-custom_styles/normal = SubResource( 2 )
-text = "decision_one"
+text = "0"
 
 [node name="Save" type="Button" parent="VBoxContainer/HBox"]
-margin_left = 99.0
-margin_right = 152.0
+margin_left = 34.0
+margin_right = 87.0
 margin_bottom = 31.0
 mouse_filter = 1
 theme = ExtResource( 6 )
@@ -148,19 +134,19 @@ text = "Save"
 
 [node name="Panel" type="PanelContainer" parent="VBoxContainer"]
 margin_top = 35.0
-margin_right = 152.0
+margin_right = 87.0
 margin_bottom = 119.0
 mouse_filter = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Panel"]
 margin_left = 8.0
 margin_top = 8.0
-margin_right = 144.0
+margin_right = 79.0
 margin_bottom = 76.0
 custom_constants/separation = 10
 
 [node name="ElseGoto" type="LineEdit" parent="VBoxContainer/Panel/VBoxContainer"]
-margin_right = 136.0
+margin_right = 71.0
 margin_bottom = 29.0
 mouse_filter = 1
 theme = SubResource( 21 )
@@ -168,7 +154,7 @@ placeholder_text = "else goto step"
 
 [node name="AddGotos" type="Button" parent="VBoxContainer/Panel/VBoxContainer"]
 margin_top = 39.0
-margin_right = 136.0
+margin_right = 71.0
 margin_bottom = 68.0
 mouse_filter = 1
 theme = ExtResource( 7 )
