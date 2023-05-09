@@ -10,7 +10,6 @@ onready var maingrid_path="PanelContainer/ScrollContainer/Panel/MarginContainer/
 
 func _ready():
 	print('onstart ',$PanelContainer/ScrollContainer/Panel/MarginContainer.rect_size)
-	$PanelContainer/ScrollContainer/Panel.rect_min_size=$PanelContainer/ScrollContainer/Panel/MarginContainer.rect_size
 	var index=1
 	var children=get_node(maingrid_path).get_children()
 	for child in children:
@@ -30,7 +29,7 @@ func _ready():
 
 		index+=1
 		latest_index+=1
-#	$PanelContainer/ScrollContainer/Panel.rect_min_size=$PanelContainer/ScrollContainer/Panel/MarginContainer.rect_size
+	$PanelContainer/ScrollContainer/Panel.rect_min_size=$PanelContainer/ScrollContainer/Panel/MarginContainer.rect_size
 	
 
 func validate_goto(new_text):
@@ -249,40 +248,5 @@ func _on_card_click(obj,click):
 		RouterCardClick(click,obj.name)
 	elif obj.is_in_group('ChoiceCard'):
 		ChoiceCardClick(click,obj.name)
-
-
-func _on_AddCard(n):
-	
-	var c
-	var currzoom=int($Navbar/HBoxContainer/Zoom/PanelContainer/HBoxContainer/Label.text)
-	var zoom_container=$PanelContainer/ScrollContainer/Panel/MarginContainer
-	print(zoom_container.rect_size)
-#	$PanelContainer/ScrollContainer/Panel.rect_min_size=(zoom_container.rect_size*zoom_container.rect_scale)
-	if n==1:
-		c = load("res://Scenes/StoryCard.tscn").instance()
-		c.connect("SendClick", self, "_on_card_click")
-		c.connect("RefreshLines", self, "_on_refresh_lines")
-		c.get_node("VBoxContainer/MainDetails/Index").text=str(latest_index)
-		#get_node(maingrid_path).add_child(c)
-		
-	elif n==2:
-		c = load("res://Scenes/RouterCard.tscn").instance()
-		c.connect("SendClick", self, "_on_card_click")
-		c.connect("RefreshLines", self, "_on_refresh_lines")
-		c.get_node('VBoxContainer/HBox/Index').text=str(latest_index)
-		#get_node(maingrid_path).add_child(c)
-	elif n==3:
-		c = load("res://Scenes/ChoiceCard.tscn").instance()
-		c.connect("SendClick", self, "_on_card_click")
-		c.connect("RefreshLines", self, "_on_refresh_lines")
-		c.get_node("VBoxContainer/MainDetails/Index").text=str(latest_index)
-		#get_node(maingrid_path).add_child(c)
-	
-	var og_panel_length=zoom_container.rect_size
-	#print(zoom_container.rect_size*zoom_container.rect_scale)
-	get_node(maingrid_path).add_child(c)
-	emit_signal("ZoomSet")
-	latest_index+=1
-
 
 

@@ -7,7 +7,10 @@ onready var toggle=false
 onready var card_added_oneshot=false
 
 func AddCard(n):
-	print('before ',$"../../../PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid".rect_size)
+	var maingrid_path="../../../PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid"
+	#print('before ',$"../../../PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid".get_size())
+	#print('before',$"../../../PanelContainer/ScrollContainer/Panel/MarginContainer".get_size())
+
 	var c
 	var latest_index=$"../../..".latest_index
 	if n==1:
@@ -15,28 +18,29 @@ func AddCard(n):
 		c.connect("SendClick", self, "_on_card_click")
 		c.connect("RefreshLines", self, "_on_refresh_lines")
 		c.get_node("VBoxContainer/MainDetails/Index").text=str(latest_index)
-		#get_node(maingrid_path).add_child(c)
+		get_node(maingrid_path).add_child(c)
 		
 	elif n==2:
 		c = load("res://Scenes/RouterCard.tscn").instance()
 		c.connect("SendClick", self, "_on_card_click")
 		c.connect("RefreshLines", self, "_on_refresh_lines")
 		c.get_node('VBoxContainer/HBox/Index').text=str(latest_index)
-		#get_node(maingrid_path).add_child(c)
+		get_node(maingrid_path).add_child(c)
 	elif n==3:
 		c = load("res://Scenes/ChoiceCard.tscn").instance()
 		c.connect("SendClick", self, "_on_card_click")
 		c.connect("RefreshLines", self, "_on_refresh_lines")
 		c.get_node("VBoxContainer/MainDetails/Index").text=str(latest_index)
-		#get_node(maingrid_path).add_child(c)
-
-	$"../../../PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid".add_child(c)
-	print(c.rect_size.x,$"../../../PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid".rect_size)
+		get_node(maingrid_path).add_child(c)
+	get_node(maingrid_path)._set_size(get_node(maingrid_path).get_size())
+	$"../../../PanelContainer/ScrollContainer/Panel/MarginContainer"._set_size(get_node(maingrid_path).get_size())
 	
-	if not card_added_oneshot:
-		$"../../../PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid".rect_size+=Vector2(c.rect_size.x,0)
+	#print('after',get_node(maingrid_path).get_size())
+	#print('after',$"../../../PanelContainer/ScrollContainer/Panel/MarginContainer".get_size())
 	
-	$"../../../PanelContainer/ScrollContainer/Panel".rect_min_size=$"../../../PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid".rect_size
+	$"../../../PanelContainer/ScrollContainer/Panel".set_custom_minimum_size($"../../../PanelContainer/ScrollContainer/Panel/MarginContainer".get_size()*$"../../../PanelContainer/ScrollContainer/Panel/MarginContainer".rect_scale)
+	
+	
 	$"../../..".latest_index+=1
 
 func popup():

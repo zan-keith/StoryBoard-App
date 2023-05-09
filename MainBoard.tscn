@@ -52,7 +52,7 @@ HScrollBar/styles/grabber_pressed = SubResource( 15 )
 HScrollBar/styles/scroll = SubResource( 39 )
 HScrollBar/styles/scroll_focus = SubResource( 18 )
 
-[sub_resource type="StyleBoxFlat" id=85]
+[sub_resource type="StyleBoxEmpty" id=85]
 
 [sub_resource type="StyleBoxFlat" id=4]
 content_margin_left = 10.0
@@ -1111,30 +1111,26 @@ size_flags_vertical = 3
 theme = SubResource( 12 )
 
 [node name="Panel" type="Panel" parent="PanelContainer/ScrollContainer"]
-margin_right = 1024.0
 margin_bottom = 544.0
-size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/panel = SubResource( 85 )
 
 [node name="MarginContainer" type="VBoxContainer" parent="PanelContainer/ScrollContainer/Panel"]
-margin_right = 1126.0
+margin_right = 14.0
 margin_bottom = 405.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/ScrollContainer/Panel/MarginContainer"]
 modulate = Color( 1, 0, 0, 0 )
-margin_right = 1126.0
+margin_right = 14.0
 margin_bottom = 14.0
-size_flags_horizontal = 3
+size_flags_horizontal = 0
 
 [node name="MainGrid" type="HBoxContainer" parent="PanelContainer/ScrollContainer/Panel/MarginContainer"]
 margin_top = 18.0
 margin_right = 1126.0
 margin_bottom = 405.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
 custom_constants/separation = 2
 
 [node name="StoryCard" parent="PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid" instance=ExtResource( 3 )]
@@ -1145,22 +1141,22 @@ margin_left = 188.0
 margin_right = 374.0
 size_flags_horizontal = 0
 
-[node name="StoryCard3" parent="PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid" instance=ExtResource( 3 )]
+[node name="StoryCard7" parent="PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid" instance=ExtResource( 3 )]
 margin_left = 376.0
 margin_right = 562.0
 size_flags_horizontal = 0
 
-[node name="StoryCard4" parent="PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid" instance=ExtResource( 3 )]
+[node name="StoryCard8" parent="PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid" instance=ExtResource( 3 )]
 margin_left = 564.0
 margin_right = 750.0
 size_flags_horizontal = 0
 
-[node name="StoryCard5" parent="PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid" instance=ExtResource( 3 )]
+[node name="StoryCard9" parent="PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid" instance=ExtResource( 3 )]
 margin_left = 752.0
 margin_right = 938.0
 size_flags_horizontal = 0
 
-[node name="StoryCard6" parent="PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid" instance=ExtResource( 3 )]
+[node name="StoryCard10" parent="PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid" instance=ExtResource( 3 )]
 margin_left = 940.0
 margin_right = 1126.0
 size_flags_horizontal = 0
@@ -1684,7 +1680,6 @@ expand_icon = true
 
 [connection signal="ZoomSet" from="." to="Navbar/HBoxContainer/Zoom" method="_on_MainBoard_ZoomSet"]
 [connection signal="gui_input" from="Navbar/HBoxContainer/CanvasLayer/ColorRect" to="Navbar/HBoxContainer/AddNewCards" method="_on_ColorRect_gui_input"]
-[connection signal="AddCard" from="Navbar/HBoxContainer/AddNewCards" to="." method="_on_AddCard"]
 [connection signal="toggled" from="Navbar/HBoxContainer/AddNewCards/HBox/AddBtn" to="Navbar/HBoxContainer/AddNewCards" method="_on_AddBtn_toggled"]
 [connection signal="toggled" from="Navbar/HBoxContainer/AddNewCards/HBox/AddIconBtn" to="Navbar/HBoxContainer/AddNewCards" method="_on_AddIconBtn_toggled"]
 [connection signal="pressed" from="Navbar/HBoxContainer/AddNewCards/HBox/QuickAddBtn" to="Navbar/HBoxContainer/AddNewCards" method="_on_QuickAddBtn_pressed"]
