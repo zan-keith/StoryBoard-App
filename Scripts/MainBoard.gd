@@ -2,11 +2,12 @@ extends Control
 
 signal CardOverride
 signal ZoomSet
+signal ShowToast
 
 onready var click=false
 onready var prevcard=null
 export onready var latest_index=1
-onready var maingrid_path="PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid"
+onready var maingrid_path="PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid/"
 
 func _ready():
 	print('onstart ',$PanelContainer/ScrollContainer/Panel/MarginContainer.rect_size)
@@ -60,7 +61,6 @@ func LineConnect(obj):
 	ClearLines()
 	
 	#Set array of points to draw a line from card to "goto" step
-
 	if obj.is_in_group('StoryCard'):
 		var offset=10
 		var goto=get_node(maingrid_path+obj.name+"/VBoxContainer/OnEnd/VBoxContainer/Goto").text
@@ -80,7 +80,6 @@ func LineConnect(obj):
 		print(len(children),toobj.name,'  ')
 
 
-		
 		
 		var line = load("res://Scenes/ConnectorLine.tscn").instance()
 #		var line = Line2D.new()
@@ -194,8 +193,12 @@ func StoryCardClick(click,obj):
 		prevcard=obj
 		LineConnect(get_node(maingrid_path+obj))
 	elif click and prevcard==obj:
-		prevcard=obj
-
+		var prevnode=get_node(maingrid_path+prevcard)
+		self.connect("CardOverride", prevnode, "_on_card_override")
+		emit_signal("CardOverride")
+		disconnect("CardOverride", prevnode, "_on_card_override")
+		prevcard=null
+		
 	else:	#Delete previous Lines
 		prevcard=null
 		$PanelContainer/ScrollContainer/Panel/MarginContainer/PanelContainer.rect_min_size.y=0
@@ -211,7 +214,11 @@ func RouterCardClick(click,obj):
 		prevcard=obj
 		LineConnect(get_node(maingrid_path+obj))
 	elif click and prevcard==obj:
-		prevcard=obj
+		var prevnode=get_node(maingrid_path+prevcard)
+		self.connect("CardOverride", prevnode, "_on_card_override")
+		emit_signal("CardOverride")
+		disconnect("CardOverride", prevnode, "_on_card_override")
+		prevcard=null
 
 	else:	#Delete previous Lines
 		prevcard=null
@@ -229,15 +236,17 @@ func ChoiceCardClick(click,obj):
 		prevcard=obj
 		LineConnect(get_node(maingrid_path+obj))
 	elif click and prevcard==obj:
-		prevcard=obj
+		var prevnode=get_node(maingrid_path+prevcard)
+		self.connect("CardOverride", prevnode, "_on_card_override")
+		emit_signal("CardOverride")
+		disconnect("CardOverride", prevnode, "_on_card_override")
+		prevcard=null
+		
 
-	else:	#Delete previous Lines
+	else:
 		prevcard=null
 
 
-#func _on_goto_text_entered(new_text,obj):
-#	print('lol')
-#
 func _on_refresh_lines(obj):
 	LineConnect(obj)
 
@@ -249,4 +258,13 @@ func _on_card_click(obj,click):
 	elif obj.is_in_group('ChoiceCard'):
 		ChoiceCardClick(click,obj.name)
 
+
+
+
+func _on_Popup_Remove_Button_pressed():
+	if prevcard!=null:
+		get_node(maingrid_path+prevcard).queue_free()
+		prevcard=null
+	else:
+		emit_signal("ShowToast",'Invalid Card - Select a card before using options')
 

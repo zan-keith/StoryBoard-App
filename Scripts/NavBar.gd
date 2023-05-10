@@ -1,5 +1,6 @@
-extends PanelContainer
+extends ScrollContainer
 
+signal ExportFinished
 onready var Settings_btn=$HBoxContainer/RightNav/Settings
 onready var Minus_btn=$HBoxContainer/Zoom/PanelContainer/HBoxContainer/minus
 onready var Plus_btn=$HBoxContainer/Zoom/PanelContainer/HBoxContainer/plus
@@ -25,7 +26,7 @@ func Export():
 			for vars in req_vars:
 				if not vars.get_node('VarName').text.is_valid_identifier() and vars.get_node('VarVal').text.empty():
 					print('Error : invalid variable name or invalid value assigned to card of id '+card.get_node('VBoxContainer/MainDetails/Index').text)
-					return [false,'Error : invalid variable name or invalid value assigned to card of id '+card.get_node('VBoxContainer/MainDetails/Index').text]
+					emit_signal("ExportFinished",false,'Error : invalid variable name or invalid value assigned to card of id '+card.get_node('VBoxContainer/MainDetails/Index').text)
 				Single_Card['required_vars'].append([vars.get_node('VarName').text,vars.get_node('VarVal').text])
 
 			if card.get_node('VBoxContainer/OnEnd/VBoxContainer/Goto').text.empty():
@@ -36,7 +37,9 @@ func Export():
 			for vars in set_vars:
 				if not vars.get_node('VarName').text.is_valid_identifier() and vars.get_node('VarVal').text.empty():
 					print('Error : invalid variable name or invalid value assigned to card of id '+card.get_node('VBoxContainer/MainDetails/Index').text)
-					return [false,'Error : invalid variable name or invalid value assigned to card of id '+card.get_node('VBoxContainer/MainDetails/Index').text]
+					
+					emit_signal("ExportFinished",false,'Error : invalid variable name or invalid value assigned to card of id '+card.get_node('VBoxContainer/MainDetails/Index').text)
+					
 				Single_Card['on_end']['set_vars'].append([vars.get_node('VarName').text,vars.get_node('VarVal').text])
 			Single_Card['content']=card.get_node('VBoxContainer/Content/ContentLabel').text
 		
@@ -73,7 +76,7 @@ func Export():
 			for panel in goto_panels:
 				if panel.get_node('VBoxContainer/HBoxContainer/Goto').text.empty():
 					print('Error : invalid goto step assigned to card of id '+card.get_node('VBoxContainer/HBox/Index').text)
-					return [false,'Error : invalid goto step assigned to card of id '+card.get_node('VBoxContainer/HBox/Index').text]
+					emit_signal("ExportFinished",false,'Error : invalid goto step assigned to card of id '+card.get_node('VBoxContainer/HBox/Index').text)
 				
 				var gotoset={'goto':panel.get_node('VBoxContainer/HBoxContainer/Goto').text,'required_vars':[]}
 				
@@ -83,7 +86,7 @@ func Export():
 				for vars in var_set:
 					if not vars.get_node('VarName').text.is_valid_identifier() and vars.get_node('VarVal').text.empty():
 						print('Error : invalid variable name or invalid value assigned to card of id '+card.get_node('VBoxContainer/HBox/Index').text)
-						return [false,'Error : invalid variable name or invalid value assigned to card of id '+card.get_node('VBoxContainer/HBox/Index').text]
+						emit_signal("ExportFinished",false,'Error : invalid variable name or invalid value assigned to card of id '+card.get_node('VBoxContainer/HBox/Index').text)
 					gotoset['required_vars'].append([vars.get_node('VarName').text,vars.get_node('VarVal').text])
 
 				Single_Card['routers'].append(gotoset)
@@ -128,12 +131,12 @@ func Export():
 				
 				if not validate_goto(goto_text):
 					print('Error : invalid goto step assigned to card of id '+card.get_node('VBoxContainer/MainDetails/Index').text)
-					return [false,'Error : invalid goto step assigned to card of id '+card.get_node('VBoxContainer/MainDetails/Index').text]
+					emit_signal("ExportFinished",false,'Error : invalid goto step assigned to card of id '+card.get_node('VBoxContainer/MainDetails/Index').text)
 				
 				for vars in change_vars:
 					if not vars.get_node('VarName').text.is_valid_identifier() and vars.get_node('VarVal').text.empty():
 						print('Error : invalid variable name or invalid value assigned to card of id '+card.get_node('VBoxContainer/MainDetails/Index').text)
-						return [false,'Error : invalid variable name or invalid value assigned to card of id '+card.get_node('VBoxContainer/MainDetails/Index').text]
+						emit_signal("ExportFinished",false,'Error : invalid variable name or invalid value assigned to card of id '+card.get_node('VBoxContainer/MainDetails/Index').text)
 					choice['set_vars'].append([vars.get_node('VarName').text,vars.get_node('VarVal').text])
 				
 				Single_Card['choices'].append(choice)
@@ -141,7 +144,7 @@ func Export():
 		FINAL_JSON['story_line'].append(Single_Card)
 	
 
-	return [true,FINAL_JSON]
+	emit_signal("ExportFinished",true,FINAL_JSON)
 
 func _on_Settings_mouse_entered():
 	Settings_btn.rect_pivot_offset=Settings_btn.rect_size/2
@@ -190,16 +193,24 @@ func _on_LineEdit_focus_exited():
 
 func _on_ExportButton_pressed():
 	$"../ExportPopupPanel".popup()
-	var export_check=Export()
-	if export_check[0]:
-		$"../ExportPopupPanel/PanelContainer/VBoxContainer/ErrorMsg".visible=false
-		$"../ExportPopupPanel/PanelContainer/VBoxContainer/TextEdit".set_text(str(export_check[1]))
-	else:
-		$"../ExportPopupPanel/PanelContainer/VBoxContainer/ErrorMsg".visible=true
-		$"../ExportPopupPanel/PanelContainer/VBoxContainer/ErrorMsg".text=export_check[1]
-		$"../ExportPopupPanel/PanelContainer/VBoxContainer/TextEdit".set_text("Couldn't generate the json. check the error message for assistance.")
-
+	$"../ExportPopupPanel/AnimationPlayer".play("popup_appear")
+	$"../ExportPopupPanel/AnimationPlayer".queue("loading")
+	yield(get_tree().create_timer(1.5), "timeout") # Just to showoff the animation ;)
+	Export()
 
 func _on_Button_pressed():#Copy to clipboard
 	var json_text=$"../ExportPopupPanel/PanelContainer/VBoxContainer/TextEdit"
 	OS.set_clipboard(json_text.text)
+
+
+func _on_Navbar_ExportFinished(state,result):
+	
+	$"../ExportPopupPanel/AnimationPlayer".play("show_export_panel")
+	if state:
+		$"../ExportPopupPanel/PanelContainer/VBoxContainer/ErrorMsg".visible=false
+		$"../ExportPopupPanel/PanelContainer/VBoxContainer/TextEdit".set_text(str(result))
+	else:
+		$"../ExportPopupPanel/PanelContainer/VBoxContainer/ErrorMsg".visible=true
+		$"../ExportPopupPanel/PanelContainer/VBoxContainer/ErrorMsg".text=result
+		$"../ExportPopupPanel/PanelContainer/VBoxContainer/TextEdit".set_text("Couldn't generate the json. check the error message for assistance.")
+

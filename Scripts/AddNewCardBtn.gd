@@ -1,6 +1,5 @@
 extends PanelContainer
 
-onready var PopupPane=$PopupPanel
 signal AddCard
 onready var RecentlyClickedCard=1
 onready var toggle=false
@@ -10,26 +9,26 @@ func AddCard(n):
 	var maingrid_path="../../../PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid"
 	#print('before ',$"../../../PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid".get_size())
 	#print('before',$"../../../PanelContainer/ScrollContainer/Panel/MarginContainer".get_size())
-
+	var MainBoard=$"../../.."
 	var c
 	var latest_index=$"../../..".latest_index
 	if n==1:
 		c = load("res://Scenes/StoryCard.tscn").instance()
-		c.connect("SendClick", self, "_on_card_click")
-		c.connect("RefreshLines", self, "_on_refresh_lines")
+		c.connect("SendClick", MainBoard, "_on_card_click")
+		c.connect("RefreshLines", MainBoard, "_on_refresh_lines")
 		c.get_node("VBoxContainer/MainDetails/Index").text=str(latest_index)
 		get_node(maingrid_path).add_child(c)
 		
 	elif n==2:
 		c = load("res://Scenes/RouterCard.tscn").instance()
-		c.connect("SendClick", self, "_on_card_click")
-		c.connect("RefreshLines", self, "_on_refresh_lines")
+		c.connect("SendClick", MainBoard, "_on_card_click")
+		c.connect("RefreshLines", MainBoard, "_on_refresh_lines")
 		c.get_node('VBoxContainer/HBox/Index').text=str(latest_index)
 		get_node(maingrid_path).add_child(c)
 	elif n==3:
 		c = load("res://Scenes/ChoiceCard.tscn").instance()
-		c.connect("SendClick", self, "_on_card_click")
-		c.connect("RefreshLines", self, "_on_refresh_lines")
+		c.connect("SendClick", MainBoard, "_on_card_click")
+		c.connect("RefreshLines", MainBoard, "_on_refresh_lines")
 		c.get_node("VBoxContainer/MainDetails/Index").text=str(latest_index)
 		get_node(maingrid_path).add_child(c)
 	get_node(maingrid_path)._set_size(get_node(maingrid_path).get_size())
@@ -45,17 +44,24 @@ func AddCard(n):
 
 func popup():
 	if toggle:
-		 $"../../AnimationPlayer".play("popup_panel_open")
-	else:
-		$"../../AnimationPlayer".play("popup_panel_close")
+		
+		$"../../../SelectCardPopup".popup()
+
+		var x_ax=($".".get_global_position())
+		$"../../../SelectCardPopup".set_position(x_ax+Vector2(0,$".".get_size().y))
+
+		$"../../AnimationPlayer".play("popup_panel_open")
+#
+#	else:
+#		$"../../AnimationPlayer".play("popup_panel_close")
 
 func _on_AddBtn_toggled(button_pressed):
-	toggle=not toggle
+	toggle=true
 	popup()
 
 
 func _on_AddIconBtn_toggled(button_pressed):
-	toggle=not toggle
+	toggle=true
 	popup()
 	
 func QuickAddBtn(n):
@@ -78,11 +84,12 @@ func AddBtn(n):
 		$HBox/QuickAddBtn.texture_normal=load("res://Assets/Textures/options-svgrepo-com.png")
 	AddCard(n)
 #	emit_signal('AddCard',n)
-	$"../../AnimationPlayer".play("popup_panel_close")
+
 
 
 func _on_StoryButton_pressed():
 	AddBtn(1)
+	print('pressed')
 func _on_StoryTextureButton_pressed():
 	AddBtn(1)
 
