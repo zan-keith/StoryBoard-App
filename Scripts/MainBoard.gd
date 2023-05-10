@@ -20,12 +20,15 @@ func _ready():
 
 		if child.is_in_group('RouterCard'):
 			child.connect("RefreshLines", self, "_on_refresh_lines")
+			child.connect('ShowOptionsPopup',self,'_on_card_right_click')
 			child.get_node('VBoxContainer/HBox/Index').text=str(index)
 		elif child.is_in_group('StoryCard'):
 			child.connect("RefreshLines", self, "_on_refresh_lines")
+			child.connect('ShowOptionsPopup',self,'_on_card_right_click')
 			child.get_node("VBoxContainer/MainDetails/Index").text=str(index)
 		elif child.is_in_group('ChoiceCard'):
 			child.connect("RefreshLines", self, "_on_refresh_lines")
+			child.connect('ShowOptionsPopup',self,'_on_card_right_click')
 			child.get_node("VBoxContainer/MainDetails/Index").text=str(index)
 
 		index+=1
@@ -259,6 +262,12 @@ func _on_card_click(obj,click):
 		ChoiceCardClick(click,obj.name)
 
 
+func _on_card_right_click(obj):
+	
+	
+	$PopupMenu.popup()
+
+	$PopupMenu.set_position(obj.get_global_position()+Vector2(obj.rect_size.x,0))
 
 
 func _on_Popup_Remove_Button_pressed():
@@ -268,3 +277,19 @@ func _on_Popup_Remove_Button_pressed():
 	else:
 		emit_signal("ShowToast",'Invalid Card - Select a card before using options')
 
+
+
+func _on_Popup_Move_Card_text_entered(indx):
+	if prevcard!=null:
+		if validate_goto(indx):
+			$PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid.move_child(get_node(maingrid_path+prevcard),int(indx)-1)
+		else:
+			emit_signal("ShowToast",'The Index provided does not exist')
+	else:
+		emit_signal("ShowToast",'Invalid Card - To Move a card select a card')
+
+
+
+func _on_Popup_Add_Button_pressed():
+	$PopupMenu/PopupMenu.set_global_position($PopupMenu/VBoxContainer/AddCard.get_global_position()+Vector2($PopupMenu/VBoxContainer/AddCard.rect_size.x+10,0))
+	$PopupMenu/PopupMenu.popup()

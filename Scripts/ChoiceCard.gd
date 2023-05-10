@@ -2,6 +2,7 @@ extends PanelContainer
 
 signal SendClick
 signal RefreshLines
+signal ShowOptionsPopup
 
 onready var toggle=false
 onready var focused=false
@@ -53,7 +54,9 @@ func _on_ChoiceCard_gui_input(event):
 			if not focused:
 				focused=not focused
 			ChoiceCard_toggled(focused)
-
+		if event.get_button_index()==2 and event.is_pressed():#Right click
+			emit_signal('ShowOptionsPopup',self)
+		
 func _on_goto_text_entered(new_text,obj):
 	var invalid_nodes=Array()
 	

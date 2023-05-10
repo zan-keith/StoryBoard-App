@@ -2,6 +2,7 @@ extends PanelContainer
 
 signal SendClick
 signal RefreshLines
+signal ShowOptionsPopup
 
 onready var toggle=false
 onready var focused=false
@@ -54,10 +55,13 @@ func StoryCard_toggled(button_pressed):
 
 func _on_StoryCard_gui_input(event):
 	if event is InputEventMouseButton and event.get_button_index()!=4 and event.get_button_index()!=5:
+
 		if event.is_pressed():
 			if not focused:
 				focused=not focused
 			StoryCard_toggled(focused)
+		if event.get_button_index()==2 and event.is_pressed():#Right click
+			emit_signal('ShowOptionsPopup',self)
 
 
 

@@ -2,6 +2,7 @@
 
 [ext_resource path="res://Assets/Fonts/Rubik/Rubik-VariableFont_wght.ttf" type="DynamicFontData" id=1]
 
+
 [sub_resource type="StyleBoxEmpty" id=1]
 
 [sub_resource type="StyleBoxFlat" id=2]

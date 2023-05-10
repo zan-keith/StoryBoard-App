@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=2]
+[gd_scene load_steps=113 format=2]
 
 [ext_resource path="res://Assets/Textures/hourglass-svgrepo-com (1).png" type="Texture" id=1]
 [ext_resource path="res://Scripts/CardOptions.gd" type="Script" id=2]
@@ -23,6 +23,12 @@
 [ext_resource path="res://Assets/Fonts/Rubik/FiraCode-VariableFont_wght.ttf" type="DynamicFontData" id=21]
 [ext_resource path="res://Assets/Textures/copy-svgrepo-com.png" type="Texture" id=22]
 [ext_resource path="res://Scripts/Toast.gd" type="Script" id=23]
+[ext_resource path="res://Assets/Textures/move-svgrepo-com (1).png" type="Texture" id=24]
+[ext_resource path="res://Assets/Textures/add-svgrepo-com.png" type="Texture" id=25]
+[ext_resource path="res://Assets/Textures/delete-2-svgrepo-com.png" type="Texture" id=26]
+[ext_resource path="res://Scenes/RouterCard.tscn" type="PackedScene" id=27]
+[ext_resource path="res://Scenes/ChoiceCard.tscn" type="PackedScene" id=28]
+[ext_resource path="res://Assets/Textures/right-arrow-svgrepo-com.png" type="Texture" id=29]
 
 [sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.0117647, 0.0431373, 0.0666667, 1 )
@@ -688,7 +694,7 @@ corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxFlat" id=60]
-content_margin_left = 5.0
+content_margin_left = 7.0
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 border_width_bottom = 3
 border_color = Color( 0, 0, 0, 1 )
@@ -727,7 +733,65 @@ corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxFlat" id=103]
 content_margin_left = 5.0
+content_margin_right = 5.0
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
+border_color = Color( 0, 0, 0, 1 )
+border_blend = true
+
+[sub_resource type="DynamicFont" id=111]
+font_data = ExtResource( 18 )
+
+[sub_resource type="StyleBoxEmpty" id=112]
+
+[sub_resource type="StyleBoxFlat" id=113]
+content_margin_left = 6.0
+bg_color = Color( 0, 0.0431373, 0.113725, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=119]
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0.0745098, 0.12549, 0.211765, 1 )
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="DynamicFont" id=116]
+size = 14
+font_data = ExtResource( 18 )
+
+[sub_resource type="StyleBoxFlat" id=121]
+content_margin_bottom = 5.0
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+border_width_bottom = 3
+border_color = Color( 0, 0, 0, 1 )
+border_blend = true
+
+[sub_resource type="StyleBoxEmpty" id=120]
+
+[sub_resource type="DynamicFont" id=117]
+size = 14
+font_data = ExtResource( 18 )
+
+[sub_resource type="StyleBoxFlat" id=122]
+content_margin_bottom = 5.0
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+border_width_bottom = 3
+border_color = Color( 0, 0, 0, 1 )
+border_blend = true
+
+[sub_resource type="DynamicFont" id=118]
+size = 14
+font_data = ExtResource( 18 )
+
+[sub_resource type="StyleBoxFlat" id=123]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+border_width_bottom = 3
 border_color = Color( 0, 0, 0, 1 )
 border_blend = true
 
@@ -1083,37 +1147,26 @@ size_flags_horizontal = 0
 
 [node name="MainGrid" type="HBoxContainer" parent="PanelContainer/ScrollContainer/Panel/MarginContainer"]
 margin_top = 18.0
-margin_right = 1126.0
+margin_right = 620.0
 margin_bottom = 405.0
-custom_constants/separation = 2
+custom_constants/separation = 11
 
 [node name="StoryCard" parent="PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid" instance=ExtResource( 3 )]
 size_flags_horizontal = 0
 
 [node name="StoryCard2" parent="PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid" instance=ExtResource( 3 )]
-margin_left = 188.0
-margin_right = 374.0
+margin_left = 197.0
+margin_right = 383.0
 size_flags_horizontal = 0
 
-[node name="StoryCard7" parent="PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid" instance=ExtResource( 3 )]
-margin_left = 376.0
-margin_right = 562.0
-size_flags_horizontal = 0
+[node name="RouterCard" parent="PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid" instance=ExtResource( 27 )]
+margin_left = 394.0
+margin_right = 497.0
+margin_bottom = 135.0
 
-[node name="StoryCard8" parent="PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid" instance=ExtResource( 3 )]
-margin_left = 564.0
-margin_right = 750.0
-size_flags_horizontal = 0
-
-[node name="StoryCard9" parent="PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid" instance=ExtResource( 3 )]
-margin_left = 752.0
-margin_right = 938.0
-size_flags_horizontal = 0
-
-[node name="StoryCard10" parent="PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid" instance=ExtResource( 3 )]
-margin_left = 940.0
-margin_right = 1126.0
-size_flags_horizontal = 0
+[node name="ChoiceCard" parent="PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid" instance=ExtResource( 28 )]
+margin_left = 508.0
+margin_right = 620.0
 
 [node name="Navbar" type="ScrollContainer" parent="."]
 anchor_right = 1.0
@@ -1462,7 +1515,7 @@ mouse_default_cursor_shape = 2
 custom_styles/panel = SubResource( 60 )
 
 [node name="Hbox" type="HBoxContainer" parent="SelectCardPopup/VBoxContainer/Story"]
-margin_left = 5.0
+margin_left = 7.0
 margin_right = 187.0
 margin_bottom = 35.0
 
@@ -1478,7 +1531,7 @@ stretch_mode = 5
 
 [node name="Button" type="Button" parent="SelectCardPopup/VBoxContainer/Story/Hbox"]
 margin_left = 39.0
-margin_right = 182.0
+margin_right = 180.0
 margin_bottom = 35.0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
@@ -1558,43 +1611,48 @@ align = 0
 
 [node name="PopupMenu" type="PopupPanel" parent="."]
 visible = true
-margin_left = 834.0
-margin_right = 954.0
-margin_bottom = 153.0
+anchor_left = 0.814
+anchor_right = 0.953
+margin_left = 0.463989
+margin_right = -0.87207
+margin_bottom = 116.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_styles/panel = SubResource( 102 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PopupMenu"]
+anchor_right = 1.007
 margin_top = 5.0
-margin_right = 120.0
-margin_bottom = 149.0
+margin_right = -0.993988
+margin_bottom = 111.0
 custom_constants/separation = 5
 alignment = 1
 
 [node name="Remove" type="PanelContainer" parent="PopupMenu/VBoxContainer"]
-margin_right = 120.0
+margin_right = 142.0
 margin_bottom = 33.0
 mouse_default_cursor_shape = 2
 custom_styles/panel = SubResource( 60 )
 
 [node name="Hbox" type="HBoxContainer" parent="PopupMenu/VBoxContainer/Remove"]
-margin_left = 5.0
-margin_right = 120.0
+margin_left = 7.0
+margin_right = 142.0
 margin_bottom = 30.0
 
 [node name="TextureButton" type="TextureButton" parent="PopupMenu/VBoxContainer/Remove/Hbox"]
-modulate = Color( 0.623529, 0.592157, 0.592157, 1 )
+modulate = Color( 0.615686, 0.317647, 0.317647, 1 )
 margin_right = 23.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 23, 30 )
 mouse_default_cursor_shape = 2
 size_flags_vertical = 3
-texture_normal = ExtResource( 20 )
+texture_normal = ExtResource( 26 )
 expand = true
 stretch_mode = 5
 
 [node name="Button" type="Button" parent="PopupMenu/VBoxContainer/Remove/Hbox"]
 margin_left = 27.0
-margin_right = 115.0
+margin_right = 135.0
 margin_bottom = 30.0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
@@ -1606,29 +1664,30 @@ align = 0
 
 [node name="AddCard" type="PanelContainer" parent="PopupMenu/VBoxContainer"]
 margin_top = 38.0
-margin_right = 120.0
+margin_right = 142.0
 margin_bottom = 71.0
 mouse_default_cursor_shape = 2
 custom_styles/panel = SubResource( 60 )
 
 [node name="Hbox" type="HBoxContainer" parent="PopupMenu/VBoxContainer/AddCard"]
-margin_left = 5.0
-margin_right = 120.0
+margin_left = 7.0
+margin_right = 142.0
 margin_bottom = 30.0
 
 [node name="TextureButton" type="TextureButton" parent="PopupMenu/VBoxContainer/AddCard/Hbox"]
-margin_right = 30.0
+modulate = Color( 0.666667, 0.666667, 0.666667, 1 )
+margin_right = 23.0
 margin_bottom = 30.0
-rect_min_size = Vector2( 30, 30 )
+rect_min_size = Vector2( 23, 30 )
 mouse_default_cursor_shape = 2
 size_flags_vertical = 3
-texture_normal = ExtResource( 10 )
+texture_normal = ExtResource( 25 )
 expand = true
 stretch_mode = 5
 
 [node name="Button" type="Button" parent="PopupMenu/VBoxContainer/AddCard/Hbox"]
-margin_left = 34.0
-margin_right = 115.0
+margin_left = 27.0
+margin_right = 114.0
 margin_bottom = 30.0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
@@ -1638,7 +1697,20 @@ text = "Add"
 flat = true
 align = 0
 
+[node name="TextureButton2" type="TextureButton" parent="PopupMenu/VBoxContainer/AddCard/Hbox"]
+modulate = Color( 0.364706, 0.356863, 0.356863, 1 )
+margin_left = 118.0
+margin_right = 135.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 17, 30 )
+mouse_default_cursor_shape = 2
+size_flags_vertical = 3
+texture_normal = ExtResource( 29 )
+expand = true
+stretch_mode = 5
+
 [node name="Remove3" type="PanelContainer" parent="PopupMenu/VBoxContainer"]
+visible = false
 margin_top = 76.0
 margin_right = 120.0
 margin_bottom = 109.0
@@ -1651,17 +1723,17 @@ margin_right = 120.0
 margin_bottom = 30.0
 
 [node name="TextureButton" type="TextureButton" parent="PopupMenu/VBoxContainer/Remove3/Hbox"]
-margin_right = 30.0
+margin_right = 23.0
 margin_bottom = 30.0
-rect_min_size = Vector2( 30, 30 )
+rect_min_size = Vector2( 23, 30 )
 mouse_default_cursor_shape = 2
 size_flags_vertical = 3
-texture_normal = ExtResource( 10 )
+texture_normal = ExtResource( 24 )
 expand = true
 stretch_mode = 5
 
 [node name="Button" type="Button" parent="PopupMenu/VBoxContainer/Remove3/Hbox"]
-margin_left = 34.0
+margin_left = 27.0
 margin_right = 115.0
 margin_bottom = 30.0
 mouse_default_cursor_shape = 2
@@ -1673,38 +1745,111 @@ flat = true
 align = 0
 
 [node name="Remove4" type="PanelContainer" parent="PopupMenu/VBoxContainer"]
-margin_top = 114.0
-margin_right = 120.0
-margin_bottom = 144.0
+margin_top = 76.0
+margin_right = 142.0
+margin_bottom = 106.0
 mouse_default_cursor_shape = 2
 custom_styles/panel = SubResource( 103 )
 
 [node name="Hbox" type="HBoxContainer" parent="PopupMenu/VBoxContainer/Remove4"]
 margin_left = 5.0
-margin_right = 120.0
+margin_right = 137.0
 margin_bottom = 30.0
 
 [node name="TextureButton" type="TextureButton" parent="PopupMenu/VBoxContainer/Remove4/Hbox"]
-margin_right = 30.0
+modulate = Color( 0.682353, 0.682353, 0.682353, 1 )
+margin_right = 23.0
 margin_bottom = 30.0
-rect_min_size = Vector2( 30, 30 )
+rect_min_size = Vector2( 23, 30 )
 mouse_default_cursor_shape = 2
 size_flags_vertical = 3
-texture_normal = ExtResource( 10 )
+texture_normal = ExtResource( 24 )
 expand = true
 stretch_mode = 5
 
 [node name="Button" type="Button" parent="PopupMenu/VBoxContainer/Remove4/Hbox"]
-margin_left = 34.0
-margin_right = 115.0
+margin_left = 27.0
+margin_right = 74.0
 margin_bottom = 30.0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 65 )
 custom_styles/focus = SubResource( 87 )
-text = "Remove"
+text = "Move"
 flat = true
 align = 0
+
+[node name="LineEdit" type="LineEdit" parent="PopupMenu/VBoxContainer/Remove4/Hbox"]
+margin_left = 78.0
+margin_right = 132.0
+margin_bottom = 30.0
+custom_fonts/font = SubResource( 111 )
+custom_styles/focus = SubResource( 112 )
+custom_styles/normal = SubResource( 113 )
+text = "4222"
+max_length = 4
+expand_to_text_length = true
+placeholder_text = "Index"
+
+[node name="PopupMenu" type="PopupPanel" parent="PopupMenu"]
+visible = true
+margin_top = 5.0
+margin_right = 126.0
+margin_bottom = 90.0
+custom_styles/panel = SubResource( 119 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PopupMenu/PopupMenu"]
+anchor_left = 0.085
+anchor_top = 0.125
+anchor_right = 0.085
+anchor_bottom = 0.125
+margin_left = -10.71
+margin_top = -5.625
+margin_right = 115.29
+margin_bottom = 69.375
+alignment = 1
+
+[node name="StoryCardAdd" type="Button" parent="PopupMenu/PopupMenu/VBoxContainer"]
+margin_right = 126.0
+margin_bottom = 23.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.85098, 0.85098, 0.85098, 1 )
+custom_colors/font_color_hover = Color( 0.247059, 0.384314, 0.407843, 1 )
+custom_fonts/font = SubResource( 116 )
+custom_styles/hover = SubResource( 121 )
+custom_styles/focus = SubResource( 120 )
+custom_styles/normal = SubResource( 121 )
+text = "Story Card"
+
+[node name="RouterCardAdd2" type="Button" parent="PopupMenu/PopupMenu/VBoxContainer"]
+margin_top = 27.0
+margin_right = 126.0
+margin_bottom = 50.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.85098, 0.85098, 0.85098, 1 )
+custom_colors/font_color_hover = Color( 0.247059, 0.384314, 0.407843, 1 )
+custom_fonts/font = SubResource( 117 )
+custom_styles/hover = SubResource( 122 )
+custom_styles/focus = SubResource( 87 )
+custom_styles/normal = SubResource( 122 )
+text = "Router Card"
+
+[node name="ChoiceCardAdd3" type="Button" parent="PopupMenu/PopupMenu/VBoxContainer"]
+margin_top = 54.0
+margin_right = 126.0
+margin_bottom = 75.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.85098, 0.85098, 0.85098, 1 )
+custom_colors/font_color_hover = Color( 0.247059, 0.384314, 0.407843, 1 )
+custom_fonts/font = SubResource( 118 )
+custom_styles/hover = SubResource( 123 )
+custom_styles/focus = SubResource( 87 )
+custom_styles/normal = SubResource( 123 )
+text = "Choice Card"
+flat = true
 
 [node name="ExportPopupPanel" type="Popup" parent="."]
 visible = true
@@ -1813,9 +1958,10 @@ size_flags_vertical = 3
 script = ExtResource( 23 )
 
 [node name="Toast" type="PanelContainer" parent="Toast"]
-margin_left = 365.0
-margin_right = 659.0
-margin_bottom = 31.0
+margin_left = 497.0
+margin_top = 9.0
+margin_right = 527.0
+margin_bottom = 21.0
 custom_styles/panel = SubResource( 97 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Toast/Toast"]
@@ -1863,4 +2009,9 @@ anims/popup_and_out = SubResource( 100 )
 [connection signal="pressed" from="SelectCardPopup/VBoxContainer/Choice/HBoxContainer3/TextureButton" to="Navbar/HBoxContainer/AddNewCards" method="_on_ChoiceTextureButton_pressed"]
 [connection signal="pressed" from="SelectCardPopup/VBoxContainer/Choice/HBoxContainer3/Button" to="Navbar/HBoxContainer/AddNewCards" method="_on_ChoiceButton_pressed"]
 [connection signal="pressed" from="PopupMenu/VBoxContainer/Remove/Hbox/Button" to="." method="_on_Popup_Remove_Button_pressed"]
+[connection signal="pressed" from="PopupMenu/VBoxContainer/AddCard/Hbox/Button" to="." method="_on_Popup_Add_Button_pressed"]
+[connection signal="text_entered" from="PopupMenu/VBoxContainer/Remove4/Hbox/LineEdit" to="." method="_on_Popup_Move_Card_text_entered"]
+[connection signal="pressed" from="PopupMenu/PopupMenu/VBoxContainer/StoryCardAdd" to="." method="_on_Popup_Add_Button_pressed"]
+[connection signal="pressed" from="PopupMenu/PopupMenu/VBoxContainer/RouterCardAdd2" to="." method="_on_Popup_Add_Button_pressed"]
+[connection signal="pressed" from="PopupMenu/PopupMenu/VBoxContainer/ChoiceCardAdd3" to="." method="_on_Popup_Add_Button_pressed"]
 [connection signal="pressed" from="ExportPopupPanel/PanelContainer/VBoxContainer/TextEdit/Button" to="Navbar" method="_on_Button_pressed"]
