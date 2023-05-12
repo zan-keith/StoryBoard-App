@@ -8,5 +8,4 @@ func _on_Options_pressed():
 	$"../../../PopupMenu".set_position(x_ax+Vector2(0,$Options.get_size().y))
 
 
-func _on_Button_pressed():
-	pass # Replace with function body.
+

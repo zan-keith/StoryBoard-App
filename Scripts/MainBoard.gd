@@ -11,7 +11,7 @@ onready var maingrid_path="PanelContainer/ScrollContainer/Panel/MarginContainer/
 
 func _ready():
 	print('onstart ',$PanelContainer/ScrollContainer/Panel/MarginContainer.rect_size)
-	var index=1
+
 	var children=get_node(maingrid_path).get_children()
 	for child in children:
 
@@ -21,17 +21,17 @@ func _ready():
 		if child.is_in_group('RouterCard'):
 			child.connect("RefreshLines", self, "_on_refresh_lines")
 			child.connect('ShowOptionsPopup',self,'_on_card_right_click')
-			child.get_node('VBoxContainer/HBox/Index').text=str(index)
+			child.get_node('VBoxContainer/HBox/Index').text=str(latest_index)
 		elif child.is_in_group('StoryCard'):
 			child.connect("RefreshLines", self, "_on_refresh_lines")
 			child.connect('ShowOptionsPopup',self,'_on_card_right_click')
-			child.get_node("VBoxContainer/MainDetails/Index").text=str(index)
+			child.get_node("VBoxContainer/MainDetails/Index").text=str(latest_index)
 		elif child.is_in_group('ChoiceCard'):
 			child.connect("RefreshLines", self, "_on_refresh_lines")
 			child.connect('ShowOptionsPopup',self,'_on_card_right_click')
-			child.get_node("VBoxContainer/MainDetails/Index").text=str(index)
+			child.get_node("VBoxContainer/MainDetails/Index").text=str(latest_index)
 
-		index+=1
+
 		latest_index+=1
 	$PanelContainer/ScrollContainer/Panel.rect_min_size=$PanelContainer/ScrollContainer/Panel/MarginContainer.rect_size
 	
@@ -56,7 +56,6 @@ func ClearLines():
 	var lines=get_node(maingrid_path).get_children()
 	for l in lines:
 		if l.is_in_group('ConnectorLines'):
-			print('cleared',l.name)
 			l.queue_free()
 	#print(lines)
 			
@@ -69,7 +68,6 @@ func LineConnect(obj):
 		var goto=get_node(maingrid_path+obj.name+"/VBoxContainer/OnEnd/VBoxContainer/Goto").text
 
 		if not validate_goto(goto):
-			print(goto)
 			return false
 
 		var fromobj=obj
@@ -80,7 +78,6 @@ func LineConnect(obj):
 		var from = fromobj.get_position()
 		var to =toobj.get_position()
 		
-		print(len(children),toobj.name,'  ')
 
 
 		
@@ -263,16 +260,35 @@ func _on_card_click(obj,click):
 
 
 func _on_card_right_click(obj):
-	
-	
-	$PopupMenu.popup()
+	if prevcard!=null:
+		$PopupMenu.popup()
+		if obj.get_index()+1==len($PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid.get_children()):
+			$PopupMenu.set_position(obj.get_global_position()-Vector2($PopupMenu.rect_size.x+5,0))
+		else:
+			$PopupMenu.set_position(obj.get_global_position()+Vector2(obj.rect_size.x,0))
+	else:
+		$PopupMenu.visible=false
+func Tidy_Order(remove_node):
+	var index=1
+	var children=$PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid.get_children()
+	children.erase(remove_node)
+	for child in children:
 
-	$PopupMenu.set_position(obj.get_global_position()+Vector2(obj.rect_size.x,0))
+		if child.is_in_group('RouterCard'):
+			child.get_node('VBoxContainer/HBox/Index').text=str(index)
+		elif child.is_in_group('StoryCard'):
+			child.get_node("VBoxContainer/MainDetails/Index").text=str(index)
+		elif child.is_in_group('ChoiceCard'):
+			child.get_node("VBoxContainer/MainDetails/Index").text=str(index)
 
+		index+=1
+	latest_index=index-1
+	
 
 func _on_Popup_Remove_Button_pressed():
 	if prevcard!=null:
 		get_node(maingrid_path+prevcard).queue_free()
+		Tidy_Order(get_node(maingrid_path+prevcard))
 		prevcard=null
 	else:
 		emit_signal("ShowToast",'Invalid Card - Select a card before using options')
@@ -283,6 +299,7 @@ func _on_Popup_Move_Card_text_entered(indx):
 	if prevcard!=null:
 		if validate_goto(indx):
 			$PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid.move_child(get_node(maingrid_path+prevcard),int(indx)-1)
+			
 		else:
 			emit_signal("ShowToast",'The Index provided does not exist')
 	else:

@@ -3,6 +3,7 @@ extends PanelContainer
 signal SendClick
 signal RefreshLines
 signal ShowOptionsPopup
+signal CardSizeChanged
 
 onready var toggle=false
 onready var focused=false
@@ -81,3 +82,7 @@ func _on_goto_text_entered(new_text):
 	else:
 		$AnimationPlayer.play('invalid')
 
+
+
+func _on_StoryCard_item_rect_changed():
+	print('asdasd')

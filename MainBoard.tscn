@@ -81,7 +81,7 @@ HScrollBar/styles/scroll = SubResource( 108 )
 HScrollBar/styles/scroll_focus = SubResource( 109 )
 
 [sub_resource type="StyleBoxFlat" id=104]
-bg_color = Color( 0.0313726, 0.0392157, 0.109804, 1 )
+bg_color = Color( 0.0980392, 0.105882, 0.172549, 1 )
 
 [sub_resource type="Animation" id=45]
 length = 0.001
@@ -1129,8 +1129,6 @@ size_flags_vertical = 3
 theme = SubResource( 12 )
 
 [node name="Panel" type="Panel" parent="PanelContainer/ScrollContainer"]
-margin_bottom = 544.0
-size_flags_vertical = 3
 custom_styles/panel = SubResource( 85 )
 
 [node name="MarginContainer" type="VBoxContainer" parent="PanelContainer/ScrollContainer/Panel"]
@@ -1144,6 +1142,7 @@ modulate = Color( 1, 0, 0, 0 )
 margin_right = 14.0
 margin_bottom = 14.0
 size_flags_horizontal = 0
+size_flags_vertical = 0
 
 [node name="MainGrid" type="HBoxContainer" parent="PanelContainer/ScrollContainer/Panel/MarginContainer"]
 margin_top = 18.0
@@ -1794,8 +1793,8 @@ placeholder_text = "Index"
 [node name="PopupMenu" type="PopupPanel" parent="PopupMenu"]
 visible = true
 margin_top = 5.0
-margin_right = 126.0
-margin_bottom = 90.0
+margin_right = 142.0
+margin_bottom = 111.0
 custom_styles/panel = SubResource( 119 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PopupMenu/PopupMenu"]
@@ -1803,15 +1802,16 @@ anchor_left = 0.085
 anchor_top = 0.125
 anchor_right = 0.085
 anchor_bottom = 0.125
-margin_left = -10.71
-margin_top = -5.625
-margin_right = 115.29
-margin_bottom = 69.375
+margin_left = -12.07
+margin_top = -8.25
+margin_right = 129.93
+margin_bottom = 87.75
 alignment = 1
 
 [node name="StoryCardAdd" type="Button" parent="PopupMenu/PopupMenu/VBoxContainer"]
-margin_right = 126.0
-margin_bottom = 23.0
+margin_top = 10.0
+margin_right = 142.0
+margin_bottom = 33.0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 0.85098, 0.85098, 0.85098, 1 )
@@ -1822,10 +1822,10 @@ custom_styles/focus = SubResource( 120 )
 custom_styles/normal = SubResource( 121 )
 text = "Story Card"
 
-[node name="RouterCardAdd2" type="Button" parent="PopupMenu/PopupMenu/VBoxContainer"]
-margin_top = 27.0
-margin_right = 126.0
-margin_bottom = 50.0
+[node name="RouterCardAdd" type="Button" parent="PopupMenu/PopupMenu/VBoxContainer"]
+margin_top = 37.0
+margin_right = 142.0
+margin_bottom = 60.0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 0.85098, 0.85098, 0.85098, 1 )
@@ -1836,10 +1836,10 @@ custom_styles/focus = SubResource( 87 )
 custom_styles/normal = SubResource( 122 )
 text = "Router Card"
 
-[node name="ChoiceCardAdd3" type="Button" parent="PopupMenu/PopupMenu/VBoxContainer"]
-margin_top = 54.0
-margin_right = 126.0
-margin_bottom = 75.0
+[node name="ChoiceCardAdd" type="Button" parent="PopupMenu/PopupMenu/VBoxContainer"]
+margin_top = 64.0
+margin_right = 142.0
+margin_bottom = 85.0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 0.85098, 0.85098, 0.85098, 1 )
@@ -1987,6 +1987,7 @@ anims/popup_and_out = SubResource( 100 )
 [connection signal="ShowToast" from="." to="Toast" method="_on_MainBoard_ShowToast"]
 [connection signal="ZoomSet" from="." to="Navbar/HBoxContainer/Zoom" method="_on_MainBoard_ZoomSet"]
 [connection signal="ExportFinished" from="Navbar" to="Navbar" method="_on_Navbar_ExportFinished"]
+[connection signal="ShowToast" from="Navbar/HBoxContainer/AddNewCards" to="Toast" method="_on_MainBoard_ShowToast"]
 [connection signal="toggled" from="Navbar/HBoxContainer/AddNewCards/HBox/AddBtn" to="Navbar/HBoxContainer/AddNewCards" method="_on_AddBtn_toggled"]
 [connection signal="toggled" from="Navbar/HBoxContainer/AddNewCards/HBox/AddIconBtn" to="Navbar/HBoxContainer/AddNewCards" method="_on_AddIconBtn_toggled"]
 [connection signal="pressed" from="Navbar/HBoxContainer/AddNewCards/HBox/QuickAddBtn" to="Navbar/HBoxContainer/AddNewCards" method="_on_QuickAddBtn_pressed"]
@@ -2011,7 +2012,7 @@ anims/popup_and_out = SubResource( 100 )
 [connection signal="pressed" from="PopupMenu/VBoxContainer/Remove/Hbox/Button" to="." method="_on_Popup_Remove_Button_pressed"]
 [connection signal="pressed" from="PopupMenu/VBoxContainer/AddCard/Hbox/Button" to="." method="_on_Popup_Add_Button_pressed"]
 [connection signal="text_entered" from="PopupMenu/VBoxContainer/Remove4/Hbox/LineEdit" to="." method="_on_Popup_Move_Card_text_entered"]
-[connection signal="pressed" from="PopupMenu/PopupMenu/VBoxContainer/StoryCardAdd" to="." method="_on_Popup_Add_Button_pressed"]
-[connection signal="pressed" from="PopupMenu/PopupMenu/VBoxContainer/RouterCardAdd2" to="." method="_on_Popup_Add_Button_pressed"]
-[connection signal="pressed" from="PopupMenu/PopupMenu/VBoxContainer/ChoiceCardAdd3" to="." method="_on_Popup_Add_Button_pressed"]
+[connection signal="pressed" from="PopupMenu/PopupMenu/VBoxContainer/StoryCardAdd" to="Navbar/HBoxContainer/AddNewCards" method="_on_StoryCardAdd_pressed"]
+[connection signal="pressed" from="PopupMenu/PopupMenu/VBoxContainer/RouterCardAdd" to="Navbar/HBoxContainer/AddNewCards" method="_on_RouterCardAdd_pressed"]
+[connection signal="pressed" from="PopupMenu/PopupMenu/VBoxContainer/ChoiceCardAdd" to="Navbar/HBoxContainer/AddNewCards" method="_on_ChoiceCardAdd_pressed"]
 [connection signal="pressed" from="ExportPopupPanel/PanelContainer/VBoxContainer/TextEdit/Button" to="Navbar" method="_on_Button_pressed"]

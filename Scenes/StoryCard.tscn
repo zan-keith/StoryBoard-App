@@ -368,6 +368,7 @@ anims/invalid = SubResource( 23 )
 anims/toggleon = SubResource( 21 )
 
 [connection signal="gui_input" from="." to="." method="_on_StoryCard_gui_input"]
+[connection signal="item_rect_changed" from="." to="." method="_on_StoryCard_item_rect_changed"]
 [connection signal="pressed" from="VBoxContainer/MainDetails/Save" to="." method="_on_Save_pressed"]
 [connection signal="pressed" from="VBoxContainer/OnStart/VBox/HBoxContainer/AddVar" to="." method="_on_AddVar_pressed"]
 [connection signal="pressed" from="VBoxContainer/Content/ContentLabel/TextureButton" to="." method="_on_EditButton_pressed"]

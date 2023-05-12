@@ -1,9 +1,11 @@
 extends PanelContainer
 
 signal AddCard
+signal ShowToast
 onready var RecentlyClickedCard=1
 onready var toggle=false
 onready var card_added_oneshot=false
+
 
 func AddCard(n):
 	var maingrid_path="../../../PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid"
@@ -16,21 +18,23 @@ func AddCard(n):
 		c = load("res://Scenes/StoryCard.tscn").instance()
 		c.connect("SendClick", MainBoard, "_on_card_click")
 		c.connect("RefreshLines", MainBoard, "_on_refresh_lines")
+		c.connect('ShowOptionsPopup',MainBoard,'_on_card_right_click')
 		c.get_node("VBoxContainer/MainDetails/Index").text=str(latest_index)
-		get_node(maingrid_path).add_child(c)
-		
+
 	elif n==2:
 		c = load("res://Scenes/RouterCard.tscn").instance()
 		c.connect("SendClick", MainBoard, "_on_card_click")
 		c.connect("RefreshLines", MainBoard, "_on_refresh_lines")
+		c.connect('ShowOptionsPopup',MainBoard,'_on_card_right_click')
 		c.get_node('VBoxContainer/HBox/Index').text=str(latest_index)
-		get_node(maingrid_path).add_child(c)
+
 	elif n==3:
 		c = load("res://Scenes/ChoiceCard.tscn").instance()
 		c.connect("SendClick", MainBoard, "_on_card_click")
 		c.connect("RefreshLines", MainBoard, "_on_refresh_lines")
+		c.connect('ShowOptionsPopup',MainBoard,'_on_card_right_click')
 		c.get_node("VBoxContainer/MainDetails/Index").text=str(latest_index)
-		get_node(maingrid_path).add_child(c)
+	get_node(maingrid_path).add_child(c)
 	get_node(maingrid_path)._set_size(get_node(maingrid_path).get_size())
 	$"../../../PanelContainer/ScrollContainer/Panel/MarginContainer"._set_size(get_node(maingrid_path).get_size())
 	
@@ -42,6 +46,8 @@ func AddCard(n):
 	
 	$"../../..".latest_index+=1
 
+	return c
+	
 func popup():
 	if toggle:
 		
@@ -89,7 +95,7 @@ func AddBtn(n):
 
 func _on_StoryButton_pressed():
 	AddBtn(1)
-	print('pressed')
+
 func _on_StoryTextureButton_pressed():
 	AddBtn(1)
 
@@ -137,3 +143,50 @@ func _on_Choice_mouse_entered():
 
 func _on_Choice_mouse_exited():
 	$"../../AnimationPlayer".play("reset_add_buttons_hover")
+
+func Tidy_Order():
+	var index=1
+	var children=$"../../../PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid".get_children()
+	for child in children:
+
+		if child.is_in_group('RouterCard'):
+			child.get_node('VBoxContainer/HBox/Index').text=str(index)
+		elif child.is_in_group('StoryCard'):
+			child.get_node("VBoxContainer/MainDetails/Index").text=str(index)
+		elif child.is_in_group('ChoiceCard'):
+			child.get_node("VBoxContainer/MainDetails/Index").text=str(index)
+
+		
+		index+=1
+	$"../../..".latest_index=index
+func _on_StoryCardAdd_pressed():
+	
+	if $"../../..".prevcard!=null:
+		var card=AddCard(1)
+		var prev_card_index=get_node('../../../PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid/'+$"../../..".prevcard).get_index()
+		$"../../../PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid".move_child(card,prev_card_index+1)
+		Tidy_Order()
+	else:
+		emit_signal("ShowToast",'Invalid Card - Select a card which you need to add new card infront of')
+	
+
+func _on_RouterCardAdd_pressed():
+	if $"../../..".prevcard!=null:
+		var card=AddCard(2)
+		var prev_card_index=get_node('../../../PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid/'+$"../../..".prevcard).get_index()
+		$"../../../PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid".move_child(card,prev_card_index+1)
+		Tidy_Order()
+	else:
+		emit_signal("ShowToast",'Invalid Card - Select a card which you need to add new card infront of')
+	
+
+
+func _on_ChoiceCardAdd_pressed():
+	if $"../../..".prevcard!=null:
+		var card=AddCard(3)
+		var prev_card_index=get_node('../../../PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid/'+$"../../..".prevcard).get_index()
+		$"../../../PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid".move_child(card,prev_card_index+1)
+		Tidy_Order()
+	else:
+		emit_signal("ShowToast",'Invalid Card - Select a card which you need to add new card infront of')
+	
