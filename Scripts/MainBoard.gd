@@ -1,7 +1,6 @@
 extends Control
 
 signal CardOverride
-signal ZoomSet
 signal ShowToast
 
 onready var click=false
@@ -25,6 +24,7 @@ func _ready():
 		elif child.is_in_group('StoryCard'):
 			child.connect("RefreshLines", self, "_on_refresh_lines")
 			child.connect('ShowOptionsPopup',self,'_on_card_right_click')
+			child.connect('item_rect_changed',self,'_on_card_expanding')			
 			child.get_node("VBoxContainer/MainDetails/Index").text=str(latest_index)
 		elif child.is_in_group('ChoiceCard'):
 			child.connect("RefreshLines", self, "_on_refresh_lines")
@@ -33,8 +33,7 @@ func _ready():
 
 
 		latest_index+=1
-	$PanelContainer/ScrollContainer/Panel.rect_min_size=$PanelContainer/ScrollContainer/Panel/MarginContainer.rect_size
-	
+
 
 func validate_goto(new_text):
 	
@@ -82,9 +81,6 @@ func LineConnect(obj):
 
 		
 		var line = load("res://Scenes/ConnectorLine.tscn").instance()
-#		var line = Line2D.new()
-#		line.width=3
-#		line.add_to_group("ConnectorLines")
 		get_node(maingrid_path).add_child(line)
 		
 		$PanelContainer/ScrollContainer/Panel/MarginContainer/PanelContainer.rect_min_size.y=10
@@ -310,3 +306,14 @@ func _on_Popup_Move_Card_text_entered(indx):
 func _on_Popup_Add_Button_pressed():
 	$PopupMenu/PopupMenu.set_global_position($PopupMenu/VBoxContainer/AddCard.get_global_position()+Vector2($PopupMenu/VBoxContainer/AddCard.rect_size.x+10,0))
 	$PopupMenu/PopupMenu.popup()
+	
+func _on_card_expanding():
+#	print($PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid.get_size())
+#	$PanelContainer/ScrollContainer/Panel.set_custom_minimum_size($PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid.get_size()+$PanelContainer/ScrollContainer/Panel/MarginContainer/PanelContainer.get_custom_minimum_size())
+#	print($PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid.get_size())
+#
+	pass
+
+
+func _on_MainGrid_item_rect_changed():
+	$PanelContainer/ScrollContainer/Panel.set_custom_minimum_size($PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid.get_size()+$PanelContainer/ScrollContainer/Panel/MarginContainer/PanelContainer.get_size())

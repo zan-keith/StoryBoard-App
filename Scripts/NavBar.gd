@@ -44,26 +44,6 @@ func Export():
 			Single_Card['content']=card.get_node('VBoxContainer/Content/ContentLabel').text
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		elif card.is_in_group('RouterCard'):
 			Single_Card['card_type']='RouterCard'
 			Single_Card['else_goto_step']=0
@@ -91,24 +71,6 @@ func Export():
 
 				Single_Card['routers'].append(gotoset)
 	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 		elif card.is_in_group('ChoiceCard'):

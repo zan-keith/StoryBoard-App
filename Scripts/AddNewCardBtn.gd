@@ -9,8 +9,6 @@ onready var card_added_oneshot=false
 
 func AddCard(n):
 	var maingrid_path="../../../PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid"
-	#print('before ',$"../../../PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid".get_size())
-	#print('before',$"../../../PanelContainer/ScrollContainer/Panel/MarginContainer".get_size())
 	var MainBoard=$"../../.."
 	var c
 	var latest_index=$"../../..".latest_index
@@ -36,12 +34,9 @@ func AddCard(n):
 		c.get_node("VBoxContainer/MainDetails/Index").text=str(latest_index)
 	get_node(maingrid_path).add_child(c)
 	get_node(maingrid_path)._set_size(get_node(maingrid_path).get_size())
-	$"../../../PanelContainer/ScrollContainer/Panel/MarginContainer"._set_size(get_node(maingrid_path).get_size())
-	
-	#print('after',get_node(maingrid_path).get_size())
-	#print('after',$"../../../PanelContainer/ScrollContainer/Panel/MarginContainer".get_size())
-	
-	$"../../../PanelContainer/ScrollContainer/Panel".set_custom_minimum_size($"../../../PanelContainer/ScrollContainer/Panel/MarginContainer".get_size()*$"../../../PanelContainer/ScrollContainer/Panel/MarginContainer".rect_scale)
+	#$"../../../PanelContainer/ScrollContainer/Panel/MarginContainer"._set_size(get_node(maingrid_path).get_size())
+
+	#$"../../../PanelContainer/ScrollContainer/Panel".set_custom_minimum_size($"../../../PanelContainer/ScrollContainer/Panel/MarginContainer".get_size()*$"../../../PanelContainer/ScrollContainer/Panel/MarginContainer".rect_scale)
 	
 	
 	$"../../..".latest_index+=1

@@ -1132,10 +1132,9 @@ theme = SubResource( 12 )
 custom_styles/panel = SubResource( 85 )
 
 [node name="MarginContainer" type="VBoxContainer" parent="PanelContainer/ScrollContainer/Panel"]
-margin_right = 14.0
-margin_bottom = 405.0
+margin_right = 226.0
+margin_bottom = 294.0
 size_flags_horizontal = 3
-size_flags_vertical = 3
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/ScrollContainer/Panel/MarginContainer"]
 modulate = Color( 1, 0, 0, 0 )
@@ -1146,7 +1145,7 @@ size_flags_vertical = 0
 
 [node name="MainGrid" type="HBoxContainer" parent="PanelContainer/ScrollContainer/Panel/MarginContainer"]
 margin_top = 18.0
-margin_right = 620.0
+margin_right = 1076.0
 margin_bottom = 405.0
 custom_constants/separation = 11
 
@@ -1163,9 +1162,29 @@ margin_left = 394.0
 margin_right = 497.0
 margin_bottom = 135.0
 
-[node name="ChoiceCard" parent="PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid" instance=ExtResource( 28 )]
+[node name="RouterCard2" parent="PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid" instance=ExtResource( 27 )]
 margin_left = 508.0
-margin_right = 620.0
+margin_right = 611.0
+margin_bottom = 135.0
+
+[node name="RouterCard3" parent="PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid" instance=ExtResource( 27 )]
+margin_left = 622.0
+margin_right = 725.0
+margin_bottom = 135.0
+
+[node name="RouterCard4" parent="PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid" instance=ExtResource( 27 )]
+margin_left = 736.0
+margin_right = 839.0
+margin_bottom = 135.0
+
+[node name="RouterCard5" parent="PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid" instance=ExtResource( 27 )]
+margin_left = 850.0
+margin_right = 953.0
+margin_bottom = 135.0
+
+[node name="ChoiceCard" parent="PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid" instance=ExtResource( 28 )]
+margin_left = 964.0
+margin_right = 1076.0
 
 [node name="Navbar" type="ScrollContainer" parent="."]
 anchor_right = 1.0
@@ -1985,7 +2004,7 @@ anims/RESET = SubResource( 99 )
 anims/popup_and_out = SubResource( 100 )
 
 [connection signal="ShowToast" from="." to="Toast" method="_on_MainBoard_ShowToast"]
-[connection signal="ZoomSet" from="." to="Navbar/HBoxContainer/Zoom" method="_on_MainBoard_ZoomSet"]
+[connection signal="item_rect_changed" from="PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid" to="." method="_on_MainGrid_item_rect_changed"]
 [connection signal="ExportFinished" from="Navbar" to="Navbar" method="_on_Navbar_ExportFinished"]
 [connection signal="ShowToast" from="Navbar/HBoxContainer/AddNewCards" to="Toast" method="_on_MainBoard_ShowToast"]
 [connection signal="toggled" from="Navbar/HBoxContainer/AddNewCards/HBox/AddBtn" to="Navbar/HBoxContainer/AddNewCards" method="_on_AddBtn_toggled"]
