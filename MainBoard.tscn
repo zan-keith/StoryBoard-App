@@ -18,7 +18,7 @@
 [ext_resource path="res://Assets/Textures/read-svgrepo-com.png" type="Texture" id=16]
 [ext_resource path="res://Assets/Textures/settings-svgrepo-com (1).png" type="Texture" id=17]
 [ext_resource path="res://Assets/Fonts/Rubik/Rubik-VariableFont_wght.ttf" type="DynamicFontData" id=18]
-[ext_resource path="res://Scripts/NavBar.gd" type="Script" id=19]
+[ext_resource path="res://Scripts/HomeScreen/HomeScreenNavBar.gd" type="Script" id=19]
 [ext_resource path="res://Assets/Textures/close-circle-svgrepo-com.png" type="Texture" id=20]
 [ext_resource path="res://Assets/Fonts/Rubik/FiraCode-VariableFont_wght.ttf" type="DynamicFontData" id=21]
 [ext_resource path="res://Assets/Textures/copy-svgrepo-com.png" type="Texture" id=22]
@@ -63,22 +63,22 @@ HScrollBar/styles/scroll_focus = SubResource( 18 )
 
 [sub_resource type="StyleBoxEmpty" id=85]
 
-[sub_resource type="StyleBoxEmpty" id=105]
+[sub_resource type="StyleBoxEmpty" id=124]
 
-[sub_resource type="StyleBoxEmpty" id=106]
+[sub_resource type="StyleBoxEmpty" id=125]
 
-[sub_resource type="StyleBoxEmpty" id=107]
+[sub_resource type="StyleBoxEmpty" id=126]
 
-[sub_resource type="StyleBoxEmpty" id=108]
+[sub_resource type="StyleBoxEmpty" id=127]
 
-[sub_resource type="StyleBoxEmpty" id=109]
+[sub_resource type="StyleBoxEmpty" id=128]
 
 [sub_resource type="Theme" id=110]
-HScrollBar/styles/grabber = SubResource( 105 )
-HScrollBar/styles/grabber_highlight = SubResource( 106 )
-HScrollBar/styles/grabber_pressed = SubResource( 107 )
-HScrollBar/styles/scroll = SubResource( 108 )
-HScrollBar/styles/scroll_focus = SubResource( 109 )
+HScrollBar/styles/grabber = SubResource( 124 )
+HScrollBar/styles/grabber_highlight = SubResource( 125 )
+HScrollBar/styles/grabber_pressed = SubResource( 126 )
+HScrollBar/styles/scroll = SubResource( 127 )
+HScrollBar/styles/scroll_focus = SubResource( 128 )
 
 [sub_resource type="StyleBoxFlat" id=104]
 bg_color = Color( 0.0980392, 0.105882, 0.172549, 1 )
@@ -1630,9 +1630,9 @@ align = 0
 [node name="PopupMenu" type="PopupPanel" parent="."]
 visible = true
 anchor_left = 0.814
-anchor_right = 0.953
+anchor_right = 0.977
 margin_left = 0.463989
-margin_right = -0.87207
+margin_right = -0.448059
 margin_bottom = 116.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -1641,20 +1641,20 @@ custom_styles/panel = SubResource( 102 )
 [node name="VBoxContainer" type="VBoxContainer" parent="PopupMenu"]
 anchor_right = 1.007
 margin_top = 5.0
-margin_right = -0.993988
+margin_right = -1.16199
 margin_bottom = 111.0
 custom_constants/separation = 5
 alignment = 1
 
 [node name="Remove" type="PanelContainer" parent="PopupMenu/VBoxContainer"]
-margin_right = 142.0
+margin_right = 166.0
 margin_bottom = 33.0
 mouse_default_cursor_shape = 2
 custom_styles/panel = SubResource( 60 )
 
 [node name="Hbox" type="HBoxContainer" parent="PopupMenu/VBoxContainer/Remove"]
 margin_left = 7.0
-margin_right = 142.0
+margin_right = 166.0
 margin_bottom = 30.0
 
 [node name="TextureButton" type="TextureButton" parent="PopupMenu/VBoxContainer/Remove/Hbox"]
@@ -1670,7 +1670,7 @@ stretch_mode = 5
 
 [node name="Button" type="Button" parent="PopupMenu/VBoxContainer/Remove/Hbox"]
 margin_left = 27.0
-margin_right = 135.0
+margin_right = 159.0
 margin_bottom = 30.0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
@@ -1682,14 +1682,14 @@ align = 0
 
 [node name="AddCard" type="PanelContainer" parent="PopupMenu/VBoxContainer"]
 margin_top = 38.0
-margin_right = 142.0
+margin_right = 166.0
 margin_bottom = 71.0
 mouse_default_cursor_shape = 2
 custom_styles/panel = SubResource( 60 )
 
 [node name="Hbox" type="HBoxContainer" parent="PopupMenu/VBoxContainer/AddCard"]
 margin_left = 7.0
-margin_right = 142.0
+margin_right = 166.0
 margin_bottom = 30.0
 
 [node name="TextureButton" type="TextureButton" parent="PopupMenu/VBoxContainer/AddCard/Hbox"]
@@ -1705,7 +1705,7 @@ stretch_mode = 5
 
 [node name="Button" type="Button" parent="PopupMenu/VBoxContainer/AddCard/Hbox"]
 margin_left = 27.0
-margin_right = 114.0
+margin_right = 138.0
 margin_bottom = 30.0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
@@ -1717,8 +1717,8 @@ align = 0
 
 [node name="TextureButton2" type="TextureButton" parent="PopupMenu/VBoxContainer/AddCard/Hbox"]
 modulate = Color( 0.364706, 0.356863, 0.356863, 1 )
-margin_left = 118.0
-margin_right = 135.0
+margin_left = 142.0
+margin_right = 159.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 17, 30 )
 mouse_default_cursor_shape = 2
@@ -1764,14 +1764,14 @@ align = 0
 
 [node name="Remove4" type="PanelContainer" parent="PopupMenu/VBoxContainer"]
 margin_top = 76.0
-margin_right = 142.0
+margin_right = 166.0
 margin_bottom = 106.0
 mouse_default_cursor_shape = 2
 custom_styles/panel = SubResource( 103 )
 
 [node name="Hbox" type="HBoxContainer" parent="PopupMenu/VBoxContainer/Remove4"]
 margin_left = 5.0
-margin_right = 137.0
+margin_right = 161.0
 margin_bottom = 30.0
 
 [node name="TextureButton" type="TextureButton" parent="PopupMenu/VBoxContainer/Remove4/Hbox"]
@@ -1787,24 +1787,23 @@ stretch_mode = 5
 
 [node name="Button" type="Button" parent="PopupMenu/VBoxContainer/Remove4/Hbox"]
 margin_left = 27.0
-margin_right = 74.0
+margin_right = 98.0
 margin_bottom = 30.0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 65 )
 custom_styles/focus = SubResource( 87 )
-text = "Move"
+text = "Move to :"
 flat = true
 align = 0
 
 [node name="LineEdit" type="LineEdit" parent="PopupMenu/VBoxContainer/Remove4/Hbox"]
-margin_left = 78.0
-margin_right = 132.0
+margin_left = 102.0
+margin_right = 156.0
 margin_bottom = 30.0
 custom_fonts/font = SubResource( 111 )
 custom_styles/focus = SubResource( 112 )
 custom_styles/normal = SubResource( 113 )
-text = "4222"
 max_length = 4
 expand_to_text_length = true
 placeholder_text = "Index"
@@ -1812,7 +1811,7 @@ placeholder_text = "Index"
 [node name="PopupMenu" type="PopupPanel" parent="PopupMenu"]
 visible = true
 margin_top = 5.0
-margin_right = 142.0
+margin_right = 166.0
 margin_bottom = 111.0
 custom_styles/panel = SubResource( 119 )
 
@@ -1821,15 +1820,15 @@ anchor_left = 0.085
 anchor_top = 0.125
 anchor_right = 0.085
 anchor_bottom = 0.125
-margin_left = -12.07
+margin_left = -14.11
 margin_top = -8.25
-margin_right = 129.93
+margin_right = 151.89
 margin_bottom = 87.75
 alignment = 1
 
 [node name="StoryCardAdd" type="Button" parent="PopupMenu/PopupMenu/VBoxContainer"]
 margin_top = 10.0
-margin_right = 142.0
+margin_right = 166.0
 margin_bottom = 33.0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
@@ -1837,13 +1836,14 @@ custom_colors/font_color = Color( 0.85098, 0.85098, 0.85098, 1 )
 custom_colors/font_color_hover = Color( 0.247059, 0.384314, 0.407843, 1 )
 custom_fonts/font = SubResource( 116 )
 custom_styles/hover = SubResource( 121 )
+custom_styles/pressed = SubResource( 121 )
 custom_styles/focus = SubResource( 120 )
 custom_styles/normal = SubResource( 121 )
 text = "Story Card"
 
 [node name="RouterCardAdd" type="Button" parent="PopupMenu/PopupMenu/VBoxContainer"]
 margin_top = 37.0
-margin_right = 142.0
+margin_right = 166.0
 margin_bottom = 60.0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
@@ -1851,13 +1851,14 @@ custom_colors/font_color = Color( 0.85098, 0.85098, 0.85098, 1 )
 custom_colors/font_color_hover = Color( 0.247059, 0.384314, 0.407843, 1 )
 custom_fonts/font = SubResource( 117 )
 custom_styles/hover = SubResource( 122 )
+custom_styles/pressed = SubResource( 122 )
 custom_styles/focus = SubResource( 87 )
 custom_styles/normal = SubResource( 122 )
 text = "Router Card"
 
 [node name="ChoiceCardAdd" type="Button" parent="PopupMenu/PopupMenu/VBoxContainer"]
 margin_top = 64.0
-margin_right = 142.0
+margin_right = 166.0
 margin_bottom = 85.0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
@@ -1865,6 +1866,7 @@ custom_colors/font_color = Color( 0.85098, 0.85098, 0.85098, 1 )
 custom_colors/font_color_hover = Color( 0.247059, 0.384314, 0.407843, 1 )
 custom_fonts/font = SubResource( 118 )
 custom_styles/hover = SubResource( 123 )
+custom_styles/pressed = SubResource( 123 )
 custom_styles/focus = SubResource( 87 )
 custom_styles/normal = SubResource( 123 )
 text = "Choice Card"
@@ -2005,7 +2007,6 @@ anims/popup_and_out = SubResource( 100 )
 
 [connection signal="ShowToast" from="." to="Toast" method="_on_MainBoard_ShowToast"]
 [connection signal="item_rect_changed" from="PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid" to="." method="_on_MainGrid_item_rect_changed"]
-[connection signal="ExportFinished" from="Navbar" to="Navbar" method="_on_Navbar_ExportFinished"]
 [connection signal="ShowToast" from="Navbar/HBoxContainer/AddNewCards" to="Toast" method="_on_MainBoard_ShowToast"]
 [connection signal="toggled" from="Navbar/HBoxContainer/AddNewCards/HBox/AddBtn" to="Navbar/HBoxContainer/AddNewCards" method="_on_AddBtn_toggled"]
 [connection signal="toggled" from="Navbar/HBoxContainer/AddNewCards/HBox/AddIconBtn" to="Navbar/HBoxContainer/AddNewCards" method="_on_AddIconBtn_toggled"]

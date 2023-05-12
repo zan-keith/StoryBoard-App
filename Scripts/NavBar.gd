@@ -7,8 +7,20 @@ onready var Plus_btn=$HBoxContainer/Zoom/PanelContainer/HBoxContainer/plus
 
 onready var Animation_player=$AnimationPlayer
 
+
 func validate_goto(txt):
-	return true
+	
+	var cards=0
+	if (str(txt).is_valid_integer()):
+		var ch=$"../PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid".get_children()
+		for c in ch:
+			if not c.is_in_group('ConnectorLines'):
+				cards+=1
+
+		if int(txt)<=cards and not int(txt)<=0:
+			return true
+		else:
+			return false
 
 func Export():
 	var FINAL_JSON={'story_line':[]}
@@ -54,7 +66,7 @@ func Export():
 			goto_panels.remove(0)
 			
 			for panel in goto_panels:
-				if panel.get_node('VBoxContainer/HBoxContainer/Goto').text.empty():
+				if not validate_goto(panel.get_node('VBoxContainer/HBoxContainer/Goto').text):
 					print('Error : invalid goto step assigned to card of id '+card.get_node('VBoxContainer/HBox/Index').text)
 					emit_signal("ExportFinished",false,'Error : invalid goto step assigned to card of id '+card.get_node('VBoxContainer/HBox/Index').text)
 				

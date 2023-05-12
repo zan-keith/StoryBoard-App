@@ -56,7 +56,6 @@ func ClearLines():
 	for l in lines:
 		if l.is_in_group('ConnectorLines'):
 			l.queue_free()
-	#print(lines)
 			
 func LineConnect(obj):
 	ClearLines()
@@ -307,13 +306,6 @@ func _on_Popup_Add_Button_pressed():
 	$PopupMenu/PopupMenu.set_global_position($PopupMenu/VBoxContainer/AddCard.get_global_position()+Vector2($PopupMenu/VBoxContainer/AddCard.rect_size.x+10,0))
 	$PopupMenu/PopupMenu.popup()
 	
-func _on_card_expanding():
-#	print($PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid.get_size())
-#	$PanelContainer/ScrollContainer/Panel.set_custom_minimum_size($PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid.get_size()+$PanelContainer/ScrollContainer/Panel/MarginContainer/PanelContainer.get_custom_minimum_size())
-#	print($PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid.get_size())
-#
-	pass
-
 
 func _on_MainGrid_item_rect_changed():
 	$PanelContainer/ScrollContainer/Panel.set_custom_minimum_size($PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid.get_size()+$PanelContainer/ScrollContainer/Panel/MarginContainer/PanelContainer.get_size())
