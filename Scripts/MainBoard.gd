@@ -3,12 +3,25 @@ extends Control
 signal CardOverride
 signal ShowToast
 
+onready var path_to_json
 onready var click=false
 onready var prevcard=null
 export onready var latest_index=1
 onready var maingrid_path="PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid/"
 
 func _ready():
+	print(path_to_json)
+	
+	
+	if path_to_json!=null:
+		LoadFromJsonFile(path_to_json)
+	else:
+		$AcceptDialog/VBoxContainer/Message.text="The File is corrupted or do not exist. \n Press ok to go back to Home Page"
+		$AcceptDialog/AnimationPlayer.play("bgdrop")
+		$AcceptDialog.visible=true
+		
+	$Navbar/HBoxContainer/VBoxContainer/LineEdit.text=path_to_json.get_file().get_basename()
+	
 	print('onstart ',$PanelContainer/ScrollContainer/Panel/MarginContainer.rect_size)
 
 	var children=get_node(maingrid_path).get_children()
@@ -24,7 +37,6 @@ func _ready():
 		elif child.is_in_group('StoryCard'):
 			child.connect("RefreshLines", self, "_on_refresh_lines")
 			child.connect('ShowOptionsPopup',self,'_on_card_right_click')
-			child.connect('item_rect_changed',self,'_on_card_expanding')			
 			child.get_node("VBoxContainer/MainDetails/Index").text=str(latest_index)
 		elif child.is_in_group('ChoiceCard'):
 			child.connect("RefreshLines", self, "_on_refresh_lines")
@@ -34,6 +46,105 @@ func _ready():
 
 		latest_index+=1
 
+func LoadFromJsonFile(path):
+
+	var file = File.new()
+	var directory = Directory.new()
+	if not directory.file_exists(path):
+		$AcceptDialog/VBoxContainer/Message.text="The File '"+path+"' is corrupted or do not exist. \n Press ok to go back to Home Page"
+		$AcceptDialog/AnimationPlayer.play("bgdrop")
+		$AcceptDialog.visible=true
+		return
+	file.open(path, file.READ)
+	var text = file.get_as_text()
+	var result_json = JSON.parse(str(text))
+	if result_json.error != OK:
+		print("[load_json_file] Error loading JSON file '" + str(path) + "'.")
+		print("\tError: ", result_json.error)
+		print("\tError Line: ", result_json.error_line)
+		print("\tError String: ", result_json.error_string)
+		emit_signal("ShowToast",'Corrupted Json')
+		return null
+		
+	var dict = result_json.result
+	
+	
+	var maingrid=get_node(maingrid_path)
+	
+	for card in dict['story_line']:
+
+		if card['card_type']=='StoryCard':
+			var storycard=load("res://Scenes/StoryCard.tscn").instance()
+			storycard.get_node('VBoxContainer/OnStart/VBox/Reqs/VarDetails').queue_free()
+			storycard.get_node('VBoxContainer/OnEnd/VBoxContainer/SetVars/VarDetails').queue_free()
+			
+			
+			for req in card['required_vars']:
+				var vars=load("res://Scenes/StoryCard/VarDetails.tscn").instance()
+				vars.get_node('VarName').text=req[0]
+				vars.get_node('VarVal').text=req[1]
+				
+				storycard.get_node('VBoxContainer/OnStart/VBox/Reqs').add_child(vars)
+			
+			
+			for set_var in card['on_end']['set_vars']:
+				var vars=load("res://Scenes/StoryCard/VarDetails.tscn").instance()
+				vars.get_node('VarName').text=set_var[0]
+				vars.get_node('VarVal').text=set_var[1]
+				
+				storycard.get_node('VBoxContainer/OnEnd/VBoxContainer/SetVars').add_child(vars)
+			
+			storycard.get_node('VBoxContainer/OnEnd/VBoxContainer/Goto').text=str(card['on_end']['goto'])
+			storycard.get_node('VBoxContainer/Content/ContentLabel').text=str(card['content'])
+			
+			maingrid.add_child(storycard)
+		
+		elif card['card_type']=='RouterCard':
+			
+			var routercard=load("res://Scenes/RouterCard.tscn").instance()
+			
+			
+			routercard.get_node('VBoxContainer/Panel/VBoxContainer/ElseGoto').text=str(card['else_goto_step'])
+			
+			for router in card['routers']:
+				var GotoPanel=load("res://Scenes/RouterCard/GotoPanel.tscn").instance()
+				GotoPanel.PreloadEditables=false
+				routercard.get_node('VBoxContainer/Panel/VBoxContainer').add_child(GotoPanel)
+				for req_vars in router['required_vars']:
+					var vars=load("res://Scenes/StoryCard/VarDetails.tscn").instance()
+					vars.get_node('VarName').text=req_vars[0]
+					vars.get_node('VarVal').text=req_vars[1]
+					
+					GotoPanel.get_node('VBoxContainer').add_child(vars)
+					GotoPanel.connect("TextEntered", routercard, "_on_goto_text_entered")
+				
+				routercard.add_child(GotoPanel)
+				
+			routercard.PreloadEditables=false
+			maingrid.add_child(routercard)
+			
+		elif card['card_type']=='ChoiceCard':
+		
+			var choicecard=load("res://Scenes/ChoiceCard.tscn").instance()
+			choicecard.PreloadEditables=false
+			choicecard.get_node('VBoxContainer/VBoxContainer/Content/ContentLabel').text=card['pretext']
+			
+			for choice in card['choices']:
+				var choice_panel=load("res://Scenes/ChoiceCard/ChoicePanel.tscn").instance()
+				choice_panel.PreloadEditables=false
+				choice_panel.get_node('VBoxContainer/HBoxContainer/Goto').text=choice['goto']
+				
+				for set_vars in choice['set_vars']:
+					var vars=load("res://Scenes/StoryCard/VarDetails.tscn").instance()
+					vars.get_node('VarName').text=set_vars[0]
+					vars.get_node('VarVal').text=set_vars[1]
+					
+					choice_panel.get_node('VBoxContainer').add_child(vars)
+				
+				choicecard.get_node('VBoxContainer/VBoxContainer/Choices/VBoxContainer').add_child(choice_panel)
+				choice_panel.connect("TextEntered", choicecard, "_on_goto_text_entered")
+			maingrid.add_child(choicecard)
+	
 
 func validate_goto(new_text):
 	
@@ -72,7 +183,7 @@ func LineConnect(obj):
 		var toobj
 		var children=get_node(maingrid_path).get_children()
 		toobj=children[int(goto)-1]
-		#get positions - from and to
+		
 		var from = fromobj.get_position()
 		var to =toobj.get_position()
 		
@@ -194,7 +305,7 @@ func StoryCardClick(click,obj):
 		disconnect("CardOverride", prevnode, "_on_card_override")
 		prevcard=null
 		
-	else:	#Delete previous Lines
+	else:
 		prevcard=null
 		$PanelContainer/ScrollContainer/Panel/MarginContainer/PanelContainer.rect_min_size.y=0
 
@@ -255,14 +366,19 @@ func _on_card_click(obj,click):
 
 
 func _on_card_right_click(obj):
+	
+	print(path_to_json)
 	if prevcard!=null:
 		$PopupMenu.popup()
+
+		
 		if obj.get_index()+1==len($PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid.get_children()):
 			$PopupMenu.set_position(obj.get_global_position()-Vector2($PopupMenu.rect_size.x+5,0))
 		else:
 			$PopupMenu.set_position(obj.get_global_position()+Vector2(obj.rect_size.x,0))
 	else:
 		$PopupMenu.visible=false
+		
 func Tidy_Order(remove_node):
 	var index=1
 	var children=$PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid.get_children()
@@ -284,10 +400,12 @@ func _on_Popup_Remove_Button_pressed():
 	if prevcard!=null:
 		get_node(maingrid_path+prevcard).queue_free()
 		Tidy_Order(get_node(maingrid_path+prevcard))
+		ClearLines()
+		$PopupMenu.visible=false
 		prevcard=null
 	else:
 		emit_signal("ShowToast",'Invalid Card - Select a card before using options')
-
+		$PopupMenu.visible=false
 
 
 func _on_Popup_Move_Card_text_entered(indx):
@@ -309,3 +427,18 @@ func _on_Popup_Add_Button_pressed():
 
 func _on_MainGrid_item_rect_changed():
 	$PanelContainer/ScrollContainer/Panel.set_custom_minimum_size($PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid.get_size()+$PanelContainer/ScrollContainer/Panel/MarginContainer/PanelContainer.get_size())
+
+
+
+
+
+func _on_Project_Title_LineEdit_text_entered(new_text):
+	var dir = Directory.new()
+	dir.rename(path_to_json, path_to_json.get_base_dir()+'\\'+new_text+'.json')
+	emit_signal("ShowToast",'Renamed File to'+new_text)
+
+
+func _on_Return_To_Home_confirmed():
+	get_tree().change_scene("res://Scenes/HomeScreen/HomeScreen.tscn")
+
+

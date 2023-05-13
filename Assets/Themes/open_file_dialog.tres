@@ -1,0 +1,140 @@
+[gd_resource type="Theme" load_steps=21 format=2]
+
+[ext_resource path="res://Assets/Fonts/Rubik/Rubik-VariableFont_wght.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=187]
+
+[sub_resource type="StyleBoxEmpty" id=188]
+
+[sub_resource type="StyleBoxFlat" id=189]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0.0941176, 0.176471, 0.247059, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 1
+
+[sub_resource type="StyleBoxFlat" id=190]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0.129412, 0.243137, 0.341176, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 1
+
+[sub_resource type="StyleBoxEmpty" id=163]
+
+[sub_resource type="StyleBoxFlat" id=164]
+content_margin_left = 7.0
+bg_color = Color( 0.00392157, 0.0392157, 0.105882, 1 )
+border_width_left = 2
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+shadow_color = Color( 0, 0, 0, 0.313726 )
+shadow_size = 2
+
+[sub_resource type="StyleBoxEmpty" id=191]
+
+[sub_resource type="StyleBoxFlat" id=193]
+content_margin_left = 4.0
+content_margin_right = 3.0
+content_margin_top = 3.0
+content_margin_bottom = 3.0
+bg_color = Color( 0.0823529, 0.152941, 0.215686, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color( 0, 0, 0, 0.12549 )
+shadow_size = 3
+
+[sub_resource type="StyleBoxFlat" id=194]
+content_margin_left = 4.0
+content_margin_right = 3.0
+content_margin_top = 3.0
+content_margin_bottom = 3.0
+bg_color = Color( 0.129412, 0.243137, 0.341176, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color( 0, 0, 0, 0.12549 )
+shadow_size = 3
+
+[sub_resource type="DynamicFont" id=192]
+font_data = ExtResource( 1 )
+
+[sub_resource type="Gradient" id=195]
+colors = PoolColorArray( 0.00392157, 0.0823529, 0.14902, 1, 0.0117647, 0.0313726, 0.0509804, 1 )
+
+[sub_resource type="GradientTexture2D" id=196]
+gradient = SubResource( 195 )
+fill = 1
+fill_from = Vector2( 0.146484, 0.302734 )
+
+[sub_resource type="StyleBoxTexture" id=197]
+texture = SubResource( 196 )
+region_rect = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="StyleBoxFlat" id=199]
+bg_color = Color( 0.380392, 0.486275, 0.54902, 0.427451 )
+corner_radius_top_left = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=201]
+bg_color = Color( 0.00784314, 0.576471, 0.498039, 1 )
+
+[sub_resource type="StyleBoxFlat" id=202]
+bg_color = Color( 0.00392157, 0.415686, 0.356863, 1 )
+
+[sub_resource type="StyleBoxFlat" id=203]
+content_margin_left = 3.0
+bg_color = Color( 0.121569, 0.160784, 0.235294, 1 )
+
+[sub_resource type="DynamicFont" id=185]
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=186]
+bg_color = Color( 0.0431373, 0.133333, 0.211765, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[resource]
+default_font = SubResource( 192 )
+Button/styles/disabled = SubResource( 187 )
+Button/styles/focus = SubResource( 188 )
+Button/styles/hover = SubResource( 189 )
+Button/styles/normal = SubResource( 190 )
+Button/styles/pressed = SubResource( 189 )
+LineEdit/styles/focus = SubResource( 163 )
+LineEdit/styles/normal = SubResource( 164 )
+OptionButton/styles/focus = SubResource( 191 )
+OptionButton/styles/hover = SubResource( 193 )
+OptionButton/styles/normal = SubResource( 194 )
+OptionButton/styles/pressed = SubResource( 193 )
+Tree/fonts/font = SubResource( 192 )
+Tree/styles/bg = SubResource( 197 )
+Tree/styles/button_pressed = SubResource( 199 )
+Tree/styles/selected = SubResource( 199 )
+Tree/styles/selected_focus = SubResource( 199 )
+Tree/styles/title_button_hover = SubResource( 199 )
+Tree/styles/title_button_normal = SubResource( 199 )
+Tree/styles/title_button_pressed = SubResource( 199 )
+VScrollBar/styles/grabber = SubResource( 201 )
+VScrollBar/styles/grabber_highlight = SubResource( 202 )
+VScrollBar/styles/grabber_pressed = SubResource( 202 )
+VScrollBar/styles/scroll = SubResource( 203 )
+VScrollBar/styles/scroll_focus = SubResource( 203 )
+WindowDialog/colors/title_color = Color( 1, 1, 1, 1 )
+WindowDialog/fonts/title_font = SubResource( 185 )
+WindowDialog/styles/panel = SubResource( 186 )

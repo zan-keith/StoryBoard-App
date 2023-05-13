@@ -1,6 +1,12 @@
 extends PanelContainer
+
 signal TextEntered
 
+var PreloadEditables=true
+
+func _ready():
+	if PreloadEditables:
+		_on_AddVar_pressed()
 func _on_AddVar_pressed():
 	var var_details = load("res://Scenes/StoryCard/VarDetails.tscn").instance()
 	$VBoxContainer.add_child(var_details)

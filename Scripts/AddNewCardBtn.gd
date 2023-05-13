@@ -37,7 +37,7 @@ func AddCard(n):
 	#$"../../../PanelContainer/ScrollContainer/Panel/MarginContainer"._set_size(get_node(maingrid_path).get_size())
 
 	#$"../../../PanelContainer/ScrollContainer/Panel".set_custom_minimum_size($"../../../PanelContainer/ScrollContainer/Panel/MarginContainer".get_size()*$"../../../PanelContainer/ScrollContainer/Panel/MarginContainer".rect_scale)
-	
+	Tidy_Order()
 	
 	$"../../..".latest_index+=1
 

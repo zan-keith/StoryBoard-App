@@ -7,11 +7,15 @@ signal ShowOptionsPopup
 onready var toggle=false
 onready var focused=false
 
+
 onready var typecontentbox=$VBoxContainer/VBoxContainer/Content/TypeContent
 onready var readcontentbox=$VBoxContainer/VBoxContainer/Content/ContentLabel
 
+var PreloadEditables=true
+
 func _ready():
-	_on_AddChoice_pressed()
+	if PreloadEditables:
+		_on_AddChoice_pressed()
 
 func _on_EditContentButton_pressed():
 	typecontentbox.visible=true

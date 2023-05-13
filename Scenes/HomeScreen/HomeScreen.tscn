@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=58 format=2]
 
 [ext_resource path="res://Scripts/HomeScreen/HomeScreenNavBar.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/Rubik/Rubik-VariableFont_wght.ttf" type="DynamicFontData" id=2]
@@ -8,6 +8,11 @@
 [ext_resource path="res://Assets/Textures/read-svgrepo-com.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Themes/navbar_btn.tres" type="Theme" id=7]
 [ext_resource path="res://Assets/Textures/heart-svgrepo-com.png" type="Texture" id=8]
+[ext_resource path="res://Scripts/HomeScreen/HomeScreen.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/Toast.gd" type="Script" id=10]
+[ext_resource path="res://Assets/Themes/open_file_dialog.tres" type="Theme" id=11]
+[ext_resource path="res://Assets/Themes/card_base.tres" type="StyleBox" id=12]
+[ext_resource path="res://Assets/Themes/text_box_in_cards.tres" type="Theme" id=13]
 
 [sub_resource type="DynamicFont" id=137]
 font_data = ExtResource( 2 )
@@ -17,122 +22,99 @@ default_font = SubResource( 137 )
 
 [sub_resource type="StyleBoxEmpty" id=140]
 
-[sub_resource type="StyleBoxFlat" id=141]
+[sub_resource type="Gradient" id=130]
+colors = PoolColorArray( 0.00981522, 0.045435, 0.0810547, 1, 0.00456619, 0.0922246, 0.166992, 1 )
+
+[sub_resource type="GradientTexture2D" id=131]
+gradient = SubResource( 130 )
+fill = 1
+fill_from = Vector2( 0.131944, 0.251389 )
+fill_to = Vector2( 1, 1 )
+
+[sub_resource type="StyleBoxTexture" id=173]
 content_margin_left = 15.0
 content_margin_right = 15.0
 content_margin_top = 15.0
 content_margin_bottom = 15.0
-bg_color = Color( 0.0941176, 0.14902, 0.145098, 1 )
+texture = SubResource( 131 )
+region_rect = Rect2( 0, 0, 64, 64 )
 
 [sub_resource type="Theme" id=142]
-PanelContainer/styles/panel = SubResource( 141 )
+PanelContainer/styles/panel = SubResource( 173 )
 
-[sub_resource type="StyleBoxFlat" id=143]
+[sub_resource type="Theme" id=144]
+PanelContainer/styles/panel = ExtResource( 12 )
+
+[sub_resource type="Gradient" id=174]
+colors = PoolColorArray( 0.11261, 0.343591, 0.480469, 1, 0.0117647, 0.270588, 0.423529, 1 )
+
+[sub_resource type="GradientTexture2D" id=175]
+gradient = SubResource( 174 )
+fill = 1
+fill_from = Vector2( 0, 0.265278 )
+fill_to = Vector2( 1, 1 )
+
+[sub_resource type="StyleBoxTexture" id=176]
 content_margin_left = 10.0
 content_margin_right = 10.0
 content_margin_top = 10.0
 content_margin_bottom = 10.0
-bg_color = Color( 0.184314, 0.239216, 0.25098, 1 )
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-
-[sub_resource type="Theme" id=144]
-PanelContainer/styles/panel = SubResource( 143 )
-
-[sub_resource type="StyleBoxFlat" id=145]
-content_margin_left = 5.0
-content_margin_right = 5.0
-content_margin_top = 5.0
-content_margin_bottom = 5.0
-bg_color = Color( 0.270588, 0.333333, 0.34902, 1 )
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-shadow_color = Color( 0, 0, 0, 0.215686 )
-shadow_size = 5
-
-[sub_resource type="Theme" id=146]
-PanelContainer/styles/panel = SubResource( 145 )
-
-[sub_resource type="DynamicFont" id=139]
-size = 13
-font_data = ExtResource( 2 )
-
-[sub_resource type="StyleBoxFlat" id=152]
-content_margin_left = 5.0
-content_margin_right = 5.0
-content_margin_top = 5.0
-content_margin_bottom = 5.0
-bg_color = Color( 0.239216, 0.352941, 0.45098, 1 )
+texture = SubResource( 175 )
+region_rect = Rect2( 0, 0, 64, 64 )
 
 [sub_resource type="Theme" id=153]
-PanelContainer/styles/panel = SubResource( 152 )
+PanelContainer/styles/panel = SubResource( 176 )
+
+[sub_resource type="DynamicFont" id=182]
+font_data = ExtResource( 2 )
 
 [sub_resource type="StyleBoxEmpty" id=160]
 
-[sub_resource type="StyleBoxFlat" id=161]
+[sub_resource type="StyleBoxFlat" id=177]
 content_margin_top = 5.0
 content_margin_bottom = 5.0
-bg_color = Color( 0.12549, 0.196078, 0.188235, 1 )
+bg_color = Color( 0.0196078, 0.105882, 0.180392, 1 )
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
-shadow_size = 3
 
 [sub_resource type="StyleBoxFlat" id=154]
 content_margin_top = 5.0
 content_margin_bottom = 5.0
-bg_color = Color( 0.156863, 0.25098, 0.239216, 1 )
+bg_color = Color( 0.00392157, 0.137255, 0.25098, 1 )
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
-shadow_size = 3
 
-[sub_resource type="StyleBoxFlat" id=162]
+[sub_resource type="StyleBoxFlat" id=178]
 content_margin_top = 5.0
 content_margin_bottom = 5.0
-bg_color = Color( 0.0745098, 0.117647, 0.113725, 1 )
+bg_color = Color( 0.0156863, 0.0784314, 0.133333, 1 )
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
-shadow_size = 3
-
-[sub_resource type="StyleBoxEmpty" id=155]
-
-[sub_resource type="StyleBoxFlat" id=156]
-bg_color = Color( 0.6, 0.6, 0.6, 0 )
-border_width_bottom = 2
-border_color = Color( 0.0745098, 0.235294, 0.278431, 1 )
-
-[sub_resource type="StyleBoxFlat" id=157]
-content_margin_left = 4.0
-content_margin_right = 4.0
-bg_color = Color( 0, 0, 0, 0.321569 )
-border_width_bottom = 2
-border_color = Color( 0.0745098, 0.235294, 0.278431, 1 )
-corner_radius_top_left = 3
-corner_radius_top_right = 3
 
 [sub_resource type="Theme" id=158]
+Button/fonts/font = SubResource( 182 )
 Button/styles/focus = SubResource( 160 )
-Button/styles/hover = SubResource( 161 )
+Button/styles/hover = SubResource( 177 )
 Button/styles/normal = SubResource( 154 )
-Button/styles/pressed = SubResource( 162 )
-LineEdit/styles/focus = SubResource( 155 )
-LineEdit/styles/normal = SubResource( 156 )
-LineEdit/styles/read_only = SubResource( 157 )
+Button/styles/pressed = SubResource( 178 )
+
+[sub_resource type="StyleBoxEmpty" id=179]
 
 [sub_resource type="DynamicFont" id=147]
 size = 18
 font_data = ExtResource( 2 )
 
 [sub_resource type="StyleBoxEmpty" id=159]
+
+[sub_resource type="DynamicFont" id=139]
+size = 13
+font_data = ExtResource( 2 )
 
 [sub_resource type="StyleBoxEmpty" id=149]
 
@@ -158,7 +140,7 @@ HScrollBar/styles/scroll = SubResource( 108 )
 HScrollBar/styles/scroll_focus = SubResource( 109 )
 
 [sub_resource type="StyleBoxFlat" id=151]
-bg_color = Color( 0.156863, 0.25098, 0.239216, 1 )
+bg_color = Color( 0.00392157, 0.0823529, 0.14902, 1 )
 
 [sub_resource type="Animation" id=133]
 resource_name = "anti_clockwise_rotate"
@@ -328,7 +310,7 @@ font_data = ExtResource( 2 )
 content_margin_top = 10.0
 content_margin_bottom = 10.0
 
-[sub_resource type="StyleBoxFlat" id=130]
+[sub_resource type="StyleBoxFlat" id=180]
 content_margin_left = 5.0
 content_margin_right = 5.0
 bg_color = Color( 0.145098, 0.145098, 0.156863, 1 )
@@ -337,13 +319,85 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[sub_resource type="StyleBoxEmpty" id=131]
+[sub_resource type="StyleBoxEmpty" id=181]
 
 [sub_resource type="StyleBoxEmpty" id=132]
 
-[node name="Control" type="Control"]
+[sub_resource type="StyleBoxFlat" id=169]
+content_margin_left = 15.0
+content_margin_right = 15.0
+content_margin_top = 6.0
+content_margin_bottom = 6.0
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.533333, 0.0235294, 0.0235294, 0.6 )
+shadow_size = 4
+
+[sub_resource type="DynamicFont" id=170]
+extra_spacing_char = 1
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=171]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("..:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=172]
+resource_name = "popup_and_out"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("..:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4, 2.5, 3 ),
+"transitions": PoolRealArray( 0.307786, 1, 0.392292, 0.34151 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="HomeScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 9 )
 
 [node name="Board" type="PanelContainer" parent="."]
 anchor_top = 0.093
@@ -374,87 +428,33 @@ size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Board/HBoxContainer/PanelContainer/ScrollContainer"]
 margin_right = 797.0
-margin_bottom = 167.0
+margin_bottom = 46.0
 size_flags_horizontal = 3
 
 [node name="PanelContainer" type="PanelContainer" parent="Board/HBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
 margin_right = 797.0
-margin_bottom = 167.0
+margin_bottom = 46.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
 theme = SubResource( 144 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Board/HBoxContainer/PanelContainer/ScrollContainer/VBoxContainer/PanelContainer"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 787.0
-margin_bottom = 157.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 789.0
+margin_bottom = 38.0
+custom_constants/separation = 11
 
 [node name="Label" type="Label" parent="Board/HBoxContainer/PanelContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer"]
-margin_right = 777.0
+margin_right = 781.0
 margin_bottom = 19.0
 text = "Quick Open"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Board/HBoxContainer/PanelContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer"]
-margin_top = 23.0
-margin_right = 777.0
-margin_bottom = 147.0
+margin_top = 30.0
+margin_right = 781.0
+margin_bottom = 30.0
 custom_constants/separation = 12
-
-[node name="PanelContainer" type="PanelContainer" parent="Board/HBoxContainer/PanelContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer/VBoxContainer"]
-margin_right = 777.0
-margin_bottom = 56.0
-theme = SubResource( 146 )
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Board/HBoxContainer/PanelContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/PanelContainer"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 772.0
-margin_bottom = 51.0
-
-[node name="Label" type="Label" parent="Board/HBoxContainer/PanelContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/PanelContainer/VBoxContainer"]
-margin_right = 767.0
-margin_bottom = 17.0
-custom_colors/font_color = Color( 0.305882, 0.776471, 0.776471, 1 )
-custom_fonts/font = SubResource( 139 )
-text = "/path/to/filename"
-
-[node name="Button2" type="Button" parent="Board/HBoxContainer/PanelContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/PanelContainer/VBoxContainer"]
-margin_top = 21.0
-margin_right = 767.0
-margin_bottom = 46.0
-mouse_default_cursor_shape = 2
-text = "Filename"
-flat = true
-align = 0
-
-[node name="PanelContainer2" type="PanelContainer" parent="Board/HBoxContainer/PanelContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer/VBoxContainer"]
-margin_top = 68.0
-margin_right = 777.0
-margin_bottom = 124.0
-theme = SubResource( 146 )
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Board/HBoxContainer/PanelContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/PanelContainer2"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 772.0
-margin_bottom = 51.0
-
-[node name="Label" type="Label" parent="Board/HBoxContainer/PanelContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/PanelContainer2/VBoxContainer"]
-margin_right = 767.0
-margin_bottom = 17.0
-custom_colors/font_color = Color( 0.305882, 0.776471, 0.776471, 1 )
-custom_fonts/font = SubResource( 139 )
-text = "/path/to/filename"
-
-[node name="Button2" type="Button" parent="Board/HBoxContainer/PanelContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/PanelContainer2/VBoxContainer"]
-margin_top = 21.0
-margin_right = 767.0
-margin_bottom = 46.0
-mouse_default_cursor_shape = 2
-text = "Filename"
-flat = true
-align = 0
 
 [node name="PanelContainer2" type="PanelContainer" parent="Board/HBoxContainer"]
 margin_left = 827.0
@@ -464,21 +464,20 @@ size_flags_vertical = 3
 theme = SubResource( 153 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Board/HBoxContainer/PanelContainer2"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 192.0
-margin_bottom = 539.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 187.0
+margin_bottom = 534.0
 
 [node name="PanelContainer" type="PanelContainer" parent="Board/HBoxContainer/PanelContainer2/VBoxContainer"]
-margin_right = 187.0
-margin_bottom = 194.0
+margin_right = 177.0
+margin_bottom = 223.0
 theme = SubResource( 158 )
+custom_styles/panel = SubResource( 179 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Board/HBoxContainer/PanelContainer2/VBoxContainer/PanelContainer"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 182.0
-margin_bottom = 189.0
+margin_right = 177.0
+margin_bottom = 223.0
 custom_constants/separation = 6
 
 [node name="Label" type="Label" parent="Board/HBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer"]
@@ -495,24 +494,35 @@ custom_styles/focus = SubResource( 159 )
 text = "Load Template"
 flat = true
 
-[node name="LineEdit2" type="LineEdit" parent="Board/HBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer"]
+[node name="FileName" type="LineEdit" parent="Board/HBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer"]
 margin_top = 76.0
 margin_right = 177.0
-margin_bottom = 97.0
+margin_bottom = 99.0
+theme = ExtResource( 13 )
 placeholder_text = "Enter Filename"
+caret_blink = true
 
 [node name="Label2" type="Label" parent="Board/HBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer"]
-margin_top = 103.0
+margin_top = 105.0
 margin_right = 177.0
-margin_bottom = 122.0
-text = "Default path :"
+margin_bottom = 124.0
+text = "Location :"
 
-[node name="LineEdit" type="LineEdit" parent="Board/HBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer"]
-margin_top = 128.0
+[node name="CheckBox" type="CheckBox" parent="Board/HBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer"]
+margin_top = 130.0
 margin_right = 177.0
-margin_bottom = 149.0
-editable = false
-placeholder_text = "Path to save the file"
+margin_bottom = 159.0
+custom_colors/font_color = Color( 1, 1, 1, 0.223529 )
+text = "set default"
+flat = true
+
+[node name="FilePath" type="LineEdit" parent="Board/HBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer"]
+margin_top = 165.0
+margin_right = 177.0
+margin_bottom = 188.0
+theme = ExtResource( 13 )
+clear_button_enabled = true
+placeholder_text = "file location"
 
 [node name="PanelContainer" type="PanelContainer" parent="Board/HBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer"]
 visible = false
@@ -521,39 +531,39 @@ margin_right = 189.0
 margin_bottom = 163.0
 
 [node name="CreateButton" type="Button" parent="Board/HBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer"]
-margin_top = 155.0
+margin_top = 194.0
 margin_right = 177.0
-margin_bottom = 184.0
+margin_bottom = 223.0
 text = "Create"
 
 [node name="HSeparator" type="HSeparator" parent="Board/HBoxContainer/PanelContainer2/VBoxContainer"]
-margin_top = 198.0
-margin_right = 187.0
-margin_bottom = 202.0
+margin_top = 227.0
+margin_right = 177.0
+margin_bottom = 231.0
 
 [node name="Label" type="Label" parent="Board/HBoxContainer/PanelContainer2/VBoxContainer"]
-margin_top = 206.0
-margin_right = 187.0
-margin_bottom = 303.0
+margin_top = 235.0
+margin_right = 177.0
+margin_bottom = 352.0
 custom_fonts/font = SubResource( 139 )
 text = "StoryCraft aims to simplify the otherwise arduous process of structuring complex storylines using formats like JSON or similar data structures. "
 autowrap = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Board/HBoxContainer/PanelContainer2/VBoxContainer"]
-margin_top = 307.0
-margin_right = 187.0
-margin_bottom = 534.0
+margin_top = 356.0
+margin_right = 177.0
+margin_bottom = 524.0
 size_flags_vertical = 3
 alignment = 2
 
 [node name="PanelContainer2" type="PanelContainer" parent="Board/HBoxContainer/PanelContainer2/VBoxContainer/VBoxContainer"]
-margin_top = 206.0
-margin_right = 187.0
-margin_bottom = 227.0
+margin_top = 147.0
+margin_right = 177.0
+margin_bottom = 168.0
 custom_styles/panel = SubResource( 149 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Board/HBoxContainer/PanelContainer2/VBoxContainer/VBoxContainer/PanelContainer2"]
-margin_right = 187.0
+margin_right = 177.0
 margin_bottom = 21.0
 alignment = 1
 
@@ -567,7 +577,7 @@ stretch_mode = 5
 
 [node name="About" type="Button" parent="Board/HBoxContainer/PanelContainer2/VBoxContainer/VBoxContainer/PanelContainer2/HBoxContainer"]
 margin_left = 39.0
-margin_right = 187.0
+margin_right = 177.0
 margin_bottom = 21.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 150 )
@@ -581,6 +591,9 @@ size_flags_vertical = 0
 theme = SubResource( 110 )
 custom_styles/bg = SubResource( 151 )
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Navbar"]
 root_node = NodePath("../HBoxContainer/RightNav/Settings")
@@ -619,26 +632,9 @@ margin_left = 242.0
 margin_right = 246.0
 margin_bottom = 56.0
 
-[node name="NewFile" type="PanelContainer" parent="Navbar/HBoxContainer"]
-margin_left = 260.0
-margin_right = 360.0
-margin_bottom = 56.0
-theme = ExtResource( 7 )
-
-[node name="Button" type="Button" parent="Navbar/HBoxContainer/NewFile"]
-margin_left = 5.0
-margin_right = 95.0
-margin_bottom = 53.0
-mouse_default_cursor_shape = 2
-size_flags_horizontal = 3
-custom_colors/font_color = Color( 0.831373, 0.831373, 0.831373, 1 )
-custom_colors/font_color_hover = Color( 0.470588, 0.858824, 0.886275, 1 )
-text = "New Project"
-flat = true
-
 [node name="Open" type="PanelContainer" parent="Navbar/HBoxContainer"]
-margin_left = 374.0
-margin_right = 422.0
+margin_left = 260.0
+margin_right = 308.0
 margin_bottom = 56.0
 theme = ExtResource( 7 )
 
@@ -653,26 +649,9 @@ custom_colors/font_color_hover = Color( 0.470588, 0.858824, 0.886275, 1 )
 text = "Open"
 flat = true
 
-[node name="Import" type="PanelContainer" parent="Navbar/HBoxContainer"]
-margin_left = 436.0
-margin_right = 494.0
-margin_bottom = 56.0
-theme = ExtResource( 7 )
-
-[node name="Button" type="Button" parent="Navbar/HBoxContainer/Import"]
-margin_left = 5.0
-margin_right = 53.0
-margin_bottom = 53.0
-mouse_default_cursor_shape = 2
-size_flags_horizontal = 3
-custom_colors/font_color = Color( 0.831373, 0.831373, 0.831373, 1 )
-custom_colors/font_color_hover = Color( 0.470588, 0.858824, 0.886275, 1 )
-text = "Import"
-flat = true
-
 [node name="Help" type="PanelContainer" parent="Navbar/HBoxContainer"]
-margin_left = 508.0
-margin_right = 551.0
+margin_left = 322.0
+margin_right = 365.0
 margin_bottom = 56.0
 theme = ExtResource( 7 )
 
@@ -688,8 +667,8 @@ text = "Help"
 flat = true
 
 [node name="Search" type="PanelContainer" parent="Navbar/HBoxContainer"]
-margin_left = 565.0
-margin_right = 727.0
+margin_left = 379.0
+margin_right = 541.0
 margin_bottom = 56.0
 theme = ExtResource( 7 )
 custom_styles/panel = SubResource( 129 )
@@ -698,7 +677,7 @@ custom_styles/panel = SubResource( 129 )
 margin_top = 10.0
 margin_right = 162.0
 margin_bottom = 46.0
-custom_styles/panel = SubResource( 130 )
+custom_styles/panel = SubResource( 180 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Navbar/HBoxContainer/Search/PanelContainer"]
 margin_left = 5.0
@@ -731,7 +710,7 @@ margin_left = 32.0
 margin_right = 152.0
 margin_bottom = 36.0
 rect_min_size = Vector2( 120, 0 )
-custom_styles/focus = SubResource( 131 )
+custom_styles/focus = SubResource( 181 )
 custom_styles/normal = SubResource( 132 )
 expand_to_text_length = true
 placeholder_text = "Search Stories"
@@ -739,7 +718,7 @@ caret_blink = true
 caret_blink_speed = 0.5
 
 [node name="RightNav" type="HBoxContainer" parent="Navbar/HBoxContainer"]
-margin_left = 741.0
+margin_left = 555.0
 margin_right = 1024.0
 margin_bottom = 56.0
 size_flags_horizontal = 3
@@ -747,8 +726,8 @@ size_flags_vertical = 3
 alignment = 2
 
 [node name="Settings" type="TextureButton" parent="Navbar/HBoxContainer/RightNav"]
-margin_left = 253.0
-margin_right = 283.0
+margin_left = 439.0
+margin_right = 469.0
 margin_bottom = 56.0
 rect_min_size = Vector2( 30, 40 )
 mouse_default_cursor_shape = 2
@@ -757,7 +736,73 @@ texture_normal = ExtResource( 3 )
 expand = true
 stretch_mode = 5
 
+[node name="FileDialog" type="FileDialog" parent="."]
+visible = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -216.0
+margin_top = -244.0
+margin_right = 192.0
+margin_bottom = 236.0
+rect_min_size = Vector2( 150, 52.5 )
+theme = ExtResource( 11 )
+custom_colors/folder_icon_modulate = Color( 0.239216, 0.352941, 0.45098, 1 )
+window_title = "Open a File"
+resizable = true
+dialog_text = "Select File"
+dialog_hide_on_ok = true
+mode = 0
+access = 2
+filters = PoolStringArray( "*.json; Json File" )
+
+[node name="Toast" type="CenterContainer" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -40.0
+margin_bottom = -9.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 10 )
+
+[node name="Toast" type="PanelContainer" parent="Toast"]
+margin_left = 365.0
+margin_right = 659.0
+margin_bottom = 31.0
+mouse_filter = 2
+custom_styles/panel = SubResource( 169 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Toast/Toast"]
+margin_left = 15.0
+margin_top = 6.0
+margin_right = 279.0
+margin_bottom = 25.0
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Toast/Toast/HBoxContainer"]
+margin_right = 264.0
+margin_bottom = 19.0
+custom_colors/font_color = Color( 0.113725, 0.156863, 0.0745098, 1 )
+custom_fonts/font = SubResource( 170 )
+text = "Please Select a Card to proceed"
+align = 1
+valign = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Toast/Toast"]
+anims/RESET = SubResource( 171 )
+anims/popup_and_out = SubResource( 172 )
+
+[connection signal="toggled" from="Board/HBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer/CheckBox" to="." method="_on_Default_Path_CheckBox_toggled"]
+[connection signal="pressed" from="Board/HBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer/CreateButton" to="." method="CreateFile"]
+[connection signal="pressed" from="Navbar/HBoxContainer/Open/Button" to="." method="_on_OpenFile_pressed"]
 [connection signal="focus_entered" from="Navbar/HBoxContainer/Search/PanelContainer/HBoxContainer/LineEdit" to="Navbar" method="_on_LineEdit_focus_entered"]
 [connection signal="focus_exited" from="Navbar/HBoxContainer/Search/PanelContainer/HBoxContainer/LineEdit" to="Navbar" method="_on_LineEdit_focus_exited"]
 [connection signal="mouse_entered" from="Navbar/HBoxContainer/RightNav/Settings" to="Navbar" method="_on_Settings_mouse_entered"]
 [connection signal="mouse_exited" from="Navbar/HBoxContainer/RightNav/Settings" to="Navbar" method="_on_Settings_mouse_exited"]
+[connection signal="file_selected" from="FileDialog" to="." method="_on_FileDialog_file_selected"]

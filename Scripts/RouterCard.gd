@@ -7,8 +7,11 @@ signal ShowOptionsPopup
 onready var toggle=false
 onready var focused=false
 
+var PreloadEditables=true
+
 func _ready():
-	_on_AddGotos_pressed()
+	if PreloadEditables:
+		_on_AddGotos_pressed()
 
 func _on_EditButton_pressed():
 	$VBoxContainer/Content/TypeContent.visible=true

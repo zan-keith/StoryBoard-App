@@ -18,10 +18,15 @@ corner_radius_bottom_left = 10
 script/source = "extends PanelContainer
 signal TextEntered
 
+var PreloadEditables=true
+
+
 func _ready():
-	var var_details = load(\"res://Scenes/StoryCard/VarDetails.tscn\").instance()
-	var_details.get_node('CloseBtn').disabled=true
-	$VBoxContainer.add_child(var_details)
+	if PreloadEditables:
+		var var_details = load(\"res://Scenes/StoryCard/VarDetails.tscn\").instance()
+		$VBoxContainer.add_child(var_details)
+
+
 
 func _on_AddVars_pressed():
 	var var_details = load(\"res://Scenes/StoryCard/VarDetails.tscn\").instance()
@@ -30,6 +35,10 @@ func _on_AddVars_pressed():
 
 func _on_Goto_text_entered(new_text):
 	emit_signal(\"TextEntered\",new_text,self)
+
+
+func _on_Remove_pressed():
+	self.queue_free()
 "
 
 [sub_resource type="Animation" id=9]
@@ -111,15 +120,22 @@ anims/invalid = SubResource( 10 )
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 100.0
+margin_right = 131.0
 margin_bottom = 35.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_right = 93.0
+margin_right = 124.0
 margin_bottom = 28.0
 
+[node name="AddVars" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_right = 27.0
+margin_bottom = 28.0
+theme = ExtResource( 3 )
+text = "+"
+
 [node name="Goto" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
-margin_right = 62.0
+margin_left = 31.0
+margin_right = 93.0
 margin_bottom = 28.0
 size_flags_horizontal = 3
 theme = ExtResource( 1 )
@@ -127,12 +143,14 @@ text = "0"
 expand_to_text_length = true
 placeholder_text = "Goto"
 
-[node name="AddVars" type="Button" parent="VBoxContainer/HBoxContainer"]
-margin_left = 66.0
-margin_right = 93.0
+[node name="Remove" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 97.0
+margin_right = 124.0
 margin_bottom = 28.0
 theme = ExtResource( 3 )
-text = "+"
+text = "X"
+flat = true
 
-[connection signal="text_entered" from="VBoxContainer/HBoxContainer/Goto" to="." method="_on_Goto_text_entered"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/AddVars" to="." method="_on_AddVars_pressed"]
+[connection signal="text_entered" from="VBoxContainer/HBoxContainer/Goto" to="." method="_on_Goto_text_entered"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Remove" to="." method="_on_Remove_pressed"]
