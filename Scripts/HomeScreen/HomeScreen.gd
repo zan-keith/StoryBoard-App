@@ -48,20 +48,40 @@ func _on_Default_Path_CheckBox_toggled(button_pressed):
 	if not button_pressed:
 		$Board/HBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer/FilePath.set_editable(true)
 	else:
-		$Board/HBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer/FilePath.set_text('default/path/to/file')
+		$Board/HBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer/FilePath.set_text('C:\\Users\\godla\\Documents\\StoryFiles')
 		$Board/HBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer/FilePath.set_editable(false)
 
 
 func CreateFile():
 	var template=$Board/HBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer/CheckButton.pressed
-	var filename=$Board/HBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer/FileName.get_text()
+	var file_name=$Board/HBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer/FileName.get_text()
 	var path=$Board/HBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer/FilePath.get_text()
 	
-	#path+'//'+filename
+	path=path+'//'+file_name
+	
+	if template:
+		var template_file = File.new()
+		template_file.open("res://Assets//Template//sampletemplate.json", template_file.READ)
+		var template_file_text = template_file.get_as_text()
+		var result_json = JSON.parse(str(template_file_text))
+		var text = result_json.result
+		template_file.close()
+		
+		var file = File.new()
+		file.open(path, File.WRITE)
+		file.store_string(JSON.print(text))
+		file.close()
+		
+		_on_open_file_click(path)
+	else:
+		var file = File.new()
+		file.open(path, File.WRITE)
+		file.store_string(JSON.print({"story_line":[]}))
+		file.close()
+		_on_open_file_click(path)
 	
 
 func _on_open_file_click(path):
-
 	var s = load("res://MainBoard.tscn").instance()
 	s.path_to_json=path
 	get_tree().get_root().add_child(s)

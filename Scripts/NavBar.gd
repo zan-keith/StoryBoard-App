@@ -207,6 +207,10 @@ func _on_ExportPopupPanel_popup_hide():
 func _on_SaveButton_pressed():
 	$"../SavePopup".popup()
 
+	var x_ax=($HBoxContainer/Save.get_global_position()+Vector2($HBoxContainer/Save.get_size().x/2,0))-Vector2($"../SavePopup".get_size().x/2,0)
+	$"../SavePopup".set_position(x_ax+Vector2(0,$HBoxContainer/Save.get_size().y))
+
+
 
 func Save(cwd):
 	var FINAL_JSON={'story_line':[]}
@@ -311,4 +315,18 @@ func ReloadScene(new_json_file_path):
 
 
 func _on_NewFile_AcceptDialog_pressed():
+	#print($"..".path_to_json)
 	_on_SaveAs_FileDialog_file_selected($"..".path_to_json)
+	$"../AcceptDialog".visible=false
+	$"../BgDrop".visible=false
+	
+	emit_signal("ShowToast",'Created new project of name'+$"..".path_to_json.get_file())
+
+
+
+func _on_Settings_pressed():
+	if not $"../SettingsPanel".visible:
+		$"../SettingsPanel".popup()
+
+
+

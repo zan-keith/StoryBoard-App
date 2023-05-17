@@ -15,12 +15,17 @@ func _ready():
 	
 	if path_to_json!=null:
 		LoadFromJsonFile(path_to_json)
+		$Navbar/HBoxContainer/VBoxContainer/LineEdit.text=path_to_json.get_file().get_basename()
 	else:
 		$AcceptDialog/VBoxContainer/Message.text="The File is corrupted or do not exist. \n Press ok to go back to Home Page"
 		$AcceptDialog/AnimationPlayer.play("bgdrop")
+		$AcceptDialog/VBoxContainer/Create.visible=false
 		$AcceptDialog.visible=true
+		$BgDrop.visible=true
 		
-	$Navbar/HBoxContainer/VBoxContainer/LineEdit.text=path_to_json.get_file().get_basename()
+		
+		
+	
 	
 	print('onstart ',$PanelContainer/ScrollContainer/Panel/MarginContainer.rect_size)
 
@@ -54,6 +59,7 @@ func LoadFromJsonFile(path):
 		$AcceptDialog/VBoxContainer/Message.text="The File '"+path+"' is corrupted or do not exist. \n Press ok to go back to Home Page"
 		$AcceptDialog/AnimationPlayer.play("bgdrop")
 		$AcceptDialog.visible=true
+		$BgDrop.visible=true
 		return
 	file.open(path, file.READ)
 	var text = file.get_as_text()
@@ -67,7 +73,7 @@ func LoadFromJsonFile(path):
 		return null
 		
 	var dict = result_json.result
-	
+	file.close()
 	
 	var maingrid=get_node(maingrid_path)
 	

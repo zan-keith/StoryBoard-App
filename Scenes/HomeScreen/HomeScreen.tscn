@@ -79,10 +79,12 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxFlat" id=154]
+[sub_resource type="StyleBoxFlat" id=222]
+content_margin_left = 10.0
+content_margin_right = 10.0
 content_margin_top = 5.0
 content_margin_bottom = 5.0
-bg_color = Color( 0.00392157, 0.137255, 0.25098, 1 )
+bg_color = Color( 0.00392157, 0.0901961, 0.164706, 1 )
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -101,7 +103,7 @@ corner_radius_bottom_left = 8
 Button/fonts/font = SubResource( 182 )
 Button/styles/focus = SubResource( 160 )
 Button/styles/hover = SubResource( 177 )
-Button/styles/normal = SubResource( 154 )
+Button/styles/normal = SubResource( 222 )
 Button/styles/pressed = SubResource( 178 )
 
 [sub_resource type="StyleBoxEmpty" id=179]
@@ -413,7 +415,7 @@ margin_bottom = 544.0
 custom_constants/separation = 0
 
 [node name="PanelContainer" type="PanelContainer" parent="Board/HBoxContainer"]
-margin_right = 827.0
+margin_right = 807.0
 margin_bottom = 544.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -422,17 +424,17 @@ theme = SubResource( 142 )
 [node name="ScrollContainer" type="ScrollContainer" parent="Board/HBoxContainer/PanelContainer"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 812.0
+margin_right = 792.0
 margin_bottom = 529.0
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Board/HBoxContainer/PanelContainer/ScrollContainer"]
-margin_right = 797.0
+margin_right = 777.0
 margin_bottom = 46.0
 size_flags_horizontal = 3
 
 [node name="PanelContainer" type="PanelContainer" parent="Board/HBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
-margin_right = 797.0
+margin_right = 777.0
 margin_bottom = 46.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
@@ -441,23 +443,23 @@ theme = SubResource( 144 )
 [node name="VBoxContainer" type="VBoxContainer" parent="Board/HBoxContainer/PanelContainer/ScrollContainer/VBoxContainer/PanelContainer"]
 margin_left = 8.0
 margin_top = 8.0
-margin_right = 789.0
+margin_right = 769.0
 margin_bottom = 38.0
 custom_constants/separation = 11
 
 [node name="Label" type="Label" parent="Board/HBoxContainer/PanelContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer"]
-margin_right = 781.0
+margin_right = 761.0
 margin_bottom = 19.0
 text = "Quick Open"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Board/HBoxContainer/PanelContainer/ScrollContainer/VBoxContainer/PanelContainer/VBoxContainer"]
 margin_top = 30.0
-margin_right = 781.0
+margin_right = 761.0
 margin_bottom = 30.0
 custom_constants/separation = 12
 
 [node name="PanelContainer2" type="PanelContainer" parent="Board/HBoxContainer"]
-margin_left = 827.0
+margin_left = 807.0
 margin_right = 1024.0
 margin_bottom = 544.0
 size_flags_vertical = 3
@@ -466,29 +468,29 @@ theme = SubResource( 153 )
 [node name="VBoxContainer" type="VBoxContainer" parent="Board/HBoxContainer/PanelContainer2"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 187.0
+margin_right = 207.0
 margin_bottom = 534.0
 
 [node name="PanelContainer" type="PanelContainer" parent="Board/HBoxContainer/PanelContainer2/VBoxContainer"]
-margin_right = 177.0
+margin_right = 197.0
 margin_bottom = 223.0
 theme = SubResource( 158 )
 custom_styles/panel = SubResource( 179 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Board/HBoxContainer/PanelContainer2/VBoxContainer/PanelContainer"]
-margin_right = 177.0
+margin_right = 197.0
 margin_bottom = 223.0
 custom_constants/separation = 6
 
 [node name="Label" type="Label" parent="Board/HBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer"]
-margin_right = 177.0
+margin_right = 197.0
 margin_bottom = 22.0
 custom_fonts/font = SubResource( 147 )
 text = "Create a new Project"
 
 [node name="CheckButton" type="CheckButton" parent="Board/HBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer"]
 margin_top = 28.0
-margin_right = 177.0
+margin_right = 197.0
 margin_bottom = 70.0
 custom_styles/focus = SubResource( 159 )
 text = "Load Template"
@@ -496,7 +498,7 @@ flat = true
 
 [node name="FileName" type="LineEdit" parent="Board/HBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer"]
 margin_top = 76.0
-margin_right = 177.0
+margin_right = 197.0
 margin_bottom = 99.0
 theme = ExtResource( 13 )
 placeholder_text = "Enter Filename"
@@ -504,13 +506,13 @@ caret_blink = true
 
 [node name="Label2" type="Label" parent="Board/HBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer"]
 margin_top = 105.0
-margin_right = 177.0
+margin_right = 197.0
 margin_bottom = 124.0
 text = "Location :"
 
 [node name="CheckBox" type="CheckBox" parent="Board/HBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer"]
 margin_top = 130.0
-margin_right = 177.0
+margin_right = 197.0
 margin_bottom = 159.0
 custom_colors/font_color = Color( 1, 1, 1, 0.223529 )
 text = "set default"
@@ -518,7 +520,7 @@ flat = true
 
 [node name="FilePath" type="LineEdit" parent="Board/HBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer"]
 margin_top = 165.0
-margin_right = 177.0
+margin_right = 197.0
 margin_bottom = 188.0
 theme = ExtResource( 13 )
 clear_button_enabled = true
@@ -532,38 +534,38 @@ margin_bottom = 163.0
 
 [node name="CreateButton" type="Button" parent="Board/HBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer"]
 margin_top = 194.0
-margin_right = 177.0
+margin_right = 197.0
 margin_bottom = 223.0
 text = "Create"
 
 [node name="HSeparator" type="HSeparator" parent="Board/HBoxContainer/PanelContainer2/VBoxContainer"]
 margin_top = 227.0
-margin_right = 177.0
+margin_right = 197.0
 margin_bottom = 231.0
 
 [node name="Label" type="Label" parent="Board/HBoxContainer/PanelContainer2/VBoxContainer"]
 margin_top = 235.0
-margin_right = 177.0
-margin_bottom = 352.0
+margin_right = 197.0
+margin_bottom = 332.0
 custom_fonts/font = SubResource( 139 )
 text = "StoryCraft aims to simplify the otherwise arduous process of structuring complex storylines using formats like JSON or similar data structures. "
 autowrap = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Board/HBoxContainer/PanelContainer2/VBoxContainer"]
-margin_top = 356.0
-margin_right = 177.0
+margin_top = 336.0
+margin_right = 197.0
 margin_bottom = 524.0
 size_flags_vertical = 3
 alignment = 2
 
 [node name="PanelContainer2" type="PanelContainer" parent="Board/HBoxContainer/PanelContainer2/VBoxContainer/VBoxContainer"]
-margin_top = 147.0
-margin_right = 177.0
-margin_bottom = 168.0
+margin_top = 167.0
+margin_right = 197.0
+margin_bottom = 188.0
 custom_styles/panel = SubResource( 149 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Board/HBoxContainer/PanelContainer2/VBoxContainer/VBoxContainer/PanelContainer2"]
-margin_right = 177.0
+margin_right = 197.0
 margin_bottom = 21.0
 alignment = 1
 
@@ -577,7 +579,7 @@ stretch_mode = 5
 
 [node name="About" type="Button" parent="Board/HBoxContainer/PanelContainer2/VBoxContainer/VBoxContainer/PanelContainer2/HBoxContainer"]
 margin_left = 39.0
-margin_right = 177.0
+margin_right = 197.0
 margin_bottom = 21.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 150 )
@@ -771,9 +773,10 @@ size_flags_vertical = 3
 script = ExtResource( 10 )
 
 [node name="Toast" type="PanelContainer" parent="Toast"]
-margin_left = 365.0
-margin_right = 659.0
-margin_bottom = 31.0
+margin_left = 497.0
+margin_top = 9.0
+margin_right = 527.0
+margin_bottom = 21.0
 mouse_filter = 2
 custom_styles/panel = SubResource( 169 )
 
