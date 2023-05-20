@@ -1,1 +1,23 @@
-{"story_line":[{"card_type":"StoryCard","required_vars":[["ron","0"]],"on_end":{"set_vars":[["ron","1"]],"goto":2},"content":"lololol"}]}
+{
+    "story_line": [
+        {
+            "card_type": "StoryCard",
+            "required_vars": [
+                [
+                    "ron",
+                    "0"
+                ]
+            ],
+            "on_end": {
+                "set_vars": [
+                    [
+                        "ron",
+                        "1"
+                    ]
+                ],
+                "goto": 2
+            },
+            "content": "lololol"
+        }
+    ]
+}

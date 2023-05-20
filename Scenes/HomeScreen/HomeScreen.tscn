@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=59 format=2]
 
 [ext_resource path="res://Scripts/HomeScreen/HomeScreenNavBar.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/Rubik/Rubik-VariableFont_wght.ttf" type="DynamicFontData" id=2]
@@ -123,6 +123,8 @@ font_data = ExtResource( 2 )
 [sub_resource type="DynamicFont" id=150]
 size = 12
 font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxEmpty" id=223]
 
 [sub_resource type="StyleBoxEmpty" id=105]
 
@@ -581,8 +583,10 @@ stretch_mode = 5
 margin_left = 39.0
 margin_right = 197.0
 margin_bottom = 21.0
+mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 150 )
+custom_styles/focus = SubResource( 223 )
 text = "About Project"
 flat = true
 
@@ -803,6 +807,7 @@ anims/popup_and_out = SubResource( 172 )
 
 [connection signal="toggled" from="Board/HBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer/CheckBox" to="." method="_on_Default_Path_CheckBox_toggled"]
 [connection signal="pressed" from="Board/HBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer/CreateButton" to="." method="CreateFile"]
+[connection signal="pressed" from="Board/HBoxContainer/PanelContainer2/VBoxContainer/VBoxContainer/PanelContainer2/HBoxContainer/About" to="." method="_on_About_pressed"]
 [connection signal="pressed" from="Navbar/HBoxContainer/Open/Button" to="." method="_on_OpenFile_pressed"]
 [connection signal="focus_entered" from="Navbar/HBoxContainer/Search/PanelContainer/HBoxContainer/LineEdit" to="Navbar" method="_on_LineEdit_focus_entered"]
 [connection signal="focus_exited" from="Navbar/HBoxContainer/Search/PanelContainer/HBoxContainer/LineEdit" to="Navbar" method="_on_LineEdit_focus_exited"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Scripts/StoryCard.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/StoryCard/VarDetails.tscn" type="PackedScene" id=2]
@@ -132,9 +132,36 @@ tracks/0/keys = {
 "values": [ Color( 0.419608, 0.862745, 0.67451, 1 ) ]
 }
 
+[sub_resource type="StyleBoxFlat" id=41]
+bg_color = Color( 0, 0, 0, 0.568627 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 0, 0, 0, 0.623529 )
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=42]
+bg_color = Color( 0, 0, 0, 0.560784 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 0, 0, 0, 0.623529 )
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
 [node name="StoryCard" type="PanelContainer" groups=["StoryCard"]]
 margin_right = 186.0
 margin_bottom = 387.0
+mouse_filter = 2
 size_flags_vertical = 0
 theme = ExtResource( 8 )
 custom_styles/panel = ExtResource( 10 )
@@ -245,11 +272,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/normal = SubResource( 35 )
 bbcode_enabled = true
-text = "asddddddd
-asdasd
-asd
-asd
-asdasdasdddd"
 fit_content_height = true
 
 [node name="TextureButton" type="TextureButton" parent="VBoxContainer/Content/ContentLabel"]
@@ -284,6 +306,7 @@ asd
 middle_mouse_paste_enabled = false
 smooth_scrolling = true
 v_scroll_speed = 30.0
+wrap_enabled = true
 caret_blink = true
 
 [node name="SaveContentButton2" type="TextureButton" parent="VBoxContainer/Content/TypeContent"]
@@ -365,6 +388,18 @@ anims/RESET = SubResource( 19 )
 anims/hover_anim = SubResource( 20 )
 anims/invalid = SubResource( 23 )
 anims/toggleon = SubResource( 21 )
+
+[node name="Overlay" type="Button" parent="."]
+visible = false
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 178.0
+margin_bottom = 379.0
+custom_styles/hover = SubResource( 41 )
+custom_styles/pressed = SubResource( 41 )
+custom_styles/focus = SubResource( 42 )
+custom_styles/disabled = SubResource( 42 )
+custom_styles/normal = SubResource( 42 )
 
 [connection signal="gui_input" from="." to="." method="_on_StoryCard_gui_input"]
 [connection signal="pressed" from="VBoxContainer/MainDetails/Save" to="." method="_on_Save_pressed"]

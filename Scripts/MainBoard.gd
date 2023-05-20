@@ -6,12 +6,14 @@ signal ShowToast
 onready var path_to_json
 onready var click=false
 onready var prevcard=null
+onready var user_settings
 export onready var latest_index=1
 onready var maingrid_path="PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid/"
 
 func _ready():
 	print(path_to_json)
 	
+	InitLoadSettings()
 	
 	if path_to_json!=null:
 		LoadFromJsonFile(path_to_json)
@@ -23,10 +25,7 @@ func _ready():
 		$AcceptDialog.visible=true
 		$BgDrop.visible=true
 		
-		
-		
-	
-	
+
 	print('onstart ',$PanelContainer/ScrollContainer/Panel/MarginContainer.rect_size)
 
 	var children=get_node(maingrid_path).get_children()
@@ -48,11 +47,58 @@ func _ready():
 			child.connect('ShowOptionsPopup',self,'_on_card_right_click')
 			child.get_node("VBoxContainer/MainDetails/Index").text=str(latest_index)
 
-
+		child.get_node('Overlay').connect('pressed',self,'_on_search_result_click', [child])
 		latest_index+=1
 
-func LoadFromJsonFile(path):
 
+
+func load_user_settings():
+	var file = File.new()
+	var directory = Directory.new()
+	if not directory.file_exists("user://Settings//user_settings.json"):
+		return false
+	file.open("user://Settings//user_settings.json", file.READ)
+	var text = file.get_as_text()
+	var result_json = JSON.parse(str(text))
+	var re_user_settings = result_json.result
+	file.close()
+	return re_user_settings
+
+func load_default_settings():
+	var file2 = File.new()
+	var directory2 = Directory.new()
+	if not directory2.file_exists("res://Assets/Settings/default_settings.json"):
+		return false
+	
+	file2.open("res://Assets/Settings/default_settings.json", file2.READ)
+	var text2 = file2.get_as_text()
+	var result_json2 = JSON.parse(str(text2))
+	var re_default_settings = result_json2.result
+	file2.close()
+	return re_default_settings
+
+func InitLoadSettings():
+	var default_settings=load_default_settings()
+	user_settings=load_user_settings()
+	
+	if not user_settings:
+		user_settings=default_settings
+		var dir = Directory.new()
+		if not dir.dir_exists('user://Settings'):
+			dir.open("user://")
+			dir.make_dir("Settings")
+	
+			var file = File.new()
+			file.open("user://Settings//user_settings.json", File.WRITE)
+			file.store_string(JSON.print(user_settings))
+			file.close()
+			emit_signal("ShowToast","Saved Succesfully")
+			
+	
+	
+func LoadFromJsonFile(path):
+	var min_size=int(user_settings['card_size'])
+	
 	var file = File.new()
 	var directory = Directory.new()
 	if not directory.file_exists(path):
@@ -102,7 +148,7 @@ func LoadFromJsonFile(path):
 			
 			storycard.get_node('VBoxContainer/OnEnd/VBoxContainer/Goto').text=str(card['on_end']['goto'])
 			storycard.get_node('VBoxContainer/Content/ContentLabel').text=str(card['content'])
-			
+			storycard.set_custom_minimum_size(Vector2(min_size,storycard.get_custom_minimum_size().y))
 			maingrid.add_child(storycard)
 		
 		elif card['card_type']=='RouterCard':
@@ -127,6 +173,8 @@ func LoadFromJsonFile(path):
 				routercard.add_child(GotoPanel)
 				
 			routercard.PreloadEditables=false
+			routercard.set_custom_minimum_size(Vector2(min_size,routercard.get_custom_minimum_size().y))
+			
 			maingrid.add_child(routercard)
 			
 		elif card['card_type']=='ChoiceCard':
@@ -149,6 +197,8 @@ func LoadFromJsonFile(path):
 				
 				choicecard.get_node('VBoxContainer/VBoxContainer/Choices/VBoxContainer').add_child(choice_panel)
 				choice_panel.connect("TextEntered", choicecard, "_on_goto_text_entered")
+			choicecard.set_custom_minimum_size(Vector2(min_size,choicecard.get_custom_minimum_size().y))
+			
 			maingrid.add_child(choicecard)
 	
 
@@ -447,4 +497,66 @@ func _on_Project_Title_LineEdit_text_entered(new_text):
 func _on_Return_To_Home_confirmed():
 	get_tree().change_scene("res://Scenes/HomeScreen/HomeScreen.tscn")
 
+
+
+
+func _on_Search_LineEdit_text_changed(search_text):
+	var all_children=$PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid.get_children()
+	if search_text!='':
+		var search_results=[]
+		search_text=search_text.to_lower()
+		for c in $PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid.get_children():
+			if c.is_in_group('StoryCard'):
+				if search_text in c.get_node('VBoxContainer/Content/ContentLabel').get_text().to_lower():
+					if not search_results.has(c):
+						search_results.append(c)
+			if c.is_in_group('ChoiceCard'):
+				if search_text in c.get_node('VBoxContainer/VBoxContainer/Content/ContentLabel').get_text().to_lower():
+					if not search_results.has(c):
+						search_results.append(c)
+				
+				var panels = c.get_node('VBoxContainer/VBoxContainer/Choices/VBoxContainer').get_children()
+				for x in panels:
+					if search_text in x.get_node('VBoxContainer/HBoxContainer2/ChoiceTitle').get_text().to_lower():
+						if not search_results.has(c):
+							search_results.append(c)
+		
+		for l in all_children:
+			l.visible=false
+		for l in search_results:
+			l.visible=true
+			l.set_mouse_filter(2)
+			l.get_node('Overlay').visible=true
+			
+	else:
+		for l in all_children:
+			l.visible=true
+			l.set_mouse_filter(0)
+			l.get_node('Overlay').visible=false
+			
+
+func _on_search_result_click(c):
+	print('asdasd')
+	var all_children=$PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid.get_children()
+	for l in all_children:
+		l.visible=true
+		l.set_mouse_filter(0)
+		l.get_node('Overlay').visible=false
+	
+	print('=== ',c.get_global_position().x)
+	$PanelContainer/ScrollContainer.set_h_scroll(c.get_position().x)
+
+func _on_CloseIcon_SearchBar_pressed():
+	var all_children=$PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid.get_children()
+	for l in all_children:
+		l.visible=true
+		l.set_mouse_filter(0)
+		l.get_node('Overlay').visible=false
+
+func _on_SearchBar_focus_exited():
+	var all_children=$PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid.get_children()
+#	for l in all_children:
+#		l.visible=true
+#		l.set_mouse_filter(0)
+#		l.get_node('Overlay').visible=false
 

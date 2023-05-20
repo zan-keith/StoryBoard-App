@@ -2574,30 +2574,30 @@ size_flags_vertical = 3
 custom_styles/panel = SubResource( 208 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SettingsPanel/VBoxContainer/ScrollContainer/PanelContainer"]
-margin_right = 864.0
-margin_bottom = 500.0
+margin_right = 876.0
+margin_bottom = 430.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 8
 
 [node name="PanelContainer" type="PanelContainer" parent="SettingsPanel/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer"]
-margin_right = 864.0
+margin_right = 876.0
 margin_bottom = 82.0
 custom_styles/panel = SubResource( 211 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="SettingsPanel/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/PanelContainer"]
 margin_left = 15.0
 margin_top = 5.0
-margin_right = 857.0
+margin_right = 869.0
 margin_bottom = 77.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SettingsPanel/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer"]
-margin_right = 842.0
+margin_right = 854.0
 margin_bottom = 72.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="SettingsPanel/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer"]
-margin_right = 842.0
+margin_right = 854.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
 theme = SubResource( 213 )
@@ -2606,7 +2606,7 @@ autowrap = true
 
 [node name="Label2" type="Label" parent="SettingsPanel/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer"]
 margin_top = 26.0
-margin_right = 842.0
+margin_right = 854.0
 margin_bottom = 45.0
 theme = SubResource( 216 )
 text = "Change the default width of cards when it is added to the board."
@@ -2614,7 +2614,7 @@ autowrap = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="SettingsPanel/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer"]
 margin_top = 49.0
-margin_right = 842.0
+margin_right = 854.0
 margin_bottom = 72.0
 
 [node name="LineEdit" type="LineEdit" parent="SettingsPanel/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/PanelContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
@@ -2635,22 +2635,25 @@ custom_icons/grabber_disabled = SubResource( 217 )
 custom_icons/grabber_highlight = SubResource( 217 )
 custom_icons/grabber = SubResource( 217 )
 custom_styles/slider = SubResource( 220 )
+min_value = 190.0
+max_value = 400.0
+value = 190.0
 rounded = true
 
 [node name="PanelContainer2" type="PanelContainer" parent="SettingsPanel/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer"]
 margin_top = 90.0
-margin_right = 864.0
+margin_right = 876.0
 margin_bottom = 172.0
 custom_styles/panel = SubResource( 211 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SettingsPanel/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/PanelContainer2"]
 margin_left = 15.0
 margin_top = 5.0
-margin_right = 857.0
+margin_right = 869.0
 margin_bottom = 77.0
 
 [node name="Label" type="Label" parent="SettingsPanel/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/PanelContainer2/VBoxContainer"]
-margin_right = 842.0
+margin_right = 854.0
 margin_bottom = 22.0
 theme = SubResource( 213 )
 text = "Default Font Size"
@@ -2658,7 +2661,7 @@ autowrap = true
 
 [node name="Label2" type="Label" parent="SettingsPanel/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/PanelContainer2/VBoxContainer"]
 margin_top = 26.0
-margin_right = 842.0
+margin_right = 854.0
 margin_bottom = 45.0
 theme = SubResource( 216 )
 text = "Font size of UI"
@@ -2666,7 +2669,7 @@ autowrap = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="SettingsPanel/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/PanelContainer2/VBoxContainer"]
 margin_top = 49.0
-margin_right = 842.0
+margin_right = 854.0
 margin_bottom = 72.0
 
 [node name="LineEdit2" type="LineEdit" parent="SettingsPanel/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/PanelContainer2/VBoxContainer/HBoxContainer2"]
@@ -2691,18 +2694,18 @@ rounded = true
 
 [node name="PanelContainer3" type="PanelContainer" parent="SettingsPanel/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer"]
 margin_top = 180.0
-margin_right = 864.0
+margin_right = 876.0
 margin_bottom = 318.0
 custom_styles/panel = SubResource( 211 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SettingsPanel/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/PanelContainer3"]
 margin_left = 15.0
 margin_top = 5.0
-margin_right = 857.0
+margin_right = 869.0
 margin_bottom = 133.0
 
 [node name="Label" type="Label" parent="SettingsPanel/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/PanelContainer3/VBoxContainer"]
-margin_right = 842.0
+margin_right = 854.0
 margin_bottom = 22.0
 theme = SubResource( 213 )
 text = "Default Save Location"
@@ -2710,7 +2713,7 @@ autowrap = true
 
 [node name="Label2" type="Label" parent="SettingsPanel/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/PanelContainer3/VBoxContainer"]
 margin_top = 26.0
-margin_right = 842.0
+margin_right = 854.0
 margin_bottom = 67.0
 theme = SubResource( 216 )
 text = "Choose a default working directory for your projects.
@@ -2719,25 +2722,25 @@ autowrap = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="SettingsPanel/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/PanelContainer3/VBoxContainer"]
 margin_top = 71.0
-margin_right = 842.0
+margin_right = 854.0
 margin_bottom = 100.0
 
 [node name="LineEdit" type="LineEdit" parent="SettingsPanel/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/PanelContainer3/VBoxContainer/HBoxContainer"]
-margin_right = 762.0
+margin_right = 774.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
 theme = ExtResource( 33 )
 
 [node name="Button" type="Button" parent="SettingsPanel/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/PanelContainer3/VBoxContainer/HBoxContainer"]
-margin_left = 766.0
-margin_right = 842.0
+margin_left = 778.0
+margin_right = 854.0
 margin_bottom = 29.0
 theme = SubResource( 225 )
 text = "Browse"
 
 [node name="CheckBox" type="CheckBox" parent="SettingsPanel/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/PanelContainer3/VBoxContainer"]
 margin_top = 104.0
-margin_right = 842.0
+margin_right = 854.0
 margin_bottom = 128.0
 custom_colors/font_color = Color( 1, 1, 1, 0.223529 )
 custom_styles/focus = SubResource( 228 )
@@ -2746,18 +2749,18 @@ flat = true
 
 [node name="PanelContainer4" type="PanelContainer" parent="SettingsPanel/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer"]
 margin_top = 326.0
-margin_right = 864.0
+margin_right = 876.0
 margin_bottom = 409.0
 custom_styles/panel = SubResource( 211 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SettingsPanel/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/PanelContainer4"]
 margin_left = 15.0
 margin_top = 5.0
-margin_right = 857.0
+margin_right = 869.0
 margin_bottom = 78.0
 
 [node name="Label" type="Label" parent="SettingsPanel/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/PanelContainer4/VBoxContainer"]
-margin_right = 842.0
+margin_right = 854.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
 theme = SubResource( 213 )
@@ -2766,12 +2769,12 @@ autowrap = true
 
 [node name="HSeparator" type="HSeparator" parent="SettingsPanel/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/PanelContainer4/VBoxContainer"]
 margin_top = 26.0
-margin_right = 842.0
+margin_right = 854.0
 margin_bottom = 30.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="SettingsPanel/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/PanelContainer4/VBoxContainer"]
 margin_top = 34.0
-margin_right = 842.0
+margin_right = 854.0
 margin_bottom = 53.0
 
 [node name="TextureRect" type="TextureRect" parent="SettingsPanel/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/PanelContainer4/VBoxContainer/HBoxContainer"]
@@ -2784,7 +2787,7 @@ stretch_mode = 6
 
 [node name="Label3" type="Label" parent="SettingsPanel/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/PanelContainer4/VBoxContainer/HBoxContainer"]
 margin_left = 24.0
-margin_right = 842.0
+margin_right = 854.0
 margin_bottom = 19.0
 size_flags_horizontal = 3
 theme = SubResource( 216 )
@@ -2793,64 +2796,8 @@ autowrap = true
 
 [node name="LinkButton" type="LinkButton" parent="SettingsPanel/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/PanelContainer4/VBoxContainer"]
 margin_top = 57.0
-margin_right = 842.0
+margin_right = 854.0
 margin_bottom = 73.0
-custom_colors/font_color = Color( 0.054902, 0.52549, 0.505882, 1 )
-custom_fonts/font = SubResource( 226 )
-text = "https://github.com/Alpha-Hunt/StoryBoard-App"
-
-[node name="PanelContainer5" type="PanelContainer" parent="SettingsPanel/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer"]
-margin_top = 417.0
-margin_right = 864.0
-margin_bottom = 500.0
-custom_styles/panel = SubResource( 211 )
-
-[node name="VBoxContainer" type="VBoxContainer" parent="SettingsPanel/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/PanelContainer5"]
-margin_left = 15.0
-margin_top = 5.0
-margin_right = 857.0
-margin_bottom = 78.0
-
-[node name="Label" type="Label" parent="SettingsPanel/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/PanelContainer5/VBoxContainer"]
-margin_right = 842.0
-margin_bottom = 22.0
-size_flags_horizontal = 3
-theme = SubResource( 213 )
-text = "Links"
-autowrap = true
-
-[node name="HSeparator" type="HSeparator" parent="SettingsPanel/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/PanelContainer5/VBoxContainer"]
-margin_top = 26.0
-margin_right = 842.0
-margin_bottom = 30.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="SettingsPanel/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/PanelContainer5/VBoxContainer"]
-margin_top = 34.0
-margin_right = 842.0
-margin_bottom = 53.0
-
-[node name="TextureRect" type="TextureRect" parent="SettingsPanel/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/PanelContainer5/VBoxContainer/HBoxContainer"]
-margin_right = 20.0
-margin_bottom = 19.0
-rect_min_size = Vector2( 20, 0 )
-texture = ExtResource( 35 )
-expand = true
-stretch_mode = 6
-
-[node name="Label3" type="Label" parent="SettingsPanel/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/PanelContainer5/VBoxContainer/HBoxContainer"]
-margin_left = 24.0
-margin_right = 842.0
-margin_bottom = 19.0
-size_flags_horizontal = 3
-theme = SubResource( 216 )
-text = "Visit Github"
-autowrap = true
-
-[node name="LinkButton" type="LinkButton" parent="SettingsPanel/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/PanelContainer5/VBoxContainer"]
-margin_top = 57.0
-margin_right = 842.0
-margin_bottom = 73.0
-focus_mode = 2
 custom_colors/font_color = Color( 0.054902, 0.52549, 0.505882, 1 )
 custom_fonts/font = SubResource( 226 )
 text = "https://github.com/Alpha-Hunt/StoryBoard-App"
@@ -2904,8 +2851,10 @@ anims/popup_and_out = SubResource( 100 )
 [connection signal="pressed" from="Navbar/HBoxContainer/AddNewCards/HBox/QuickAddBtn" to="Navbar/HBoxContainer/AddNewCards" method="_on_QuickAddBtn_pressed"]
 [connection signal="pressed" from="Navbar/HBoxContainer/Save/SaveButton" to="Navbar" method="_on_SaveButton_pressed"]
 [connection signal="pressed" from="Navbar/HBoxContainer/Export/ExportButton" to="Navbar" method="_on_ExportButton_pressed"]
+[connection signal="pressed" from="Navbar/HBoxContainer/Search/PanelContainer/HBoxContainer/CloseIcon" to="." method="_on_CloseIcon_SearchBar_pressed"]
 [connection signal="focus_entered" from="Navbar/HBoxContainer/Search/PanelContainer/HBoxContainer/LineEdit" to="Navbar" method="_on_LineEdit_focus_entered"]
 [connection signal="focus_exited" from="Navbar/HBoxContainer/Search/PanelContainer/HBoxContainer/LineEdit" to="Navbar" method="_on_LineEdit_focus_exited"]
+[connection signal="text_changed" from="Navbar/HBoxContainer/Search/PanelContainer/HBoxContainer/LineEdit" to="." method="_on_Search_LineEdit_text_changed"]
 [connection signal="mouse_entered" from="Navbar/HBoxContainer/Zoom/PanelContainer/HBoxContainer/minus" to="Navbar" method="_on_minus_mouse_entered"]
 [connection signal="mouse_exited" from="Navbar/HBoxContainer/Zoom/PanelContainer/HBoxContainer/minus" to="Navbar" method="_on_minus_mouse_exited"]
 [connection signal="pressed" from="Navbar/HBoxContainer/Zoom/PanelContainer/HBoxContainer/minus" to="Navbar/HBoxContainer/Zoom" method="_on_minus_pressed"]

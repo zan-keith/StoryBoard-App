@@ -6,8 +6,10 @@ onready var RecentlyClickedCard=1
 onready var toggle=false
 onready var card_added_oneshot=false
 
-
 func AddCard(n):
+	
+	var min_size=int($"../../..".user_settings['card_size'])
+	
 	var maingrid_path="../../../PanelContainer/ScrollContainer/Panel/MarginContainer/MainGrid"
 	var MainBoard=$"../../.."
 	var c
@@ -32,6 +34,8 @@ func AddCard(n):
 		c.connect("RefreshLines", MainBoard, "_on_refresh_lines")
 		c.connect('ShowOptionsPopup',MainBoard,'_on_card_right_click')
 		c.get_node("VBoxContainer/MainDetails/Index").text=str(latest_index)
+	c.set_custom_minimum_size(Vector2(min_size,c.get_custom_minimum_size().y))
+	c.get_node('Overlay').connect('pressed',MainBoard,'_on_search_result_click', [c])
 	get_node(maingrid_path).add_child(c)
 	get_node(maingrid_path)._set_size(get_node(maingrid_path).get_size())
 	#$"../../../PanelContainer/ScrollContainer/Panel/MarginContainer"._set_size(get_node(maingrid_path).get_size())

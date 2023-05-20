@@ -60,7 +60,7 @@ tracks/0/keys = {
 
 [node name="ChoicePanel" type="PanelContainer" groups=["ChoiceGotoPanel"]]
 margin_right = 168.0
-margin_bottom = 104.0
+margin_bottom = 74.0
 mouse_filter = 1
 theme = ExtResource( 3 )
 custom_styles/panel = SubResource( 14 )
@@ -70,11 +70,15 @@ script = ExtResource( 1 )
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 161.0
-margin_bottom = 97.0
+margin_bottom = 67.0
 
-[node name="ChoiceTitle" type="LineEdit" parent="VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
 margin_right = 154.0
-margin_bottom = 23.0
+margin_bottom = 28.0
+
+[node name="ChoiceTitle" type="LineEdit" parent="VBoxContainer/HBoxContainer2"]
+margin_right = 123.0
+margin_bottom = 28.0
 mouse_filter = 1
 size_flags_horizontal = 3
 theme = ExtResource( 4 )
@@ -82,10 +86,18 @@ text = "choice1"
 expand_to_text_length = true
 placeholder_text = "Name"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 27.0
+[node name="Remove" type="Button" parent="VBoxContainer/HBoxContainer2"]
+margin_left = 127.0
 margin_right = 154.0
-margin_bottom = 55.0
+margin_bottom = 28.0
+theme = ExtResource( 5 )
+text = "X"
+flat = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 32.0
+margin_right = 154.0
+margin_bottom = 60.0
 
 [node name="Goto" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
 margin_right = 123.0
@@ -107,5 +119,6 @@ text = "+"
 anims/RESET = SubResource( 15 )
 anims/invalid = SubResource( 16 )
 
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/Remove" to="." method="_on_Remove_pressed"]
 [connection signal="text_entered" from="VBoxContainer/HBoxContainer/Goto" to="." method="_on_Goto_text_entered"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/AddVar" to="." method="_on_AddVar_pressed"]

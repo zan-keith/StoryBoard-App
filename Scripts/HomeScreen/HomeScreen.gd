@@ -87,3 +87,7 @@ func _on_open_file_click(path):
 	get_tree().get_root().add_child(s)
 	get_tree().set_current_scene(s)
 	
+
+
+func _on_About_pressed():
+	OS.shell_open("https://github.com/Alpha-Hunt/StoryBoard-App")
